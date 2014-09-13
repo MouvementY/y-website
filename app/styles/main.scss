@@ -6,7 +6,7 @@
 $logo-width: 180px;
 
 body {
-    background: #fafafa;
+    background: #fff;
     font-family: "Helvetica Neue", Helvetica, sans-serif;
     font-weight: 300;
     color: #333;
@@ -38,6 +38,15 @@ blockquote {
     }
 }
 
+.facebook-like {
+    background: #3b5998;
+    color: #fff !important;
+
+    &:hover {
+        background: lighten(#3b5998, 20%) !important;
+    }
+}
+
 .container {
     width: 1080px;
     margin: 0 auto;
@@ -47,23 +56,36 @@ blockquote {
     background: #f0f0f0;
     padding: 1em 0em;
     overflow: auto;
+
+    // top fixed
+    position: fixed;
+    width: 100%;
+    top: 0;
 }
 
 .logo {
-    width: $logo-width;
     text-align: center;
     font-size: 1.6em;
+    margin-left: auto;
+    margin-right: auto;
 
     span {
+        width: $logo-width;
         color: #000;
         font-family: 'Maven Pro', "Helvetica Neue", sans-serif;
     }
 }
 .logo--big {
-    margin: 3em auto 2em auto;
+    margin-top: 3em;
+    margin-bottom: 2em;
 
     span {
         font-size: 9em;
+    }
+}
+.logo--image {
+    img {
+        margin: 2em auto 2em auto;
     }
 }
 
@@ -107,7 +129,11 @@ blockquote {
     width: $logo-width;
 
     // vertically centered too
-    line-height: 1.85em;
+    line-height: 1.5em;
+
+    .logo {
+        font-size: 2.2em;
+    }
 }
 .nav--right {
     float: right;
