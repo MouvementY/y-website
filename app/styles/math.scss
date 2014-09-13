@@ -1,0 +1,36 @@
+//
+// Math utils
+//
+
+
+/**
+ * x power y
+ */
+@function pow($x, $exponent) {
+    $value: $x;
+
+    @if $exponent > 1 {
+        @for $i from 2 through $exponent {
+            $value: $value * $x; 
+        } 
+    }
+
+    @if $exponent < 1 {
+        @for $i from 0 through -$exponent {
+            $value: $value / $x; 
+        } 
+    }
+    
+    @return $value; 
+}
+
+
+/**
+ * Pseudo random generator between [0,1]
+ */
+@function next_random($x) {
+    $a: 11;  // a - 1 should be divisible by m's prime factors
+    $c: 17;   // c and m should be co-prime
+    $m: 25;
+    @return ($a * $x + $c) % $m;
+}

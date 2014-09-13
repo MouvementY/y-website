@@ -1,0 +1,198 @@
+@import "math";
+@import "fonts";
+
+@import "../bower_components/Revealing.js/src/revealing";
+
+$logo-width: 180px;
+
+body {
+    background: #fafafa;
+    font-family: "Helvetica Neue", Helvetica, sans-serif;
+    font-weight: 300;
+    color: #333;
+    margin: 0px;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+    // border-bottom: .0625rem dotted;
+
+    &:hover {
+        color:#0276b0;
+    }
+}
+
+blockquote {
+    font-family: Menlo, "Helvetica Neue", Helvetica, sans-serif;
+
+    &::before {
+        content: "“";
+    }
+    &::after {
+        content: "”";
+    }
+    &::before, &::after {
+        font-family: "Helvetica Neue", Helvetica, sans-serif;
+        color: #888;
+    }
+}
+
+.container {
+    width: 1080px;
+    margin: 0 auto;
+}
+
+.main-head {
+    background: #f0f0f0;
+    padding: 1em 0em;
+    overflow: auto;
+}
+
+.logo {
+    width: $logo-width;
+    text-align: center;
+    font-size: 1.6em;
+
+    span {
+        color: #000;
+        font-family: 'Maven Pro', "Helvetica Neue", sans-serif;
+    }
+}
+.logo--big {
+    margin: 3em auto 2em auto;
+
+    span {
+        font-size: 9em;
+    }
+}
+
+.nav-table {
+    position: relative;
+}
+.nav {
+    list-style: none;
+    padding: 0px;
+    margin: 0px;
+
+    > li {
+        display: inline-block;
+        margin: 0px;
+
+        & + li {
+            margin-left: .5em;
+        }
+
+        > a {
+            display: block;
+            color: #333;
+            padding: 0.5em 0.8em;
+
+            &:hover {
+                background-color: #ddd;
+                color: #000;
+            }
+        }
+    }
+}
+.nav--left {
+    float: left;
+}
+.nav--logo {
+    position: absolute;
+
+    // center the logo
+    left: 50%;
+    margin-left: -$logo-width/2;
+    width: $logo-width;
+
+    // vertically centered too
+    line-height: 1.85em;
+}
+.nav--right {
+    float: right;
+}
+
+$hero-doublequote-size: 20px;
+.hero-quote {
+    width: 80%;
+    margin: 0 auto;
+    text-align: center;
+    font-size: 1.8em;
+
+    blockquote {
+        margin: 0 0 0 $hero-doublequote-size;
+
+        &::before {
+            content: "";
+            margin-left: -$hero-doublequote-size;
+        }
+        &::after {
+            content: "";
+        }
+        &::before, &::after {
+            display: inline-block;
+            width: $hero-doublequote-size;
+            font-size: 2em;
+            line-height: 1em;
+            color: #888;
+        }
+    }
+}
+
+.links {
+    margin-top: 4em;
+    margin-bottom: 2em;
+
+    .link {
+        display: inline-block;
+        width: 33%;
+        text-align: center;
+
+        a {
+            display: block;
+            background: #f0f0f0;
+            padding: 2em 0;
+
+            &:hover {
+                background: #ccc;
+            }
+        }
+    }
+}
+
+$person-per-row-desktop: 16;
+$person-per-row-lap: 12;
+$person-per-row-palm: 8;
+.people {
+    margin-top: 4em;
+
+    // activate the GPU
+    transform: transale3d(0,0,0); 
+}
+.person {
+    display: block;
+    float: left;
+    width: 100% / $person-per-row-desktop;
+    opacity: 0.6;
+    transition: opacity 0.3s ease;
+
+    &:hover {
+        opacity: 1;
+    }
+
+    img {
+        display: block;
+        max-width: 100%;
+    }
+}
+@media screen and (max-width: 890px) {
+    .person {
+        width: 100% / $person-per-row-lap;
+    }
+}
+@media screen and (max-width: 640px) {
+    .person {
+        width: 100% / $person-per-row-palm;
+    }
+}
