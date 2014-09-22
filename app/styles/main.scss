@@ -42,6 +42,29 @@ img {
     max-width: 100%;
 }
 
+button {
+    background: none;
+    border: none;
+    font-family: "Aleo", sans-serif;
+    font-weight: 200;
+    text-transform: uppercase;
+    cursor: pointer;
+    outline: none;
+
+    &:hover {
+        color: #000;
+        font-weight: 500;
+    }
+
+    canvas {
+        pointer-events: none;
+    }
+}
+
+.button--block {
+    display: block;
+}
+
 .img-centered {
     display: block;
     margin: 0 auto;
@@ -169,6 +192,15 @@ img {
         margin-top: 0.3em;
     }
 
+    em {
+        font-family: "Aleo", sans-serif;
+        font-style: normal;
+        font-weight: 200;
+
+        display: block;
+        margin-top: 0em;
+    }
+
     canvas {
         pointer-events: none;
     }
@@ -179,7 +211,6 @@ img {
 }
 
 .title--boxed {
-    font-family: "Another Shabby", sans-serif;
     font-size: 2rem;
 
     width: 80%;
@@ -353,4 +384,11 @@ $person-per-row-palm: 8;
     .paragraph {
         margin-bottom: 0px;
     }
+}
+
+.sign-block {
+    height: 200px;
+    width: 300px;
+    margin: 0 auto;
+    border: 1px solid #ccc;
 }
