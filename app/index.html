@@ -19,6 +19,8 @@
         <!-- build:js scripts/vendor/modernizr.js -->
         <script src="bower_components/modernizr/modernizr.js"></script>
         <!-- endbuild -->
+
+        <!--[if IE]><script src="bower_components/excanvas/excanvas.js"></script><![endif]-->
     </head>
     <body>
         <!--[if lt IE 10]>
@@ -53,8 +55,27 @@
             </div>
         </div>
 
-        <div class="hero-quote">
+        <!-- <div class="hero-quote">
             <blockquote class="fancy-quote revealing">le <u>combat</u> politique d'une <u>génération</u></blockquote>
+        </div> -->
+        
+        <div class="container">   
+            <h1 class="title title--boxed">c'est l'histoire d'une génération qui a grandi avec des</h1>
+        </div>
+
+        <div class="container">
+            <img class="img-centered" src="/images/scroll/grandi_avec-1.jpg" data-at2x="/images/scroll/grandi_avec-1@2x.jpg" width=418>
+            <img class="img-centered" src="/images/scroll/grandi_avec-2.jpg" data-at2x="/images/scroll/grandi_avec-2@2x.jpg" width=418>
+        </div>
+
+        <div class="container">   
+            <h1 class="title title--boxed">et puis des</h1>
+        </div>
+
+        <div class="container">
+            <img class="img-centered" src="/images/scroll/grandi_avec-3.jpg" data-at2x="/images/scroll/grandi_avec-3@2x.jpg" width=465>
+            <img class="img-centered" src="/images/scroll/grandi_avec-4.jpg" data-at2x="/images/scroll/grandi_avec-4@2x.jpg" width=465>
+            <img class="img-centered" src="/images/scroll/grandi_avec-5.jpg" data-at2x="/images/scroll/grandi_avec-5@2x.jpg" width=465>
         </div>
 
         <div class="links">
@@ -90,6 +111,7 @@
         <script src="bower_components/eventie/eventie.js"></script>
         <script src="bower_components/imagesloaded/imagesloaded.js"></script>
         <script src="bower_components/retina.js/dist/retina.js"></script>
+        <script src="bower_components/Revealing.js/src/revealing.js"></script>
         <!-- endbower -->
         <!-- endbuild -->
 
@@ -97,6 +119,7 @@
         <script src="dummy-db/users.js"></script>
 
         <!-- build:js scripts/main.js -->
+        <script src="scripts/boxme.js"></script>
         <script src="scripts/main.js"></script>
         <!-- endbuild -->
 </body>

@@ -8,3 +8,16 @@
     font-weight: bold;
     font-style: bold;
 }
+
+@font-face {
+    font-family: 'Another Shabby';
+    src: url('../fonts/AnotherShabby/anothershabby-webfont.eot');
+    src: url('../fonts/AnotherShabby/anothershabby-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/AnotherShabby/anothershabby-webfont.woff2') format('woff2'),
+         url('../fonts/AnotherShabby/anothershabby-webfont.woff') format('woff'),
+         url('../fonts/AnotherShabby/anothershabby-webfont.ttf') format('truetype'),
+         url('../fonts/AnotherShabby/anothershabby-webfont.svg#another_shabbyregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}

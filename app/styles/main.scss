@@ -149,6 +149,19 @@ img {
     float: right;
 }
 
+.title {
+    font-family: "Another Shabby", sans-serif;
+    text-align: center;
+    width: 80%;
+    max-width: 450px;
+    margin: 0 auto;
+}
+
+.title--boxed {
+    margin-top: 1.5em;
+    margin-bottom: 1.5em;
+}
+
 $hero-doublequote-size: 20px;
 .hero-quote {
     width: 80%;
