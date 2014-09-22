@@ -154,7 +154,23 @@ img {
 }
 
 .title {
+    font-family: "Another Shabby", sans-serif;
+    font-size: 2rem;
+    line-height: 1.26em;
     text-align: center;
+
+    margin-bottom: 0.15em;
+
+    span {
+        font-size: 0.75em;
+
+        display: block;
+        margin-top: 0.3em;
+    }
+}
+
+.title--red {
+    color: #be0000;
 }
 
 .title--boxed {
@@ -177,6 +193,7 @@ img {
     border-top: 1px solid black;
     border-bottom: 1px solid black;
     padding: 0.75em;
+    margin-bottom: 1em;
 
     span {
         font-weight: 500;
@@ -187,12 +204,12 @@ img {
     }
 }
 
-.title--underlined {
-    font-family: "Another Shabby", sans-serif;
-    font-size: 2rem;
-    text-decoration: underline;
+.title--not-underlined {
+    
+}
 
-    margin-bottom: 0.15em;
+.title--underlined {
+    text-decoration: underline;
 }
 
 .inner-container {
