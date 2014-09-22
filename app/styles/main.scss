@@ -154,6 +154,7 @@ img {
 }
 
 .title {
+    color: #333;
     font-family: "Another Shabby", sans-serif;
     font-size: 2rem;
     line-height: 1.26em;
@@ -166,6 +167,10 @@ img {
 
         display: block;
         margin-top: 0.3em;
+    }
+
+    canvas {
+        pointer-events: none;
     }
 }
 
@@ -188,6 +193,7 @@ img {
     font-family: "Aleo", sans-serif;
     font-size: 3rem;
     font-weight: 200;
+    line-height: 1.6em;
     text-transform: uppercase;
 
     border-top: 1px solid black;
