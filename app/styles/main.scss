@@ -191,6 +191,8 @@ img {
     font-family: "Another Shabby", sans-serif;
     font-size: 2rem;
     text-decoration: underline;
+
+    margin-bottom: 0.15em;
 }
 
 .inner-container {
@@ -204,6 +206,13 @@ img {
     font-size: 1.4rem;
     line-height: 160%;  // for readibility
     text-align: center;
+
+    margin: 0;
+    margin-bottom: 2em;
+
+    & + .paragraph {
+        margin-top: 1em;
+    }
 }
 
 $hero-doublequote-size: 20px;
