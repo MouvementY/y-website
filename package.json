@@ -1,7 +1,11 @@
 {
   "name": "y-website",
   "version": "0.0.0",
-  "dependencies": {},
+  "dependencies": {
+    "gzippo": "^0.2.0",
+    "express": "^4.9.4",
+    "morgan": "^1.3.1"
+  },
   "devDependencies": {
     "connect": "^2.14.4",
     "connect-livereload": "^0.4.0",
