@@ -131,3 +131,7 @@ gulp.task('watch', ['connect', 'serve'], function () {
     gulp.watch('app/images/**/*', ['images']);
     gulp.watch('bower.json', ['wiredep']);
 });
+
+
+// Production
+gulp.task('heroku:production', ['build']);
