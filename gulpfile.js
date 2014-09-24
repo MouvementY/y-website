@@ -8,8 +8,8 @@ var $ = require('gulp-load-plugins')();
 
 gulp.task('styles', function () {
     return gulp.src('app/styles/main.scss')
-        .pipe($.rubySass({
-            style: 'expanded',
+        .pipe($.sass({
+            outputStyle: 'expanded',
             precision: 10
         }))
         .pipe($.autoprefixer('last 1 version'))
