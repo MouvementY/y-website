@@ -207,6 +207,11 @@ button {
 
     margin-bottom: 0.15em;
 
+    & + .title {
+        margin-top: 0.8em;
+        margin-bottom: 1em;
+    }
+
     span {
         font-size: 0.75em;
 
@@ -226,6 +231,10 @@ button {
     canvas {
         pointer-events: none;
     }
+}
+
+.title--subtitle {
+    font-size: 1.5rem;
 }
 
 .title--red {
@@ -264,7 +273,7 @@ button {
 }
 
 .title--not-underlined {
-    
+    text-decoration: none;
 }
 
 .title--underlined {
