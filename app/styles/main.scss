@@ -191,6 +191,13 @@ button {
     float: right;
 }
 
+.sec {
+
+    & + .sec {
+        margin-top: 6em;
+    }
+}
+
 .title {
     color: #333;
     font-family: "Another Shabby", sans-serif;
@@ -232,7 +239,7 @@ button {
     max-width: 450px;
     margin: 0 auto;
     margin-top: 1.5em;
-    margin-bottom: 1.5em;
+    margin-bottom: 2.0em;
 }
 
 .title--sandwich {
