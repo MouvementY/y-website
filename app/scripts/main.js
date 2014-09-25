@@ -16,6 +16,9 @@ $(document).ready(function() {
         var wrapperHeight = window.innerHeight - header.offsetHeight;
         logoWrapper.style.height = (wrapperHeight + header.offsetHeight) + "px";
         logoWrapper.style.paddingTop = (wrapperHeight/2 - logo.height/2 + header.offsetHeight) + "px";
+
+        // reveal the logo
+        logoWrapper.style.opacity = 1;
     }, 500);
 
 });

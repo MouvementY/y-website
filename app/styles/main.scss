@@ -104,6 +104,8 @@ button {
     // initial height to be sure nothing else is shown
     // randomly choosen by Arno
     height: 4267px;
+    opacity: 0;
+    transition: opacity ease-out 0.8s;
 
     margin-top: 0px;
 
