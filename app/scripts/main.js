@@ -15,7 +15,7 @@ $(document).ready(function() {
 
         var wrapperHeight = window.innerHeight - header.offsetHeight;
         logoWrapper.style.height = (wrapperHeight + header.offsetHeight) + "px";
-        logo.style.paddingTop = (wrapperHeight/2 - logo.height/2 + header.offsetHeight) + "px";
+        logoWrapper.style.paddingTop = (wrapperHeight/2 - logo.height/2 + header.offsetHeight) + "px";
     }, 500);
 
 });
