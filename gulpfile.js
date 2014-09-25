@@ -54,9 +54,7 @@ gulp.task('images', function () {
 });
 
 gulp.task('fonts', function () {
-    return $.bowerFiles()
-        .pipe($.filter('app/**/*.{eot,svg,ttf,woff}'))
-        .pipe($.flatten())
+    return gulp.src('app/fonts/**/*.{eot,svg,ttf,woff}')
         .pipe(gulp.dest('dist/fonts'))
         .pipe($.size());
 });
