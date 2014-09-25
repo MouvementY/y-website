@@ -21,4 +21,12 @@ $(document).ready(function() {
         logoWrapper.style.opacity = 1;
     }, 500);
 
+    // animate the clock
+    var clock = document.querySelector('.clock__second-hand'),
+        angleIntervalPerSecond = 360.0 / 60,
+        seconds = 0;
+    setInterval(function() {
+        clock.style.transform = "rotate(" + (seconds++)*angleIntervalPerSecond + "deg)";
+    }, 1000);
+
 });

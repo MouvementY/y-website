@@ -421,6 +421,25 @@ $person-per-row-palm: 8;
     }
 }
 
+.clock {
+    position: relative;
+    margin: 0 auto;
+    height: 463px;
+    width: 490px;
+}
+.clock__frame {
+    position: absolute;
+}
+.clock__second-hand {
+    position: absolute;
+    top: 215px;
+    left: 205px;
+
+    transform-origin: 45px 10px;
+    transform: rotate(-90deg);
+    transition: transform ease-in 0.10s;
+}
+
 .sign-block {
     height: 200px;
     width: 300px;
