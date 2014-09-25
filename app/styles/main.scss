@@ -100,6 +100,18 @@ button {
     z-index: 1000;
 }
 
+#logo-full-screen {
+    // initial height to be sure nothing else is shown
+    // randomly choosen by Arno
+    height: 4267px;
+
+    margin-top: 0px;
+
+    img {
+        margin-top: 0px;
+    }
+}
+
 .logo {
     text-align: center;
     font-size: 1.6em;
