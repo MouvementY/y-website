@@ -107,6 +107,7 @@ button {
     opacity: 0;
     transition: opacity ease-out 0.8s;
 
+    box-sizing: border-box;
     margin-top: 0px;
 
     img {
