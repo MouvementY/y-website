@@ -427,17 +427,18 @@ $person-per-row-palm: 8;
     position: relative;
     margin: 0 auto;
     height: 463px;
-    width: 490px;
+    width: 100%;
 }
 .clock__frame {
     position: absolute;
 }
 .clock__second-hand {
+    width: 50%;
     position: absolute;
-    top: 215px;
-    left: 205px;
+    top: 46.8%;  // 39%
+    left: 42%;
 
-    transform-origin: 45px 10px;
+    transform-origin: 18% 48%;
     transform: rotate(-90deg);
     transition: transform ease-in 0.10s;
 }
@@ -481,5 +482,18 @@ $person-per-row-palm: 8;
     }
     .too-much {
 
+    }
+}
+
+
+// Responsive
+
+// iPhone portrait
+@media only screen
+and (min-device-width : 320px)
+and (max-device-width : 568px)
+and (orientation : portrait) {
+    .title--sandwich {
+        font-size: 1.2rem;
     }
 }
