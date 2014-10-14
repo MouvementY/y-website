@@ -64,6 +64,9 @@ button {
 .button--block {
     display: block;
 }
+.button--small {
+    font-size: 1.2rem !important;
+}
 
 .img-centered {
     display: block;
@@ -493,6 +496,9 @@ $person-per-row-palm: 8;
 and (min-device-width : 320px)
 and (max-device-width : 568px)
 and (orientation : portrait) {
+    .title {
+        font-size: 1.5rem;
+    }
     .title--sandwich {
         font-size: 1.2rem;
     }
