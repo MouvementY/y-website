@@ -44,16 +44,25 @@ img {
 
 button {
     background: none;
+    color: #000;
     border: none;
     font-family: "Aleo", sans-serif;
-    font-weight: 200;
+    // font-weight: 200;
+    font-weight: 500;
     text-transform: uppercase;
     cursor: pointer;
     outline: none;
 
+    opacity: 1.0;
+    position: relative;
+    top: 0px;
+
     &:hover {
-        color: #000;
-        font-weight: 500;
+        opacity: 0.6;
+    }
+    &:active {
+        opacity: 1.0;
+        top: 2px;
     }
 
     canvas {
