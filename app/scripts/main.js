@@ -22,6 +22,23 @@ $(document).ready(function() {
         logoWrapper.style.opacity = 1;
     }, 500);
 
+    // shrink the header on scroll
+    $(window).scroll(function(){
+        var $nav = $('.nav-table'),
+            thinClass = 'nav-table--thin';
+
+        // when the user has scrolled 60% of the window height
+        if($(document).scrollTop() > window.innerHeight*0.6) {
+            if(!$nav.hasClass(thinClass)) {
+                $nav.addClass(thinClass);
+            }
+        } else {
+            if($nav.hasClass(thinClass)) {
+                $nav.removeClass(thinClass);
+            }
+        }
+    });
+
     // scale the clock
     (function() {
         var clock = document.querySelector('.clock'),

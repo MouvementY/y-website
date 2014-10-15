@@ -93,7 +93,7 @@ button {
 
 .main-head {
     background: #f0f0f0;
-    padding: 1em 0em;
+    padding: 0em 0em;
     overflow: auto;
 
     // top fixed
@@ -161,9 +161,12 @@ button {
         }
 
         > a {
+            transition: padding 0.5s ease-in-out;
+
             display: block;
             color: #333;
-            padding: 0.5em 0.8em;
+            padding: 1.2em 1.2em;
+            font-size: 1.1em;
 
             &:hover {
                 background-color: #ddd;
@@ -172,14 +175,34 @@ button {
         }
     }
 }
+.nav-table--thin {
+    .nav {
+        > li {
+            > a {
+                padding-top: 0.4em;
+                padding-bottom: 0.4em;
+            }
+        }
+    }
+    .nav--logo {
+        // reveal
+        opacity: 1;
+        padding-top: 0.1em;
+    }
+}
 .nav--left {
     float: left;
 }
 .nav--logo {
+    // initially hidden
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out, padding 0.5s ease-in-out;
+
     position: absolute;
 
     // center the logo
     left: 50%;
+    padding-top: 1em;
     margin-left: -$logo-width/2;
     width: $logo-width;
 
@@ -187,7 +210,7 @@ button {
     line-height: 1.5em;
 
     .logo {
-        font-size: 2.2em;
+        font-size: 1.7em;
     }
 }
 .nav--right {
