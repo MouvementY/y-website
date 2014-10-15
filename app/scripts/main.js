@@ -1,4 +1,4 @@
-$(document).ready(function() {
+document.addEventListener('DOMContentLoaded', function() {
     'use strict';
 
     // box each titles
@@ -23,21 +23,22 @@ $(document).ready(function() {
     }, 500);
 
     // shrink the header on scroll
-    $(window).scroll(function(){
-        var $nav = $('.nav-table'),
-            thinClass = 'nav-table--thin';
+    window.onscroll = function() {
+        var nav = document.querySelector('.nav-table'),
+            thinClassName = 'nav-table--thin';
 
         // when the user has scrolled 60% of the window height
-        if($(document).scrollTop() > window.innerHeight*0.6) {
-            if(!$nav.hasClass(thinClass)) {
-                $nav.addClass(thinClass);
+        var s = scrollTop(window, document);
+        if (s > window.innerHeight*0.6) {
+            if (!hasClassName(nav, thinClassName)) {
+                addClassName(nav, thinClassName);
             }
         } else {
-            if($nav.hasClass(thinClass)) {
-                $nav.removeClass(thinClass);
+            if (hasClassName(nav, thinClassName)) {
+                removeClassName(nav, thinClassName);
             }
         }
-    });
+    };
 
     // scale the clock
     (function() {
