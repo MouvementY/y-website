@@ -41,15 +41,18 @@ img {
 }
 
 button {
-    background: none;
-    color: #000;
+    padding: 0.8em 1em;
     border: none;
+    cursor: pointer;
+    outline: none;
+    border-radius: 6px;
+
+    background: #2b2b2b;
+    color: #fff;
     font-family: "Aleo", sans-serif;
     // font-weight: 200;
     font-weight: 500;
     text-transform: uppercase;
-    cursor: pointer;
-    outline: none;
 
     opacity: 1.0;
     position: relative;
@@ -73,6 +76,19 @@ button {
 }
 .button--small {
     font-size: 1.2rem !important;
+}
+.button--facebook {
+    background-color: #3b5998;
+}
+.button--twitter {
+    background-color: #55acee;
+}
+
+.button-group {
+    margin-bottom: 2.5em;
+}
+.button-group--centered {
+    text-align: center;
 }
 
 .img-centered {
@@ -516,6 +532,68 @@ $person-per-row-palm: 8;
     .too-much {
 
     }
+}
+
+
+/**
+ * Learn more blocks
+ */
+.learn-more-trigger {
+
+}
+.learn-more {
+
+}
+
+/**
+ * Modal
+ */
+.modal-overlay {
+    background-color: #000;
+    opacity: 0;
+
+    transition: opacity 0.3s ease-out;
+}
+.modal-overlay--in {
+    opacity: 0.9;
+}
+
+.modal-close {
+    visibility: hidden;
+
+    position: absolute;
+    cursor: pointer;
+    display: block;
+    top: 8px;
+    right: 6px;
+    width: 25px;
+    height: 25px;
+
+    background: transparent;
+    font-size: 40px;
+    line-height: 16px;
+}
+
+.modal-content {
+    box-sizing: border-box;
+    top: 100% !important;
+    height: 80%;
+    overflow: scroll;
+
+    padding: 2em 2em 0.5em 2em;
+    background: #fff;
+    border-radius: 10px;
+    color: #333;
+
+    transition: top 0.5s ease-in-out;
+
+    .paragraph {
+        text-align: left;
+    }
+}
+.modal-content--in {
+    opacity: 1.0;
+    top: 10% !important;
 }
 
 

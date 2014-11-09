@@ -60,4 +60,46 @@ document.addEventListener('DOMContentLoaded', function() {
         clock.style.transform = "rotate(" + (seconds++)*angleIntervalPerStep + "deg)";
     }, 1000.0 / numberOfStepPerSecond);
 
+    // learn more
+    // NB: hide the blocks with javascript so that robots index the content
+    var learnMoreElements = document.querySelectorAll('.learn-more');
+    Array.prototype.forEach.call(learnMoreElements, function(el) {
+        el.style.display = 'none';
+    });
+
+    var learnMoreTriggers = document.querySelectorAll('.learn-more-trigger'),
+        learnMoreAction = function(trigger) {
+            var targetSelector = trigger.dataset.target,
+                targetElement = document.querySelector(targetSelector);
+
+            picoModal({
+                content: targetElement.innerHTML,
+                overlayStyles: {}, modalStyles: {}, closeStyles: {},
+                overlayClass: "modal-overlay",
+                modalClass: "modal-content",
+                closeClass: "modal-close"
+            })
+            .afterShow(function(modal){
+                setTimeout(function(){
+                    addClassName(modal.overlayElem(), 'modal-overlay--in');
+                    addClassName(modal.modalElem(), 'modal-content--in');
+                }, 10);
+            })
+            .beforeClose(function(modal, e) {
+                // e.preventDefault();
+                modal.overlayElem().appendChild(modal.modalElem());
+
+                removeClassName(modal.overlayElem(), 'modal-overlay--in');
+                addClassName(modal.modalElem(), 'modal-content--in');
+            })
+            .afterClose(function(modal, e) {
+                modal.overlayElem().style.display = 'none';
+            })
+            .show();
+        };
+    Array.prototype.forEach.call(learnMoreTriggers, function(el) {
+        el.addEventListener('click', function(e) {
+            learnMoreAction(e.target);
+        });
+    });
 });
