@@ -7,5 +7,10 @@
     "excanvas": "*",
     "picoModal": "~2.0.1"
   },
-  "devDependencies": {}
+  "devDependencies": {},
+  "overrides": {
+    "retina.js": {
+      "main": "src/retina.js"
+    }
+  }
 }
