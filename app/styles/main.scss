@@ -610,4 +610,9 @@ and (orientation : portrait) {
     .title--sandwich {
         font-size: 1.2rem;
     }
+
+    .modal-content {
+        width: 270px;
+        margin: 0px 0px 0px -135px;
+    }
 }
