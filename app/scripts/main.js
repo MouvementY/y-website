@@ -85,6 +85,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 closeClass: "modal-close"
             })
             .afterShow(function(modal){
+                addClassName(document.body, 'modal-open');
                 setTimeout(function(){
                     addClassName(modal.overlayElem(), 'modal-overlay--in');
                     addClassName(modal.modalElem(), 'modal-content--in');
@@ -98,6 +99,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 addClassName(modal.modalElem(), 'modal-content--in');
             })
             .afterClose(function(modal, e) {
+                removeClassName(document.body, 'modal-open');
                 modal.overlayElem().style.display = 'none';
             })
             .show();

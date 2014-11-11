@@ -604,6 +604,11 @@ $person-per-row-palm: 8;
     padding: 2em 2em 0.5em 2em;
 }
 
+// to prevent scrolling
+body.modal-open {
+    overflow: hidden;
+}
+
 
 // Responsive
 
