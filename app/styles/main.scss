@@ -91,6 +91,9 @@ button {
     text-align: center;
 }
 
+.text-center {
+    text-align: center;
+}
 .img-centered {
     display: block;
     margin: 0 auto;
@@ -301,6 +304,20 @@ button {
     margin: 0 auto;
     margin-top: 1.5em;
     margin-bottom: 2.0em;
+
+    &.title--boxed--large {
+        font-size: 3rem;
+
+        &.title--attach-bottom {
+            margin-bottom: 0.5em;
+        }
+    }
+}
+.title--sans-serif {
+    font-family: "Aleo", sans-serif;
+}
+.title--attach-bottom {
+    margin-bottom: 1em;
 }
 
 .title--sandwich {
@@ -505,32 +522,30 @@ $person-per-row-palm: 8;
     margin-top: 1em;
     margin-bottom: 6em;
 
-    .number {
-        display: block;
-        width: 100%;
-
-        font-size: 6em;
-        text-align: center;
-        font-family: "Aleo", sans-serif;
-    }
-
     .journal {
         margin-bottom: 2em;
     }
-    .figure {
-        .paragraph {
-            margin-bottom: 0em;
-        }
-    }
-    .conviction {
+}
 
-    }
-    .gerontocracy {
 
+/**
+ * Figures
+ */
+.figure {
+    .paragraph {
+        margin-bottom: 0em;
     }
-    .too-much {
+}
+.figure--small {
+    font-size: 0.5em;
+}
+.figure__number {
+    display: block;
+    width: 100%;
 
-    }
+    font-size: 6em;
+    text-align: center;
+    font-family: "Aleo", sans-serif;
 }
 
 
@@ -607,6 +622,20 @@ $person-per-row-palm: 8;
 // to prevent scrolling
 body.modal-open {
     overflow: hidden;
+}
+
+
+/**
+ * Detachements
+ */
+.detached-top {
+    margin-top: 3em;
+}
+.detached-bottom {
+    margin-bottom: 3em;
+}
+.detached-bottom--large {
+    margin-bottom: 6em;
 }
 
 
