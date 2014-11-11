@@ -582,7 +582,7 @@ $person-per-row-palm: 8;
 
     padding: 0em;
     background: #fff;
-    border-radius: 10px;
+    border-radius: 3px;
     color: #333;
 
     transition: top 0.5s ease-in-out;
@@ -612,6 +612,10 @@ $person-per-row-palm: 8;
 and (min-device-width : 320px)
 and (max-device-width : 568px)
 and (orientation : portrait) {
+    .main-head {
+        display: none;
+    }
+
     .title {
         font-size: 1.5rem;
     }
