@@ -70,10 +70,15 @@ document.addEventListener('DOMContentLoaded', function() {
     var learnMoreTriggers = document.querySelectorAll('.learn-more-trigger'),
         learnMoreAction = function(trigger) {
             var targetSelector = trigger.dataset.target,
-                targetElement = document.querySelector(targetSelector);
+                targetElement = document.querySelector(targetSelector),
+                wrapper = document.createElement("div");
+
+            addClassName(wrapper, 'modal-scroll');
+            wrapper.innerHTML = targetElement.innerHTML;
+            console.log(wrapper);
 
             picoModal({
-                content: targetElement.innerHTML,
+                content: wrapper.outerHTML,
                 overlayStyles: {}, modalStyles: {}, closeStyles: {},
                 overlayClass: "modal-overlay",
                 modalClass: "modal-content",
