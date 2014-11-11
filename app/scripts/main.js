@@ -115,4 +115,9 @@ document.addEventListener('DOMContentLoaded', function() {
             learnMoreAction(e.target);
         });
     });
+
+
+    // signature pad
+    var signatureCanvas = document.querySelector(".sign-block"),
+        signaturePad = new SignaturePad(signatureCanvas);
 });
