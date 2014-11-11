@@ -92,15 +92,21 @@ document.addEventListener('DOMContentLoaded', function() {
                 }, 10);
             })
             .beforeClose(function(modal, e) {
-                // e.preventDefault();
-                modal.overlayElem().appendChild(modal.modalElem());
+                e.preventDefault();
 
                 removeClassName(modal.overlayElem(), 'modal-overlay--in');
-                addClassName(modal.modalElem(), 'modal-content--in');
+                removeClassName(modal.modalElem(), 'modal-content--in');
+
+                setTimeout(function() {
+                    modal.overlayElem().remove();
+                    modal.modalElem().remove();
+                }, 1000);
+
+                removeClassName(document.body, 'modal-open');
             })
             .afterClose(function(modal, e) {
                 removeClassName(document.body, 'modal-open');
-                modal.overlayElem().style.display = 'none';
+                // modal.overlayElem().style.display = 'none';
             })
             .show();
         };
