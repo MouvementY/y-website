@@ -7,3 +7,6 @@ test/bower_components
 
 ### Sublime Text
 *.sublime-workspace
+
+### Local env
+.env.json

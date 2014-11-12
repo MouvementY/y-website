@@ -132,6 +132,25 @@ gulp.task('watch', ['connect', 'serve'], function () {
     gulp.watch('bower.json', ['wiredep']);
 });
 
+gulp.task('set-env', function () {
+    $.env({
+        file: ".env.json"
+    });
+});
 
-// Production
+// Heroku
 gulp.task('heroku:production', ['build']);
+
+// AWS
+gulp.task('aws:sync', ['set-env', 'build'], function () {
+    var publisher = $.awspublish.create({
+            bucket: process.env.AWS_S3_BUCKET,
+            key: process.env.AWS_S3_KEY,
+            secret: process.env.AWS_S3_SECRET
+        });
+
+    return gulp.src('./dist/*')
+        .pipe(publisher.publish())
+        .pipe(publisher.sync())
+        .pipe($.awspublish.reporter());
+})
