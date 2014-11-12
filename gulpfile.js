@@ -1,7 +1,8 @@
 'use strict';
 // generated on 2014-06-19 using generator-gulp-webapp 0.1.0
 
-var gulp = require('gulp');
+var gulp = require('gulp'),
+    runSequence = require('run-sequence');
 
 // load plugins
 var $ = require('gulp-load-plugins')();
@@ -72,10 +73,6 @@ gulp.task('clean', function () {
 
 gulp.task('build', ['html', 'images', 'fonts', 'extras']);
 
-gulp.task('default', ['clean'], function () {
-    gulp.start('build');
-});
-
 gulp.task('connect', function () {
     var connect = require('connect');
     var app = connect()
@@ -132,25 +129,44 @@ gulp.task('watch', ['connect', 'serve'], function () {
     gulp.watch('bower.json', ['wiredep']);
 });
 
-gulp.task('set-env', function () {
+gulp.task('set-env', function (cb) {
     $.env({
         file: ".env.json"
     });
+
+    cb();
 });
 
 // Heroku
 gulp.task('heroku:production', ['build']);
 
 // AWS
-gulp.task('aws:sync', ['set-env', 'build'], function () {
+gulp.task('aws:publish', ['set-env'], function() {
     var publisher = $.awspublish.create({
             bucket: process.env.AWS_S3_BUCKET,
             key: process.env.AWS_S3_KEY,
-            secret: process.env.AWS_S3_SECRET
+            secret: process.env.AWS_S3_SECRET,
+            region: 'eu-west-1',
+            endpoint: 's3-eu-west-1.amazonaws.com'
+
+            // TODO: move the s3 to the Frankfürt region
+            //       but knox do not support the HMAC-SHA-256 auth yet
+            // region: 'eu-central-1',
+            // endpoint: 's3.eu-central-1.amazonaws.com'
         });
 
-    return gulp.src('./dist/*')
+    return gulp.src('./dist/**/*')
         .pipe(publisher.publish())
         .pipe(publisher.sync())
         .pipe($.awspublish.reporter());
-})
+});
+
+gulp.task('aws:sync', function(cb) {
+
+    // TODO: runSequence is a hack waiting for Gulp 4.0 to be out
+    runSequence(
+        'clean',
+        'build',
+        'aws:publish',
+        cb);
+});
