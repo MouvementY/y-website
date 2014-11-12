@@ -23,16 +23,22 @@ a {
 
 blockquote {
     font-family: Menlo, "Helvetica Neue", Helvetica, sans-serif;
+    margin: 0 0 2em 2em;
 
-    &::before {
-        content: "“";
-    }
-    &::after {
-        content: "”";
-    }
-    &::before, &::after {
+    p {
+        &::before {
+            content: "“";
+            padding-right: 0.5em;
+        }
+        &::after {
+            content: "”";
+            padding-left: 0.5em;
+        }
+
+        &::before, &::after {
         font-family: "Helvetica Neue", Helvetica, sans-serif;
         color: #888;
+    }
     }
 }
 
