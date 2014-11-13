@@ -1,10 +1,14 @@
+// namespace
+var mouvy = mouvy || {};
+
+
 document.addEventListener('DOMContentLoaded', function() {
     'use strict';
 
     // box each titles
     var titleElements = document.querySelectorAll('.title--boxed');
     Array.prototype.forEach.call(titleElements, function(el) {
-        Boxme.draw(el);
+        window.Boxme.draw(el);
     });
 
     // make the logo full screen on page loading
@@ -15,8 +19,8 @@ document.addEventListener('DOMContentLoaded', function() {
             header = document.querySelector('.main-head');
 
         var wrapperHeight = window.innerHeight - header.offsetHeight;
-        logoWrapper.style.height = (wrapperHeight + header.offsetHeight) + "px";
-        logoWrapper.style.paddingTop = (wrapperHeight/2 - logo.height/2 + header.offsetHeight) + "px";
+        logoWrapper.style.height = (wrapperHeight + header.offsetHeight) + 'px';
+        logoWrapper.style.paddingTop = (wrapperHeight/2 - logo.height/2 + header.offsetHeight) + 'px';
 
         // reveal the logo
         logoWrapper.style.opacity = 1;
@@ -28,14 +32,14 @@ document.addEventListener('DOMContentLoaded', function() {
             thinClassName = 'nav-table--thin';
 
         // when the user has scrolled 60% of the window height
-        var s = scrollTop(window, document);
+        var s = mouvy.scrollTop(window, document);
         if (s > window.innerHeight*0.6) {
-            if (!hasClassName(nav, thinClassName)) {
-                addClassName(nav, thinClassName);
+            if (!mouvy.hasClassName(nav, thinClassName)) {
+                mouvy.addClassName(nav, thinClassName);
             }
         } else {
-            if (hasClassName(nav, thinClassName)) {
-                removeClassName(nav, thinClassName);
+            if (mouvy.hasClassName(nav, thinClassName)) {
+                mouvy.removeClassName(nav, thinClassName);
             }
         }
     };
@@ -48,7 +52,7 @@ document.addEventListener('DOMContentLoaded', function() {
             frameOriginalHeight = frame.dataset.initialHeight,
             frameOriginalRatio = frameOriginalHeight / frameOriginalWidth;
 
-        clock.style.height = frameOriginalRatio * clock.offsetWidth + "px";
+        clock.style.height = frameOriginalRatio * clock.offsetWidth + 'px';
     })();
 
     // animate the clock
@@ -57,7 +61,7 @@ document.addEventListener('DOMContentLoaded', function() {
         angleIntervalPerStep = 360.0 / (60 * numberOfStepPerSecond),
         seconds = 0;
     setInterval(function() {
-        clock.style.transform = "rotate(" + (seconds++)*angleIntervalPerStep + "deg)";
+        clock.style.transform = 'rotate(' + (seconds++)*angleIntervalPerStep + 'deg)';
     }, 1000.0 / numberOfStepPerSecond);
 
     // learn more
@@ -71,42 +75,41 @@ document.addEventListener('DOMContentLoaded', function() {
         learnMoreAction = function(trigger) {
             var targetSelector = trigger.dataset.target,
                 targetElement = document.querySelector(targetSelector),
-                wrapper = document.createElement("div");
+                wrapper = document.createElement('div');
 
-            addClassName(wrapper, 'modal-scroll');
+            mouvy.addClassName(wrapper, 'modal-scroll');
             wrapper.innerHTML = targetElement.innerHTML;
             console.log(wrapper);
 
-            picoModal({
+            window.picoModal({
                 content: wrapper.outerHTML,
                 overlayStyles: {}, modalStyles: {}, closeStyles: {},
-                overlayClass: "modal-overlay",
-                modalClass: "modal-content",
-                closeClass: "modal-close"
+                overlayClass: 'modal-overlay',
+                modalClass: 'modal-content',
+                closeClass: 'modal-close'
             })
             .afterShow(function(modal){
-                addClassName(document.body, 'modal-open');
+                mouvy.addClassName(document.body, 'modal-open');
                 setTimeout(function(){
-                    addClassName(modal.overlayElem(), 'modal-overlay--in');
-                    addClassName(modal.modalElem(), 'modal-content--in');
+                    mouvy.addClassName(modal.overlayElem(), 'modal-overlay--in');
+                    mouvy.addClassName(modal.modalElem(), 'modal-content--in');
                 }, 10);
             })
             .beforeClose(function(modal, e) {
                 e.preventDefault();
 
-                removeClassName(modal.overlayElem(), 'modal-overlay--in');
-                removeClassName(modal.modalElem(), 'modal-content--in');
+                mouvy.removeClassName(modal.overlayElem(), 'modal-overlay--in');
+                mouvy.removeClassName(modal.modalElem(), 'modal-content--in');
 
                 setTimeout(function() {
                     modal.overlayElem().remove();
                     modal.modalElem().remove();
                 }, 1000);
 
-                removeClassName(document.body, 'modal-open');
+                mouvy.removeClassName(document.body, 'modal-open');
             })
-            .afterClose(function(modal, e) {
-                removeClassName(document.body, 'modal-open');
-                // modal.overlayElem().style.display = 'none';
+            .afterClose(function() {
+                mouvy.removeClassName(document.body, 'modal-open');
             })
             .show();
         };
@@ -122,10 +125,10 @@ document.addEventListener('DOMContentLoaded', function() {
     var signatureCanvas = document.querySelector('.sign-block'),
         signatureForm = document.querySelector('.signature-form'),
         signatureFormField = signatureForm.querySelector('input[name=signature_image]'),
-        signaturePad = new SignaturePad(signatureCanvas, {
+        signaturePad = new window.SignaturePad(signatureCanvas, {
             minWidth: 1,
             maxWidth: 3,
-            penColor: "rgb(0, 0, 0)",
+            penColor: 'rgb(0, 0, 0)',
             onEnd: function() {
                 signatureFormField.value = signaturePad.toDataURL();
             }
@@ -144,12 +147,12 @@ document.addEventListener('DOMContentLoaded', function() {
         // var data = new FormData(signatureForm);
 
         var data = {
-                first_name: signatureForm.querySelector('[name=first_name]').value,
-                last_name: signatureForm.querySelector('[name=last_name]').value,
-                email: signatureForm.querySelector('[name=email]').value,
-                signature_image_data_url: signatureForm.querySelector('[name=signature_image]').value,
+                'first_name': signatureForm.querySelector('[name=first_name]').value,
+                'last_name': signatureForm.querySelector('[name=last_name]').value,
+                'email': signatureForm.querySelector('[name=email]').value,
+                'signature_image_data_url': signatureForm.querySelector('[name=signature_image]').value,
             },
-            urlEncodedData = "",
+            urlEncodedData = '',
             urlEncodedDataPairs = [];
 
         // inspired from the Mozilla developer documentation
