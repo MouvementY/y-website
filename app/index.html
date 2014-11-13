@@ -453,7 +453,21 @@
             </div>
 
             <h3 class="title">Ajouter votre signature <span>(c'est <u>très</u> important)</span></h3>
-            <canvas class="sign-block" width=300 height=200></canvas>
+            <form class="signature-form" action="http://yengine.dev:8004/api/signatures/" method="post">
+                <canvas class="sign-block" width=300 height=200></canvas>
+                <div class="button-group button-group--centered">
+                    <button type="submit" class="button--extra-small clear-sign-canvas">Effacer</button>
+                </div>
+                <div class="inner-container">
+                    <input type="hidden" name="signature_image" value="">
+                    <input class="input-text input-text--fluid" type="text" name="first_name" placeholder="Prénom" value="François">
+                    <input class="input-text input-text--fluid" type="text" name="last_name" placeholder="Nom" value="Dupont">
+                    <input class="input-text input-text--fluid" type="text" name="email" placeholder="Email" value="dudul@free.fr">
+                    <div class="button-group button-group--centered">
+                        <button type="submit" class="button--small submit-signature">Confirmer votre signature</button>
+                    </div>
+                </div>
+            </div>
 
             <h4 class="title">À partir de <em>500 000 signatures</em></h4>
             <div class="inner-container">

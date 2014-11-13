@@ -83,6 +83,9 @@ button {
 .button--small {
     font-size: 1.2rem !important;
 }
+.button--extra-small {
+    font-size: 1rem !important;
+}
 .button--facebook {
     background-color: #3b5998;
 }
@@ -524,7 +527,7 @@ $person-per-row-palm: 8;
 
 .sign-block {
     display: block;
-    margin: 0 auto;
+    margin: 0 auto 1em auto;
     border: 1px solid #ccc;
 }
 
@@ -652,6 +655,25 @@ body.modal-open {
 }
 .detached-bottom--large {
     margin-bottom: 6em;
+}
+
+
+/**
+ * Forms
+ */
+.form {
+}
+.input-text {
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    padding: 0.5em 1em;
+
+    font-size: 1.2em;
+    outline: none;
+}
+.input-text--fluid {
+    width: 100%;
+    margin-bottom: 0.5em;
 }
 
 
