@@ -1,5 +1,9 @@
 'use strict';
 
+// namespace
+var mouvy = mouvy || {};
+
+
 (function() {
     var defaultOptions;
 
@@ -13,8 +17,8 @@
     };
 
     // expose the class
-    if (window.Boxme === null) {
-        window.Boxme = {};
+    if (mouvy.Boxme === undefined) {
+        mouvy.Boxme = {};
     }
 
     /**
@@ -69,7 +73,7 @@
     }
 
     // expose public methods
-    window.Boxme.draw = function(element) {
+    mouvy.Boxme.draw = function(element) {
         var options = defaultOptions;
 
         var canvas = document.createElement('canvas'),

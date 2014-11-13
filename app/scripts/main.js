@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // box each titles
     var titleElements = document.querySelectorAll('.title--boxed');
     Array.prototype.forEach.call(titleElements, function(el) {
-        window.Boxme.draw(el);
+        mouvy.Boxme.draw(el);
     });
 
     // make the logo full screen on page loading
