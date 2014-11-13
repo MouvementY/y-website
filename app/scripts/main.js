@@ -112,12 +112,57 @@ document.addEventListener('DOMContentLoaded', function() {
         };
     Array.prototype.forEach.call(learnMoreTriggers, function(el) {
         el.addEventListener('click', function(e) {
+            e.preventDefault();
             learnMoreAction(e.target);
         });
     });
 
 
     // signature pad
-    var signatureCanvas = document.querySelector(".sign-block"),
-        signaturePad = new SignaturePad(signatureCanvas);
+    var signatureCanvas = document.querySelector('.sign-block'),
+        signatureForm = document.querySelector('.signature-form'),
+        signatureFormField = signatureForm.querySelector('input[name=signature_image]'),
+        signaturePad = new SignaturePad(signatureCanvas, {
+            minWidth: 1,
+            maxWidth: 3,
+            penColor: "rgb(0, 0, 0)",
+            onEnd: function() {
+                signatureFormField.value = signaturePad.toDataURL();
+            }
+        });
+
+    document.querySelector('.clear-sign-canvas').addEventListener('click', function(e) {
+        e.preventDefault();
+        signaturePad.clear();
+    });
+
+    // THE form
+    signatureForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+
+        // retrieve fields data
+        // var data = new FormData(signatureForm);
+
+        var data = {
+                first_name: signatureForm.querySelector('[name=first_name]').value,
+                last_name: signatureForm.querySelector('[name=last_name]').value,
+                email: signatureForm.querySelector('[name=email]').value,
+                signature_image_data_url: signatureForm.querySelector('[name=signature_image]').value,
+            },
+            urlEncodedData = "",
+            urlEncodedDataPairs = [];
+
+        // inspired from the Mozilla developer documentation
+        // source: https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/Forms/Sending_forms_through_JavaScript
+        for (var name in data) {
+            urlEncodedDataPairs.push(encodeURIComponent(name) + '=' + encodeURIComponent(data[name]));
+        }
+        urlEncodedData = urlEncodedDataPairs.join('&').replace(/%20/g, '+');
+
+        // prepare and send the request
+        var request = new XMLHttpRequest();
+        request.open('POST', signatureForm.action, true);
+        request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
+        request.send(urlEncodedData);
+    });
 });
