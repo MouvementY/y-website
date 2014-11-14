@@ -2,7 +2,8 @@
 // generated on 2014-06-19 using generator-gulp-webapp 0.1.0
 
 var gulp = require('gulp'),
-    runSequence = require('run-sequence');
+    runSequence = require('run-sequence'),
+    fs = require('fs');
 
 // load plugins
 var $ = require('gulp-load-plugins')();
@@ -72,13 +73,48 @@ gulp.task('clean', function () {
 });
 
 gulp.task('build', ['html', 'images', 'fonts', 'extras']);
+gulp.task('build:dev', function(cb) {
+    // TODO: runSequence is a hack waiting for Gulp 4.0 to be out
+    runSequence(
+        'build',
+        'templates:render:dev',
+        cb);
+});
+gulp.task('build:prod', function(cb) {
+    // TODO: runSequence is a hack waiting for Gulp 4.0 to be out
+    runSequence(
+        'build',
+        'templates:render:prod',
+        cb);
+});
+
+gulp.task('templates:render:dev', function() {
+    return gulp.src('app/*.html')
+        .pipe($.data(function () {
+            var content = fs.readFileSync('./envs/dev.json'),
+                data = JSON.parse(content);
+            return data;
+        }))
+        .pipe($.template())
+        .pipe(gulp.dest('.tmp'));
+});
+gulp.task('templates:render:prod', function() {
+    return gulp.src('app/*.html')
+        .pipe($.data(function () {
+            var content = fs.readFileSync('./envs/prod.json'),
+                data = JSON.parse(content);
+            return data;
+        }))
+        .pipe($.template())
+        .pipe(gulp.dest('dist'));
+});
 
 gulp.task('connect', function () {
     var connect = require('connect');
     var app = connect()
         .use(require('connect-livereload')({ port: 35729 }))
-        .use(connect.static('app'))
         .use(connect.static('.tmp'))
+        .use(connect.static('app'))
         .use(connect.directory('app'));
 
     require('http').createServer(app)
@@ -88,7 +124,7 @@ gulp.task('connect', function () {
         });
 });
 
-gulp.task('serve', ['connect', 'styles'], function () {
+gulp.task('serve', ['connect', 'styles', 'templates:render:dev'], function () {
     require('opn')('http://localhost:9000');
 });
 
@@ -115,7 +151,8 @@ gulp.task('watch', ['connect', 'serve'], function () {
     // watch for changes
 
     gulp.watch([
-        'app/*.html',
+        '.tmp/*.html',
+        // 'app/*.html',
         '.tmp/styles/**/*.css',
         'app/scripts/**/*.js',
         'app/images/**/*'
@@ -126,6 +163,8 @@ gulp.task('watch', ['connect', 'serve'], function () {
     gulp.watch('app/styles/**/*.scss', ['styles']);
     gulp.watch('app/scripts/**/*.js', ['scripts']);
     gulp.watch('app/images/**/*', ['images']);
+    gulp.watch('envs/dev.json', ['templates:render:dev']);
+    gulp.watch('app/*.html', ['templates:render:dev']);
     gulp.watch('bower.json', ['wiredep']);
 });
 
@@ -138,7 +177,7 @@ gulp.task('set-env', function (cb) {
 });
 
 // Heroku
-gulp.task('heroku:production', ['build']);
+gulp.task('heroku:production', ['build:prod']);
 
 // AWS
 gulp.task('aws:publish', ['set-env'], function() {
@@ -162,11 +201,10 @@ gulp.task('aws:publish', ['set-env'], function() {
 });
 
 gulp.task('aws:sync', function(cb) {
-
     // TODO: runSequence is a hack waiting for Gulp 4.0 to be out
     runSequence(
         'clean',
-        'build',
+        'build:prod',
         'aws:publish',
         cb);
 });
