@@ -13,7 +13,6 @@
     font-family: 'Another Shabby';
     src: url('../fonts/AnotherShabby/anothershabby-webfont.eot');
     src: url('../fonts/AnotherShabby/anothershabby-webfont.eot?#iefix') format('embedded-opentype'),
-         url('../fonts/AnotherShabby/anothershabby-webfont.woff2') format('woff2'),
          url('../fonts/AnotherShabby/anothershabby-webfont.woff') format('woff'),
          url('../fonts/AnotherShabby/anothershabby-webfont.ttf') format('truetype'),
          url('../fonts/AnotherShabby/anothershabby-webfont.svg#another_shabbyregular') format('svg');
@@ -30,20 +29,6 @@
          url('../fonts/Aleo/aleo_light_french/Aleo-Light-webfont.ttf') format('truetype'),
          url('../fonts/Aleo/aleo_light_french/Aleo-Light-webfont.svg#aleolight') format('svg');
     font-weight: 200;
-    font-style: normal;
-
-}
-
-
-@font-face {
-    font-family: 'Freight Text Pro';
-    src: url('../fonts/FreightTextPro/freighttextprobook-regular-webfont.eot');
-    src: url('../fonts/FreightTextPro/freighttextprobook-regular-webfont.eot?#iefix') format('embedded-opentype'),
-         url('../fonts/FreightTextPro/freighttextprobook-regular-webfont.woff2') format('woff2'),
-         url('../fonts/FreightTextPro/freighttextprobook-regular-webfont.woff') format('woff'),
-         url('../fonts/FreightTextPro/freighttextprobook-regular-webfont.ttf') format('truetype'),
-         url('../fonts/FreightTextPro/freighttextprobook-regular-webfont.svg#freighttext_pro_bookregular') format('svg');
-    font-weight: 400;
     font-style: normal;
 
 }
@@ -68,6 +53,18 @@
          url('../fonts/Aleo/aleo_bold_french/Aleo-Bold-webfont.ttf') format('truetype'),
          url('../fonts/Aleo/aleo_bold_french/Aleo-Bold-webfont.svg#aleobold') format('svg');
     font-weight: 500;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'Freight Text Pro';
+    src: url('../fonts/FreightTextPro/freighttextprobook-regular-webfont.eot');
+    src: url('../fonts/FreightTextPro/freighttextprobook-regular-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/FreightTextPro/freighttextprobook-regular-webfont.woff') format('woff'),
+         url('../fonts/FreightTextPro/freighttextprobook-regular-webfont.ttf') format('truetype'),
+         url('../fonts/FreightTextPro/freighttextprobook-regular-webfont.svg#freighttext_pro_bookregular') format('svg');
+    font-weight: 400;
     font-style: normal;
 
 }
