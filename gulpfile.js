@@ -176,9 +176,6 @@ gulp.task('set-env', function (cb) {
     cb();
 });
 
-// Heroku
-gulp.task('heroku:production', ['build:prod']);
-
 // AWS
 gulp.task('aws:publish', ['set-env'], function() {
     var publisher = $.awspublish.create({
