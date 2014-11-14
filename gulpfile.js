@@ -30,7 +30,7 @@ gulp.task('html', ['styles', 'scripts'], function () {
     var jsFilter = $.filter('**/*.js');
     var cssFilter = $.filter('**/*.css');
 
-    return gulp.src('app/*.html')
+    return gulp.src('.tmp/*.html')
         .pipe($.useref.assets({searchPath: '{.tmp,app}'}))
         .pipe(jsFilter)
         .pipe($.uglify())
@@ -76,15 +76,15 @@ gulp.task('build', ['html', 'images', 'fonts', 'extras']);
 gulp.task('build:dev', function(cb) {
     // TODO: runSequence is a hack waiting for Gulp 4.0 to be out
     runSequence(
-        'build',
         'templates:render:dev',
+        'build',
         cb);
 });
 gulp.task('build:prod', function(cb) {
     // TODO: runSequence is a hack waiting for Gulp 4.0 to be out
     runSequence(
-        'build',
         'templates:render:prod',
+        'build',
         cb);
 });
 
@@ -106,7 +106,7 @@ gulp.task('templates:render:prod', function() {
             return data;
         }))
         .pipe($.template())
-        .pipe(gulp.dest('dist'));
+        .pipe(gulp.dest('.tmp'));
 });
 
 gulp.task('connect', function () {
