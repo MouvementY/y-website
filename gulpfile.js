@@ -215,5 +215,10 @@ gulp.task('aws:sync', function(cb) {
         'clean',
         'build:prod',
         'aws:publish',
-        cb);
+        function() {
+            $.notify({ message: "Site published to the S3" });
+
+            // inform the sequence has been completed
+            cb();
+        });
 });

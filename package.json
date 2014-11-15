@@ -1,8 +1,7 @@
 {
   "name": "y-website",
   "version": "1.0.0",
-  "dependencies": {
-  },
+  "dependencies": {},
   "devDependencies": {
     "connect": "^2.14.4",
     "connect-livereload": "^0.4.0",
@@ -32,7 +31,8 @@
     "run-sequence": "^1.0.1",
     "jshint-stylish": "^0.2.0",
     "opn": "^0.1.1",
-    "wiredep": "^1.4.3"
+    "wiredep": "^1.4.3",
+    "gulp-notify": "^2.0.1"
   },
   "engines": {
     "node": ">=0.10.0"
