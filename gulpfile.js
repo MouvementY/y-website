@@ -88,8 +88,20 @@ gulp.task('build:prod', function(cb) {
         cb);
 });
 
-gulp.task('templates:render:dev', function() {
-    return gulp.src('app/*.html')
+gulp.task('templates:extend', function () {
+    gulp.src([
+            'app/index.html',
+            'app/manifeste.html',
+        ])
+        .pipe($.htmlExtend({
+            annotations: true,
+            verbose: true
+        }))
+        .pipe(gulp.dest('.tmp'));
+});
+
+gulp.task('templates:render:dev', ['templates:extend'], function() {
+    return gulp.src('.tmp/*.html')
         .pipe($.data(function () {
             var content = fs.readFileSync('./envs/dev.json'),
                 data = JSON.parse(content);
@@ -98,8 +110,8 @@ gulp.task('templates:render:dev', function() {
         .pipe($.template())
         .pipe(gulp.dest('.tmp'));
 });
-gulp.task('templates:render:prod', function() {
-    return gulp.src('app/*.html')
+gulp.task('templates:render:prod', ['templates:extend'], function() {
+    return gulp.src('.tmp/*.html')
         .pipe($.data(function () {
             var content = fs.readFileSync('./envs/prod.json'),
                 data = JSON.parse(content);

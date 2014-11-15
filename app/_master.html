@@ -1,0 +1,83 @@
+<!doctype html>
+<html class="no-js">
+    <head>
+        <meta charset="utf-8">
+        <title>y website</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+        <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+
+        <!-- build:css styles/vendor.css -->
+        <link rel="stylesheet" href="styles/_empty.css">
+        <!-- bower:css -->
+        <!-- endbower -->
+        <!-- endbuild -->
+
+        <!-- build:css styles/main.css -->
+        <link rel="stylesheet" href="styles/main.css">
+        <!-- endbuild -->
+
+        <!-- build:js scripts/vendor/modernizr.js -->
+        <script src="bower_components/modernizr/modernizr.js"></script>
+        <!-- endbuild -->
+
+        <!--[if IE]><script src="bower_components/excanvas/excanvas.js"></script><![endif]-->
+    </head>
+    <body>
+        <% if (google_analytics_id) { %>
+        <script>
+            (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+            })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+            ga('create', '<%= google_analytics_id %>', 'auto');
+            ga('send', 'pageview');
+        </script>
+        <% } %>
+
+        <!--[if lt IE 10]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+
+        <header class="main-head main-head--fixed slide">
+            <div class="container">
+                <div class="nav-table">
+                    <ul class="nav nav--left">
+                        <li><a href="/manifeste.html">Manifeste</a></li>
+                        <li><a href="/faq.html">Questions/Réponses</a></li>
+                    </ul>
+
+                    <div class="nav--logo">
+                        <div class="logo">
+                            <span>y</span>
+                        </div>
+                    </div>
+
+                    <ul class="nav nav--right">
+                        <li><a class="facebook-like" href="#/rejoindre">rendez-vous</a></li>
+                        <li><a href="mailto:contact@mouvementy.com">Un message ?</a></li>
+                    </ul>
+                </div>
+            </div>
+        </header>
+
+        <!-- @@placeholder= content -->
+
+        <!-- build:js scripts/vendor.js -->
+        <!-- bower:js -->
+        <script src="bower_components/retina.js/src/retina.js"></script>
+        <script src="bower_components/picoModal/src/picoModal.js"></script>
+        <script src="bower_components/signature_pad/signature_pad.js"></script>
+        <script src="bower_components/headroom.js/dist/headroom.js"></script>
+        <!-- endbower -->
+        <!-- endbuild -->
+
+        <!-- build:js scripts/main.js -->
+        <script src="scripts/boxme.js"></script>
+        <script src="scripts/utils.js"></script>
+        <script src="scripts/main.js"></script>
+        <!-- endbuild -->
+
+    </body>
+</html>
