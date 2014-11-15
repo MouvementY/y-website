@@ -75,6 +75,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 wrapper = document.createElement('div');
 
             mouvy.addClassName(wrapper, 'modal-scroll');
+            mouvy.addClassName(wrapper, 'container');
             wrapper.innerHTML = targetElement.innerHTML;
             console.log(wrapper);
 
