@@ -9,6 +9,9 @@ body {
     font-weight: 300;
     color: #333;
     margin: 0px 0px 4rem 0px;
+
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 a {
