@@ -126,16 +126,31 @@ button {
     max-width: 100%;
 }
 
+.slide {
+    transition: all .25s ease-in-out;
+}
+
 .main-head {
     background: #f0f0f0;
     padding: 0em 0em;
     overflow: auto;
-
-    // top fixed
+}
+.main-head--fixed {
     position: fixed;
-    width: 100%;
-    top: 0;
     z-index: 1000;
+    right: 0px;
+    left: 0px;
+    top: 0px;
+}
+
+.headroom {
+
+}
+.headroom--unpinned {
+    transform: translateY(-100%);
+}
+.headroom--pinned {
+    transform: translateY(0%);
 }
 
 #logo-full-screen {

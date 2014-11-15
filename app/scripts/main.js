@@ -1,3 +1,5 @@
+/* global Headroom */
+
 // namespace
 var mouvy = mouvy || {};
 
@@ -26,23 +28,18 @@ document.addEventListener('DOMContentLoaded', function() {
         logoWrapper.style.opacity = 1;
     }, 500);
 
-    // shrink the header on scroll
-    window.onscroll = function() {
-        var nav = document.querySelector('.nav-table'),
-            thinClassName = 'nav-table--thin';
-
-        // when the user has scrolled 60% of the window height
-        var s = mouvy.scrollTop(window, document);
-        if (s > window.innerHeight*0.6) {
-            if (!mouvy.hasClassName(nav, thinClassName)) {
-                mouvy.addClassName(nav, thinClassName);
+    // make some room by hidding the header
+    var mainHead = document.querySelector('.main-head'),
+        headroom = new Headroom(mainHead, {
+            // vertical offset in px before element is first unpinned
+            offset : 60,
+            // scroll tolerance in px before state changes
+            tolerance : {
+                up : 10,
+                down : 0
             }
-        } else {
-            if (mouvy.hasClassName(nav, thinClassName)) {
-                mouvy.removeClassName(nav, thinClassName);
-            }
-        }
-    };
+        });
+    headroom.init();
 
     // scale the clock
     (function() {
