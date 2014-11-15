@@ -241,7 +241,8 @@ button {
             display: block;
             color: #333;
             padding: 1.2em 1.2em;
-            font-size: 1.1em;
+            line-height: 1;
+            font-size: 1.2rem;
             font-variant: small-caps;
             text-decoration: none;
 
@@ -272,7 +273,7 @@ button {
 }
 .nav--logo {
     // initially hidden
-    opacity: 0;
+    opacity: 1;
     transition: opacity 0.5s ease-in-out, padding 0.5s ease-in-out;
 
     position: absolute;
@@ -284,10 +285,14 @@ button {
     width: $logo-width;
 
     // vertically centered too
-    line-height: 1.5em;
+    line-height: 1rem;
 
     .logo {
-        font-size: 1.7em;
+        a {
+            text-decoration: none;
+        }
+
+        font-size: 1.5em;
     }
 }
 .nav--right {
