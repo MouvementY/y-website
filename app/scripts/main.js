@@ -36,7 +36,10 @@ document.addEventListener('DOMContentLoaded', function() {
             // scroll tolerance in px before state changes
             tolerance : {
                 up : 10,
-                down : 0
+                down : 5
+            },
+            onUnpin: function() {
+                hideNextEventPopover();
             }
         });
     headroom.init();
@@ -118,6 +121,27 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
+    // next event popover
+    var nextEventButton = document.querySelector('.next-event'),
+        nextEventPopover = document.querySelector('.events'),
+        showNextEventPopover = function() {
+            mouvy.removeClassName(nextEventPopover, 'events--unpinned');
+            mouvy.addClassName(nextEventPopover, 'events--pinned');
+        },
+        hideNextEventPopover = function() {
+            mouvy.removeClassName(nextEventPopover, 'events--pinned');
+            mouvy.addClassName(nextEventPopover, 'events--unpinned');
+        };
+    nextEventButton.addEventListener('click', function(e) {
+        e.preventDefault();
+
+        // toggle the popover
+        if (mouvy.hasClassName(nextEventPopover, 'events--pinned')) {
+            hideNextEventPopover();
+        } else {
+            showNextEventPopover();
+        }
+    });
 
     // signature pad
     var signatureCanvas = document.querySelector('.sign-block'),

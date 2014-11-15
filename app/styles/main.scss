@@ -1,5 +1,6 @@
 @import "math";
 @import "fonts";
+@import "animations";
 
 $logo-width: 180px;
 
@@ -152,6 +153,9 @@ button {
     font-size: 1.4rem;
     line-height: 160%;  // for readibility
 }
+.container--ref {
+    position: relative;
+}
 .container--top {
     padding-top: 100px;
 }
@@ -166,7 +170,6 @@ button {
 .main-head {
     background: #f0f0f0;
     padding: 0em 0em;
-    overflow: auto;
 }
 .main-head--fixed {
     position: fixed;
@@ -618,6 +621,7 @@ $person-per-row-palm: 8;
     display: block;
     width: 100%;
 
+    line-height: 1.1em;
     font-size: 6em;
     text-align: center;
     font-family: "Aleo", sans-serif;
@@ -733,6 +737,51 @@ body.modal-open {
 .input-text--fluid {
     width: 100%;
     margin-bottom: 0.5em;
+}
+
+
+/**
+ * Events
+ */
+.events {
+    display: block;
+    box-sizing: border-box;
+    width: 300px;
+    position: absolute;
+    right: 0;
+    top: 80px;
+    padding: 1em 2em;
+
+    background: #3b5998;
+    color: #fff;
+
+    transition: transition 75ms ease-out;
+    animation: pop-upwards 180ms forwards linear;
+
+    &::before {
+        content: "";
+        display: block;
+        position: absolute;
+        top: -20px;
+        left: 60px;
+
+        width: 0px;
+        height: 0px;
+        border: 10px solid #3b5998;
+        border-top-color: transparent;
+        border-left-color: transparent;
+        border-right-color: transparent;
+    }
+
+    p {
+        margin: 0em;
+    }
+}
+.events--unpinned {
+    display: none;
+}
+.event--pinned {
+    display: block;
 }
 
 
