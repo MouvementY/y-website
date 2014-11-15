@@ -44,6 +44,21 @@ blockquote {
     }
     }
 }
+.quote--graph {
+    margin: 48px -160px;
+    padding: 0;
+
+    line-height: 1.4;
+    text-align: center;
+    font-size: 32px;
+    font-family: "freight-text-pro",Georgia,Cambria,"Times New Roman",Times,serif;
+    letter-spacing: 0.01rem;
+    font-weight: 400;
+    font-style: italic;
+
+    -webkit-transition: margin 100ms;
+    transition: margin 100ms;
+}
 
 img {
     max-width: 100%;
@@ -124,9 +139,13 @@ button {
     width: 100%;
     max-width: 1080px;
     margin: 0 auto;
+
+    font-family: "Freight Text Pro", Georgia, sans-serif;
+    font-size: 1.4rem;
+    line-height: 160%;  // for readibility
 }
 .container--top {
-    padding-top: 60px;
+    padding-top: 100px;
 }
 .container--fullwidth {
     max-width: 100%;
@@ -389,11 +408,11 @@ button {
     margin: 0 auto;
     padding: 0 1em;
 }
+.inner-container--wider {
+    max-width: 700px;
+}
 
 .paragraph {
-    font-family: "Freight Text Pro", Georgia, sans-serif;
-    font-size: 1.4rem;
-    line-height: 160%;  // for readibility
     text-align: center;
 
     margin: 0;
@@ -401,6 +420,11 @@ button {
 
     & + .paragraph {
         margin-top: 1em;
+    }
+}
+.text-left {
+    .paragraph {
+        text-align: left;
     }
 }
 
@@ -699,6 +723,16 @@ body.modal-open {
 
 
 // Responsive
+
+// Small screens
+@media only screen
+and (max-width : 1000px) {
+    .quote--graph {
+        font-size: 24px;
+        margin: 43px 0;
+        padding-left: 0;
+    }
+}
 
 // iPhone portrait
 @media only screen
