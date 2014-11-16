@@ -186,14 +186,26 @@ document.addEventListener('DOMContentLoaded', function() {
     // events notification form
     var eventsNotificationForm = document.querySelector('.events .form'),
         eventsNotificationFormErrors = eventsNotificationForm.querySelector('.errors-wrapper'),
+        nextEventSubmit = eventsNotificationForm.querySelector('[type=submit] .progress-inner'),
+        resetNextEventFormSubmit = function() {
+            // reset the submit animation
+            mouvy.addClassName(nextEventSubmit, 'notransition');
+            mouvy.removeClassName(nextEventSubmit, 'state-loading');
+            nextEventSubmit.style.width = '0%';
+        },
         resetNextEventFormErrors = function() {
             eventsNotificationFormErrors.innerText = '';
             mouvy.addClassName(eventsNotificationFormErrors, 'errors-wrapper--empty');
             // preapre the popover to receive a shaking move in case of an error
             mouvy.removeClassName(nextEventPopover, 'shaking');
+
+            resetNextEventFormSubmit();
         };
     eventsNotificationForm.addEventListener('submit', function(e) {
         e.preventDefault();
+
+        // disable the submit button
+        eventsNotificationForm.querySelector('[type=submit]').disabled = true;
 
         var data = {
                 'email': eventsNotificationForm.querySelector('[name=email]').value
@@ -207,7 +219,7 @@ document.addEventListener('DOMContentLoaded', function() {
             if (this.status >= 200 && this.status < 400){
                 // Success!
                 resp = JSON.parse(this.responseText);
-                eventsNotificationForm.innerText = resp.detail;
+                nextEventPopover.innerText = resp.detail;
             } else {
                 // We reached our target server, but it returned an error
                 resp = JSON.parse(this.responseText);
@@ -217,10 +229,21 @@ document.addEventListener('DOMContentLoaded', function() {
 
                 mouvy.addClassName(nextEventPopover, 'shaking');
             }
+
+            // re-enable the submit button
+            eventsNotificationForm.querySelector('[type=submit]').disabled = false;
+
+            // reset the submit animtion
+            // resetNextEventFormSubmit();
         };
 
         // reset error state
         resetNextEventFormErrors();
+
+        // fake loader for the user
+        mouvy.removeClassName(nextEventSubmit, 'notransition');
+        mouvy.addClassName(nextEventSubmit, 'state-loading');
+        nextEventSubmit.style.width = '100%';
 
         mouvy.sendRequest(request, urlEncodedData);
     });

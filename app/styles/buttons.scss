@@ -1,0 +1,58 @@
+.progress-button {
+    position: relative;
+}
+
+.progress-button[disabled],
+.progress-button[disabled].state-loading {
+    cursor: default;
+}
+
+.progress-button .content {
+    position: relative;
+    display: block;
+    z-index: 10;
+}
+
+.progress-button .content::before,
+.progress-button .content::after  {
+    position: absolute;
+    right: 20px;
+    color: #0e7138;
+    font-family: "icomoon";
+    opacity: 0;
+    transition: opacity 0.3s 0.3s;
+}
+
+.progress-button .content::before {
+    content: "\e600"; /* Checkmark for success */
+}
+
+.progress-button .content::after {
+    content: "\e601"; /* Cross for error */
+}
+
+.progress-button.state-success .content::before,
+.progress-button.state-error .content::after {
+    opacity: 1;
+}
+
+.notransition {
+    transition: none !important;
+}
+
+.progress-button .progress {
+    background: #148544;
+}
+
+.progress-button .progress-inner {
+    position: absolute;
+    left: 0;
+    background: #3b5998;
+}
+
+.progress-button[data-horizontal] .progress-inner {
+    top: 0;
+    width: 0;
+    height: 100%;
+    transition: width 1.5s, opacity 0.3s;
+}

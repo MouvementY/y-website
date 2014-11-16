@@ -1,6 +1,7 @@
 @import "math";
 @import "fonts";
 @import "animations";
+@import "buttons";
 
 $logo-width: 180px;
 
@@ -87,10 +88,10 @@ button {
     position: relative;
     top: 0px;
 
-    &:hover {
+    &:hover, &[disabled] {
         opacity: 0.6;
     }
-    &:active {
+    &:not([disabled]):active {
         opacity: 1.0;
         top: 2px;
     }
