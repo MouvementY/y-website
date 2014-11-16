@@ -5,22 +5,29 @@
 @import "_vars";
 @import "_math";
 
-@import "layout";
-@import "typography";
-@import "nav";
-@import "helpers";
+@import "ui/layout";
+@import "ui/typography";
 
-@import "fonts";
-@import "animations";
-@import "buttons";
-@import "drops";
-@import "titles";
-@import "quotes";
-@import "propositions";
-@import "figures";
-@import "modals";
-@import "forms";
-@import "clock";
-@import "signature";
+// generics
+@import "generics/fonts";
+@import "generics/animations";
+@import "generics/buttons";
+@import "generics/drops";
+@import "generics/titles";
+@import "generics/quotes";
+@import "generics/propositions";
+@import "generics/figures";
+@import "generics/modals";
+@import "generics/forms";
 
-@import "shame";
+// specifics
+@import "ui/nav";
+@import "ui/clock";
+@import "ui/signature";
+
+// utils
+@import "generics/helpers";
+
+// put the hackishy rules into the shame file so that we know where there are
+// and it's easy to fix in the future
+@import "ui/shame";
