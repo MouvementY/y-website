@@ -9,7 +9,8 @@
     "signature_pad": "~1.3.3",
     "headroom.js": "~0.7.0",
     "drop": "~0.5.5",
-    "pace": "~1.0.2"
+    "pace": "~1.0.2",
+    "signet": "~0.4.7"
   },
   "devDependencies": {},
   "overrides": {
