@@ -1,4 +1,5 @@
 /* global Headroom */
+/* global Drop */
 
 // namespace
 var mouvy = mouvy || {};
@@ -24,7 +25,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 down : 5
             },
             onUnpin: function() {
-                hideNextEventPopover();
+                nextEventDrop.close();
             }
         });
     headroom.init();
@@ -87,91 +88,85 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // next event popover
-    var nextEventButton = document.querySelector('.next-event'),
-        nextEventPopover = document.querySelector('.events'),
-        showNextEventPopover = function() {
-            mouvy.removeClassName(nextEventPopover, 'events--unpinned');
-            mouvy.addClassName(nextEventPopover, 'events--pinned');
-        },
-        hideNextEventPopover = function() {
-            mouvy.removeClassName(nextEventPopover, 'events--pinned');
-            mouvy.addClassName(nextEventPopover, 'events--unpinned');
+    var nextEventDrop = new Drop({
+            target: document.querySelector('.next-event'),
+            content: document.querySelector('.events'),
+            position: 'bottom center',
+            classes: 'drop-theme-blue',
+            openOn: 'click',
+            constrainToWindow: true
+        }),
+        nextEventFormBinding = function() {
+            var nextEventDropContent = document.querySelector('.events'),
+                eventsNotificationForm = document.querySelector('.events .form'),
+                eventsNotificationFormErrors = eventsNotificationForm.querySelector('.errors-wrapper'),
+                nextEventSubmit = eventsNotificationForm.querySelector('[type=submit] .progress-inner'),
+                resetNextEventFormSubmit = function() {
+                    // reset the submit animation
+                    mouvy.addClassName(nextEventSubmit, 'notransition');
+                    mouvy.removeClassName(nextEventSubmit, 'state-loading');
+                    nextEventSubmit.style.width = '0%';
+                },
+                resetNextEventFormErrors = function() {
+                    eventsNotificationFormErrors.innerText = '';
+                    mouvy.addClassName(eventsNotificationFormErrors, 'errors-wrapper--empty');
+                    // preapre the popover to receive a shaking move in case of an error
+                    mouvy.removeClassName(nextEventDropContent, 'shaking');
 
-            resetNextEventFormErrors();
+                    resetNextEventFormSubmit();
+                };
+
+            eventsNotificationForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+
+                // disable the submit button
+                eventsNotificationForm.querySelector('[type=submit]').disabled = true;
+
+                var data = {
+                        'email': eventsNotificationForm.querySelector('[name=email]').value
+                    },
+                    urlEncodedData = mouvy.urlEncodeParams(data);
+
+                // prepare and send the request
+                var request = mouvy.prepareRequest(eventsNotificationForm.action, 'post');
+                request.onload = function() {
+                    var resp = null;
+                    if (this.status >= 200 && this.status < 400){
+                        // Success!
+                        resp = JSON.parse(this.responseText);
+                        nextEventDropContent.innerText = resp.detail;
+                    } else {
+                        // We reached our target server, but it returned an error
+                        resp = JSON.parse(this.responseText);
+
+                        eventsNotificationFormErrors.innerText = resp.detail;
+                        mouvy.removeClassName(eventsNotificationFormErrors, 'errors-wrapper--empty');
+
+                        mouvy.addClassName(nextEventDropContent, 'shaking');
+                    }
+
+                    // re-enable the submit button
+                    eventsNotificationForm.querySelector('[type=submit]').disabled = false;
+
+                    // reset the submit animtion
+                    resetNextEventFormSubmit();
+                };
+
+                // reset error state
+                resetNextEventFormErrors();
+
+                // fake loader for the user
+                mouvy.removeClassName(nextEventSubmit, 'notransition');
+                mouvy.addClassName(nextEventSubmit, 'state-loading');
+                nextEventSubmit.style.width = '100%';
+
+                mouvy.sendRequest(request, urlEncodedData);
+            });
         };
-    nextEventButton.addEventListener('click', function(e) {
-        e.preventDefault();
 
-        // toggle the popover
-        if (mouvy.hasClassName(nextEventPopover, 'events--pinned')) {
-            hideNextEventPopover();
-        } else {
-            showNextEventPopover();
-        }
+    // bind the event form once
+    nextEventDrop.once('open', function() {
+        nextEventFormBinding();
     });
 
-    // events notification form
-    var eventsNotificationForm = document.querySelector('.events .form'),
-        eventsNotificationFormErrors = eventsNotificationForm.querySelector('.errors-wrapper'),
-        nextEventSubmit = eventsNotificationForm.querySelector('[type=submit] .progress-inner'),
-        resetNextEventFormSubmit = function() {
-            // reset the submit animation
-            mouvy.addClassName(nextEventSubmit, 'notransition');
-            mouvy.removeClassName(nextEventSubmit, 'state-loading');
-            nextEventSubmit.style.width = '0%';
-        },
-        resetNextEventFormErrors = function() {
-            eventsNotificationFormErrors.innerText = '';
-            mouvy.addClassName(eventsNotificationFormErrors, 'errors-wrapper--empty');
-            // preapre the popover to receive a shaking move in case of an error
-            mouvy.removeClassName(nextEventPopover, 'shaking');
-
-            resetNextEventFormSubmit();
-        };
-    eventsNotificationForm.addEventListener('submit', function(e) {
-        e.preventDefault();
-
-        // disable the submit button
-        eventsNotificationForm.querySelector('[type=submit]').disabled = true;
-
-        var data = {
-                'email': eventsNotificationForm.querySelector('[name=email]').value
-            },
-            urlEncodedData = mouvy.urlEncodeParams(data);
-
-        // prepare and send the request
-        var request = mouvy.prepareRequest(eventsNotificationForm.action, 'post');
-        request.onload = function() {
-            var resp = null;
-            if (this.status >= 200 && this.status < 400){
-                // Success!
-                resp = JSON.parse(this.responseText);
-                nextEventPopover.innerText = resp.detail;
-            } else {
-                // We reached our target server, but it returned an error
-                resp = JSON.parse(this.responseText);
-
-                eventsNotificationFormErrors.innerText = resp.detail;
-                mouvy.removeClassName(eventsNotificationFormErrors, 'errors-wrapper--empty');
-
-                mouvy.addClassName(nextEventPopover, 'shaking');
-            }
-
-            // re-enable the submit button
-            eventsNotificationForm.querySelector('[type=submit]').disabled = false;
-
-            // reset the submit animtion
-            resetNextEventFormSubmit();
-        };
-
-        // reset error state
-        resetNextEventFormErrors();
-
-        // fake loader for the user
-        mouvy.removeClassName(nextEventSubmit, 'notransition');
-        mouvy.addClassName(nextEventSubmit, 'state-loading');
-        nextEventSubmit.style.width = '100%';
-
-        mouvy.sendRequest(request, urlEncodedData);
-    });
 });

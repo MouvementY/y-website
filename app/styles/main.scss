@@ -2,6 +2,7 @@
 @import "fonts";
 @import "animations";
 @import "buttons";
+@import "drops";
 
 $logo-width: 180px;
 
@@ -758,32 +759,31 @@ body.modal-open {
     display: block;
     box-sizing: border-box;
     width: 300px;
-    position: absolute;
-    right: 0;
-    top: 80px;
-    padding: 1em 1.5em;
+    // position: absolute;
+    // right: 0;
+    // top: 80px;
 
     background: #3b5998;
     color: #fff;
     font-size: 0.9em;
 
-    transition: transition 75ms ease-out;
-    animation: pop-upwards 180ms forwards linear;
+    // transition: transition 75ms ease-out;
+    // animation: pop-upwards 180ms forwards linear;
 
-    &::before {
-        content: "";
-        display: block;
-        position: absolute;
-        top: -20px;
-        left: 60px;
+    // &::before {
+    //     content: "";
+    //     display: block;
+    //     position: absolute;
+    //     top: -20px;
+    //     left: 60px;
 
-        width: 0px;
-        height: 0px;
-        border: 10px solid #3b5998;
-        border-top-color: transparent;
-        border-left-color: transparent;
-        border-right-color: transparent;
-    }
+    //     width: 0px;
+    //     height: 0px;
+    //     border: 10px solid #3b5998;
+    //     border-top-color: transparent;
+    //     border-left-color: transparent;
+    //     border-right-color: transparent;
+    // }
 
     &.shaking {
         animation: shake 300ms forwards linear;
@@ -811,11 +811,12 @@ body.modal-open {
         display: none;
     }
 }
-.events--unpinned {
-    display: none;
-}
-.event--pinned {
-    display: block;
+
+// hide when in the main head
+.main-head {
+    .events {
+        display: none;
+    }
 }
 
 
