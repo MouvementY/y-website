@@ -94,7 +94,10 @@ document.addEventListener('DOMContentLoaded', function() {
             position: 'bottom center',
             classes: 'drop-theme-blue',
             openOn: 'click',
-            constrainToWindow: true
+            constrainToWindow: true,
+            tetherOptions: {
+                offset: '-5px 0'
+            }
         }),
         nextEventFormBinding = function() {
             var nextEventDropContent = document.querySelector('.events'),
