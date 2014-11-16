@@ -10,6 +10,7 @@
         <!-- build:css styles/vendor.css -->
         <link rel="stylesheet" href="styles/_empty.css">
         <!-- bower:css -->
+        <link rel="stylesheet" href="bower_components/pace/themes/black/pace-theme-minimal.css">
         <!-- endbower -->
         <!-- endbuild -->
 
@@ -17,8 +18,9 @@
         <link rel="stylesheet" href="styles/main.css">
         <!-- endbuild -->
 
-        <!-- build:js scripts/vendor/modernizr.js -->
+        <!-- build:js scripts/vendor/head.js -->
         <script src="bower_components/modernizr/modernizr.js"></script>
+        <script data-pace-options='{ "ajax": { "trackMethods": ["GET", "POST"] } }' src="bower_components/pace/pace.js"></script>
         <!-- endbuild -->
 
         <!--[if IE]><script src="bower_components/excanvas/excanvas.js"></script><![endif]-->
