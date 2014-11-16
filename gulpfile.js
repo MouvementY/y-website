@@ -89,7 +89,7 @@ gulp.task('build:prod', function(cb) {
 });
 
 gulp.task('templates:extend', function () {
-    gulp.src([
+    return gulp.src([
             'app/index.html',
             'app/manifeste.html',
         ])
