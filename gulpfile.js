@@ -101,20 +101,22 @@ gulp.task('templates:extend', function () {
 });
 
 gulp.task('templates:render:dev', ['templates:extend'], function() {
+    var content = fs.readFileSync('./envs/dev.json'),
+        data = JSON.parse(content);
+
     return gulp.src('.tmp/*.html')
         .pipe($.data(function () {
-            var content = fs.readFileSync('./envs/dev.json'),
-                data = JSON.parse(content);
             return data;
         }))
         .pipe($.template())
         .pipe(gulp.dest('.tmp'));
 });
 gulp.task('templates:render:prod', ['templates:extend'], function() {
+    var content = fs.readFileSync('./envs/prod.json'),
+        data = JSON.parse(content);
+
     return gulp.src('.tmp/*.html')
         .pipe($.data(function () {
-            var content = fs.readFileSync('./envs/prod.json'),
-                data = JSON.parse(content);
             return data;
         }))
         .pipe($.template())
