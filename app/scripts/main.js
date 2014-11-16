@@ -234,7 +234,7 @@ document.addEventListener('DOMContentLoaded', function() {
             eventsNotificationForm.querySelector('[type=submit]').disabled = false;
 
             // reset the submit animtion
-            // resetNextEventFormSubmit();
+            resetNextEventFormSubmit();
         };
 
         // reset error state
