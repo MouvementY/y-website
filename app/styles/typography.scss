@@ -1,0 +1,30 @@
+////
+// TYPOGRAPHY
+//
+
+.paragraph {
+    text-align: center;
+
+    margin: 0;
+    margin-bottom: 2em;
+
+    & + .paragraph {
+        margin-top: 1em;
+    }
+}
+
+.text-left {
+    .paragraph {
+        text-align: left;
+    }
+}
+
+// iPhone portrait
+@media only screen
+and (min-device-width : 320px)
+and (max-device-width : 568px)
+and (orientation : portrait) {
+    .paragraph {
+        font-size: 1.2rem;
+    }
+}

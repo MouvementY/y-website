@@ -1,3 +1,73 @@
+////
+// BUTTONS
+//
+
+button {
+    padding: 0.8em 1.5em;
+    border: none;
+    cursor: pointer;
+    outline: none;
+    border-radius: 10em;
+
+    background: #2b2b2b;
+    color: #fff;
+    font-family: "Aleo", sans-serif;
+    // font-weight: 200;
+    font-weight: 300;
+    text-transform: uppercase;
+
+    opacity: 1.0;
+    position: relative;
+    top: 0px;
+
+    &:hover, &[disabled] {
+        opacity: 0.6;
+    }
+    &:not([disabled]):active {
+        opacity: 1.0;
+        top: 2px;
+    }
+
+    canvas {
+        pointer-events: none;
+    }
+}
+
+.button--block {
+    display: block;
+}
+.button--fluid {
+    width: 100%;
+}
+.button--small {
+    font-size: 1.2rem !important;
+}
+.button--extra-small {
+    font-size: 1rem !important;
+}
+.button--facebook {
+    background-color: $blue-color;
+}
+.button--twitter {
+    background-color: #55acee;
+}
+.button--inversed {
+    background-color: #fff;
+    color: #333;
+    font-weight: 400;
+}
+
+.button-group {
+    margin-bottom: 2.5em;
+
+    button + button {
+        margin-top: 1em;
+    }
+}
+.button-group--centered {
+    text-align: center;
+}
+
 .progress-button {
     position: relative;
 }

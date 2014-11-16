@@ -1,0 +1,42 @@
+////
+// PROPOSITIONS
+//
+
+.propal {
+    text-align: center;
+    margin-bottom: 4em;
+
+    & + .propal {
+        margin-top: 1em;
+    }
+}
+.propal__number {
+    line-height: 1.1em;
+    font-size: 8rem;
+    font-family: "Impact", sans-serif;
+
+    display: block;
+}
+.propal__label {
+    font-family: "Aleo", sans-serif;
+    font-size: 1.8rem;
+    font-weight: 500;
+
+    background: #fff;
+    padding: 0.5em;
+}
+.propal__description {
+    border: 2px solid #ccc;
+    max-width: 250px;
+    margin: -1em auto 0 auto;
+    padding: 2em 1.5em 1em 1.5em;
+
+    .paragraph {
+        margin-bottom: 0px;
+    }
+
+    .button-group {
+        margin-top: 1.5em;
+        margin-bottom: 1em;
+    }
+}

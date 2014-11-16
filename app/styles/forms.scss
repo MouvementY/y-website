@@ -1,0 +1,20 @@
+////
+// FORMS
+//
+
+.form {
+}
+.input-text {
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    padding: 0.5em 1em;
+    margin-bottom: 0.5em;
+    max-width: 100%;
+
+    font-size: 1em;
+    outline: none;
+}
+.input-text--fluid {
+    width: 100%;
+    margin-bottom: 0.5em;
+}

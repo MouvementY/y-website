@@ -1,0 +1,21 @@
+////
+// FIGURE
+//
+
+.figure {
+    .paragraph {
+        margin-bottom: 0em;
+    }
+}
+.figure--small {
+    font-size: 0.5em;
+}
+.figure__number {
+    display: block;
+    width: 100%;
+
+    line-height: 1.1em;
+    font-size: 6em;
+    text-align: center;
+    font-family: "Aleo", sans-serif;
+}

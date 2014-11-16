@@ -1,0 +1,23 @@
+////
+// CLOCK
+//
+
+.clock {
+    position: relative;
+    margin: 0 auto;
+    height: 463px;
+    width: 100%;
+}
+.clock__frame {
+    position: absolute;
+}
+.clock__second-hand {
+    width: 50%;
+    position: absolute;
+    top: 46.8%;  // 39%
+    left: 42%;
+
+    transform-origin: 18% 48%;
+    transform: rotate(-90deg);
+    transition: transform ease-in 0.10s;
+}

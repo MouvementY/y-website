@@ -1,0 +1,114 @@
+////
+// TITLES
+//
+
+.title {
+    color: #333;
+    font-family: "Another Shabby", sans-serif;
+    font-size: 2rem;
+    line-height: 1.26em;
+    text-align: center;
+
+    margin-bottom: 0.35em;
+
+    & + .title {
+        margin-top: 0.8em;
+        margin-bottom: 1em;
+    }
+
+    span {
+        font-size: 0.75em;
+
+        display: block;
+        margin-top: 0.3em;
+    }
+
+    em {
+        font-family: "Aleo", sans-serif;
+        font-style: normal;
+        font-weight: 200;
+
+        display: block;
+        margin-top: 0em;
+    }
+
+    canvas {
+        pointer-events: none;
+    }
+}
+
+.title--subtitle {
+    font-size: 1.5rem;
+}
+
+.title--red {
+    color: #be0000;
+}
+
+.title--boxed {
+    font-size: 2rem;
+
+    width: 80%;
+    max-width: 450px;
+    margin: 0 auto;
+    margin-top: 1.5em;
+    margin-bottom: 2.0em;
+
+    &.title--boxed--large {
+        font-size: 3rem;
+
+        &.title--attach-bottom {
+            margin-bottom: 0.5em;
+        }
+    }
+}
+.title--sans-serif {
+    font-family: "Aleo", sans-serif;
+}
+.title--attach-bottom {
+    margin-bottom: 1em;
+}
+
+.title--sandwich {
+    font-family: "Aleo", sans-serif;
+    font-size: 3rem;
+    font-weight: 500;
+    line-height: 1.6em;
+    text-transform: uppercase;
+
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+    padding: 0.75em;
+    margin-top: 2em;
+    margin-bottom: 1em;
+
+    span {
+        font-weight: 500;
+        font-size: 1.4em;
+
+        display: block;
+        margin-top: 0.2em;
+    }
+}
+
+.title--not-underlined {
+    text-decoration: none;
+}
+
+.title--underlined {
+    text-decoration: underline;
+}
+
+
+// iPhone portrait
+@media only screen
+and (min-device-width : 320px)
+and (max-device-width : 568px)
+and (orientation : portrait) {
+    .title {
+        font-size: 1.5rem;
+    }
+    .title--sandwich {
+        font-size: 1.2rem;
+    }
+}

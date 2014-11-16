@@ -1,0 +1,35 @@
+////
+// HELPERS
+//
+
+.text-center {
+    text-align: center;
+}
+
+.img-centered {
+    display: block;
+    margin: 0 auto;
+}
+
+.facebook-like {
+    background: $blue-color;
+    color: #fff !important;
+
+    &:hover {
+        background: lighten($blue-color, 20%) !important;
+    }
+}
+
+.slide {
+    transition: all .25s ease-in-out;
+}
+
+.detached-top {
+    margin-top: 3em;
+}
+.detached-bottom {
+    margin-bottom: 3em;
+}
+.detached-bottom--large {
+    margin-bottom: 6em;
+}

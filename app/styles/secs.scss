@@ -1,0 +1,13 @@
+////
+// SECS
+//
+
+.sec {
+
+    & + .sec {
+        margin-top: 6em;
+    }
+}
+.sec--detached {
+    margin-bottom: 4em;
+}

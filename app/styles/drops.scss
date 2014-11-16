@@ -1,4 +1,6 @@
-$blue-color: #3b5998;
+////
+// DROPS
+//
 
 .drop-element,
 .drop-element:after,
@@ -26,7 +28,7 @@ $blue-color: #3b5998;
             position: relative;
 
             font-family: inherit;
-            background: #3b5998;
+            background: $blue-color;
             color: #444444;
             padding: 1em;
             font-size: 1.1em;
