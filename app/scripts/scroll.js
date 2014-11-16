@@ -1,5 +1,3 @@
-/* global Headroom */
-
 // namespace
 var mouvy = mouvy || {};
 
@@ -31,13 +29,13 @@ document.addEventListener('DOMContentLoaded', function() {
 
     clock.style.height = frameOriginalRatio * clock.offsetWidth + 'px';
 
-    // animate the clock
-    var clock = document.querySelector('.clock__second-hand'),
+    // animate the clock second hand
+    var clockSecondHand = document.querySelector('.clock__second-hand'),
         numberOfStepPerSecond = 5.0,
         angleIntervalPerStep = 360.0 / (60 * numberOfStepPerSecond),
         seconds = 0;
     setInterval(function() {
-        clock.style.transform = 'rotate(' + (seconds++)*angleIntervalPerStep + 'deg)';
+        clockSecondHand.style.transform = 'rotate(' + (seconds++)*angleIntervalPerStep + 'deg)';
     }, 1000.0 / numberOfStepPerSecond);
 
     // signature pad
