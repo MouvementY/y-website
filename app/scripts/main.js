@@ -131,6 +131,8 @@ document.addEventListener('DOMContentLoaded', function() {
         hideNextEventPopover = function() {
             mouvy.removeClassName(nextEventPopover, 'events--pinned');
             mouvy.addClassName(nextEventPopover, 'events--unpinned');
+
+            resetNextEventFormErrors();
         };
     nextEventButton.addEventListener('click', function(e) {
         e.preventDefault();
@@ -174,20 +176,52 @@ document.addEventListener('DOMContentLoaded', function() {
                 'email': signatureForm.querySelector('[name=email]').value,
                 'signature_image_data_url': signatureForm.querySelector('[name=signature_image]').value,
             },
-            urlEncodedData = '',
-            urlEncodedDataPairs = [];
-
-        // inspired from the Mozilla developer documentation
-        // source: https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/Forms/Sending_forms_through_JavaScript
-        for (var name in data) {
-            urlEncodedDataPairs.push(encodeURIComponent(name) + '=' + encodeURIComponent(data[name]));
-        }
-        urlEncodedData = urlEncodedDataPairs.join('&').replace(/%20/g, '+');
+            urlEncodedData = mouvy.urlEncodeParams(data);
 
         // prepare and send the request
-        var request = new XMLHttpRequest();
-        request.open('POST', signatureForm.action, true);
-        request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
-        request.send(urlEncodedData);
+        var request = mouvy.prepareRequest(signatureForm.action, 'post');
+        mouvy.sendRequest(request, urlEncodedData);
+    });
+
+    // events notification form
+    var eventsNotificationForm = document.querySelector('.events .form'),
+        eventsNotificationFormErrors = eventsNotificationForm.querySelector('.errors-wrapper'),
+        resetNextEventFormErrors = function() {
+            eventsNotificationFormErrors.innerText = '';
+            mouvy.addClassName(eventsNotificationFormErrors, 'errors-wrapper--empty');
+            // preapre the popover to receive a shaking move in case of an error
+            mouvy.removeClassName(nextEventPopover, 'shaking');
+        };
+    eventsNotificationForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+
+        var data = {
+                'email': eventsNotificationForm.querySelector('[name=email]').value
+            },
+            urlEncodedData = mouvy.urlEncodeParams(data);
+
+        // prepare and send the request
+        var request = mouvy.prepareRequest(eventsNotificationForm.action, 'post');
+        request.onload = function() {
+            var resp = null;
+            if (this.status >= 200 && this.status < 400){
+                // Success!
+                resp = JSON.parse(this.responseText);
+                eventsNotificationForm.innerText = resp.detail;
+            } else {
+                // We reached our target server, but it returned an error
+                resp = JSON.parse(this.responseText);
+
+                eventsNotificationFormErrors.innerText = resp.detail;
+                mouvy.removeClassName(eventsNotificationFormErrors, 'errors-wrapper--empty');
+
+                mouvy.addClassName(nextEventPopover, 'shaking');
+            }
+        };
+
+        // reset error state
+        resetNextEventFormErrors();
+
+        mouvy.sendRequest(request, urlEncodedData);
     });
 });

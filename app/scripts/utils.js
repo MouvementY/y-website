@@ -31,3 +31,30 @@ mouvy.removeClassName = function(el, className) {
 mouvy.scrollTop = function(win, doc) {
     return (win.pageYOffset !== undefined) ? win.pageYOffset : (doc.documentElement || doc.body.parentNode || doc.body).scrollTop;
 };
+
+mouvy.urlEncodeParams = function(params) {
+    var urlEncodedData = '',
+        urlEncodedDataPairs = [];
+
+    // inspired from the Mozilla developer documentation
+    // source: https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/Forms/Sending_forms_through_JavaScript
+    for (var name in params) {
+        urlEncodedDataPairs.push(encodeURIComponent(name) + '=' + encodeURIComponent(params[name]));
+    }
+    urlEncodedData = urlEncodedDataPairs.join('&').replace(/%20/g, '+');
+
+    return urlEncodedData;
+};
+
+mouvy.prepareRequest = function(url, method) {
+    var request = new XMLHttpRequest();
+    request.open(method, url, true);
+    if (method.toLowerCase() === 'post') {
+        request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
+    }
+    return request;
+};
+
+mouvy.sendRequest = function(preparedRequest, data) {
+    preparedRequest.send(data);
+};

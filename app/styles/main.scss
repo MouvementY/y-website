@@ -103,6 +103,9 @@ button {
 .button--block {
     display: block;
 }
+.button--fluid {
+    width: 100%;
+}
 .button--small {
     font-size: 1.2rem !important;
 }
@@ -114,6 +117,11 @@ button {
 }
 .button--twitter {
     background-color: #55acee;
+}
+.button--inversed {
+    background-color: #fff;
+    color: #333;
+    font-weight: 400;
 }
 
 .button-group {
@@ -730,8 +738,10 @@ body.modal-open {
     box-sizing: border-box;
     border: 1px solid #ccc;
     padding: 0.5em 1em;
+    margin-bottom: 0.5em;
+    max-width: 100%;
 
-    font-size: 1.2em;
+    font-size: 1em;
     outline: none;
 }
 .input-text--fluid {
@@ -750,10 +760,11 @@ body.modal-open {
     position: absolute;
     right: 0;
     top: 80px;
-    padding: 1em 2em;
+    padding: 1em 1.5em;
 
     background: #3b5998;
     color: #fff;
+    font-size: 0.9em;
 
     transition: transition 75ms ease-out;
     animation: pop-upwards 180ms forwards linear;
@@ -773,8 +784,26 @@ body.modal-open {
         border-right-color: transparent;
     }
 
+    &.shaking {
+        animation: shake 300ms forwards linear;
+        transform-origin: 50% 50%;
+    }
+
     p {
         margin: 0em;
+    }
+
+    .form {
+        margin-top: 1em;
+    }
+
+    .errors-wrapper {
+        background: #c00;
+        padding: 0.3em 0.5em;
+        margin-top: 0.5em;
+    }
+    .errors-wrapper--empty {
+        display: none;
     }
 }
 .events--unpinned {
