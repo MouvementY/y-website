@@ -23,7 +23,7 @@
       "main": "dist/headroom.js"
     },
     "smooth-scroll": {
-      "main": ["dist/js/bind-polyfil.js", "dist/js/smooth-scroll.js"]
+      "main": ["dist/js/bind-polyfill.js", "dist/js/smooth-scroll.js"]
     }
   }
 }
