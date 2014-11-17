@@ -103,6 +103,9 @@ body.modal-open {
             opacity: 1.0;
             top: 100%;
         }
+        &[disabled] {
+            opacity: 1.0;
+        }
 
         .progress-inner {
             border-radius: 10em;
