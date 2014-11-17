@@ -31,6 +31,10 @@ img {
     max-width: 100%;
 }
 
+address {
+    margin-bottom: 1.5em;
+}
+
 .container {
     width: 100%;
     max-width: 1080px;
@@ -122,6 +126,23 @@ img {
 }
 .inner-container--wider {
     max-width: 700px;
+}
+
+.main-foot {
+    margin-top: 6rem;
+    color: #ccc;
+
+    .rule {
+        color: #f0f0f0;
+    }
+
+    p {
+        text-align: center;
+        font-size: 0.9em;
+    }
+    a {
+        text-decoration: none;
+    }
 }
 
 

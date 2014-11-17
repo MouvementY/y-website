@@ -91,8 +91,8 @@ gulp.task('build:prod', function(cb) {
 
 gulp.task('templates:extend', function () {
     return gulp.src([
-            'app/index.html',
-            'app/manifeste.html',
+            'app/*.html',
+            '!app/_master.html',
         ])
         .pipe($.htmlExtend({
             annotations: true,
