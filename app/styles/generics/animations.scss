@@ -4,15 +4,15 @@
 
 @keyframes floating {
   0% {
-    top: 0em;
+    transform: translate3d(0, 0px, 0);
   }
 
   50% {
-    top: 1em;
+    transform: translate3d(0, 20px, 0);
   }
 
   100% {
-    top: 0em;
+    transform: translate3d(0, 0px, 0);
   }
 }
 
