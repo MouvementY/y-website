@@ -2,6 +2,20 @@
 // ANIMATIONS
 //
 
+@keyframes floating {
+  0% {
+    top: 0em;
+  }
+
+  50% {
+    top: 1em;
+  }
+
+  100% {
+    top: 0em;
+  }
+}
+
 @keyframes bounce-in {
   0% {
     top: 100%;

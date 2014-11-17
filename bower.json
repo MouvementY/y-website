@@ -10,7 +10,8 @@
     "headroom.js": "~0.7.0",
     "drop": "~0.5.5",
     "pace": "~1.0.2",
-    "signet": "~0.4.7"
+    "signet": "~0.4.7",
+    "skrollr": "~0.6.29"
   },
   "devDependencies": {},
   "overrides": {

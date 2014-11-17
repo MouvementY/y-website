@@ -1,3 +1,5 @@
+/* global Modernizr */
+
 // namespace
 var mouvy = mouvy || {};
 
@@ -19,6 +21,13 @@ document.addEventListener('DOMContentLoaded', function() {
         // reveal the logo
         logoWrapper.style.opacity = 1;
     }, 500);
+
+    // remove the hint scroll on mobile
+    if (Modernizr.touch) {
+        skrollr.init().destroy();
+    } else {
+        var s = skrollr.init();
+    }
 
     // scale the clock
     var clock = document.querySelector('.clock'),
