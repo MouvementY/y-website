@@ -1,5 +1,6 @@
 /* global Headroom */
 /* global Drop */
+/* global smoothScroll */
 
 // namespace
 var mouvy = mouvy || {};
@@ -7,6 +8,14 @@ var mouvy = mouvy || {};
 
 document.addEventListener('DOMContentLoaded', function() {
     'use strict';
+
+    // smooth scrolling for anchors
+    smoothScroll.init({
+        speed: 500,
+        easing: 'easeOutQuint',
+        updateURL: true,
+        offset: 40
+    });
 
     // box each titles
     var titleElements = document.querySelectorAll('.title--boxed');
