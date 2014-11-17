@@ -198,5 +198,10 @@ document.addEventListener('DOMContentLoaded', function() {
     nextEventDrop.once('open', function() {
         nextEventFormBinding();
     });
+    nextEventDrop.on('open', function() {
+        // focus on the email field
+        var eventsNotificationEmailField = document.querySelector('.newsletter-email');
+        eventsNotificationEmailField.focus();
+    });
 
 });

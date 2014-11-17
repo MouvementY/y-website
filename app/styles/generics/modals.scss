@@ -112,8 +112,14 @@ body.modal-open {
         }
     }
 
-    .input-text {
-        font-size: 0.8em;
+    .newsletter-email {
+        font-size: 1.2em;
+        opacity: 0.6;
+        margin-bottom: 0.5em;
+
+        &:focus {
+            // opacity: 1.0;
+        }
     }
 
     .errors-wrapper {

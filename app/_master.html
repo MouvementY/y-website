@@ -66,10 +66,10 @@
                 </div>
 
                 <div class="events">
-                    <p>Soon un événement! Vous souhaitez être tenu au courant ? Laissez-nous votre email, on s'occupe du reste.</p>
+                    <p>Pour savoir où et quand aura lieu le premier événement &laquo; y &raquo; &hellip;</p>
                     <div class="form-wrapper">
-                        <form class="form" action="<%= subscribeEventsNotificationFormAction %>" method="post" autocomplete=off>
-                            <input class="newsletter-email" type="text" name="email" placeholder="Entrez votre email">
+                        <form class="form" action="<%= subscribeEventsNotificationFormAction %>" method="post">
+                            <input class="newsletter-email" type="text" name="email" placeholder="Entrez votre email" autocomplete=off autocorrect=off autocapitalize=off spellcheck=false>
                             <button type="submit" class="submit submit--bounce-in button--fluid button--inversed progress-button" data-style="fill" data-horizontal>
                                 <span class="content">Souscrire</span>
                                 <span class="progress">
