@@ -32,7 +32,8 @@
     "jshint-stylish": "^0.2.0",
     "opn": "^0.1.1",
     "wiredep": "^1.4.3",
-    "gulp-notify": "^2.0.1"
+    "gulp-notify": "^2.0.1",
+    "gulp-imagemin": "^2.0.0"
   },
   "engines": {
     "node": ">=0.10.0"

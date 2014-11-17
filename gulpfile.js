@@ -48,6 +48,7 @@ gulp.task('html', ['styles', 'scripts'], function () {
 
 gulp.task('images', function () {
     return gulp.src('app/images/**/*')
+        // TODO: can't enable imagemin right now it would break retina support
         // .pipe($.cache($.imagemin({
         //     optimizationLevel: 3,
         //     progressive: true,
