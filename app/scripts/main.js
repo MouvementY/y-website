@@ -102,13 +102,15 @@ document.addEventListener('DOMContentLoaded', function() {
         nextEventFormBinding = function() {
             var nextEventDropContent = document.querySelector('.events'),
                 eventsNotificationForm = document.querySelector('.events .form'),
+                eventsNotificationEmailField = eventsNotificationForm.querySelector('input'),
                 eventsNotificationFormErrors = eventsNotificationForm.querySelector('.errors-wrapper'),
-                nextEventSubmit = eventsNotificationForm.querySelector('[type=submit] .progress-inner'),
+                nextEventSubmit = eventsNotificationForm.querySelector('[type=submit]'),
+                nextEventSubmitInner = eventsNotificationForm.querySelector('[type=submit] .progress-inner'),
                 resetNextEventFormSubmit = function() {
                     // reset the submit animation
-                    mouvy.addClassName(nextEventSubmit, 'notransition');
-                    mouvy.removeClassName(nextEventSubmit, 'state-loading');
-                    nextEventSubmit.style.width = '0%';
+                    mouvy.addClassName(nextEventSubmitInner, 'notransition');
+                    mouvy.removeClassName(nextEventSubmitInner, 'state-loading');
+                    nextEventSubmitInner.style.width = '0%';
                 },
                 resetNextEventFormErrors = function() {
                     eventsNotificationFormErrors.innerText = '';
@@ -118,6 +120,22 @@ document.addEventListener('DOMContentLoaded', function() {
 
                     resetNextEventFormSubmit();
                 };
+
+            eventsNotificationEmailField.addEventListener('keyup', function() {
+                var insertedEmail = eventsNotificationEmailField.value,
+                    atPosition = insertedEmail.indexOf("@"),
+                    dotPosition = insertedEmail.lastIndexOf(".");
+
+                // check if user has inserted a "@" and a dot
+                if (atPosition < 1 || dotPosition < (atPosition+2) ) {
+                    // if he hasn't, hide the submit button
+                    mouvy.removeClassName(eventsNotificationForm, 'form--active');
+                } else {
+                    //if he has..
+                    //show the submit button
+                    mouvy.addClassName(eventsNotificationForm, 'form--active');
+                }
+            });
 
             eventsNotificationForm.addEventListener('submit', function(e) {
                 e.preventDefault();
@@ -159,9 +177,9 @@ document.addEventListener('DOMContentLoaded', function() {
                 resetNextEventFormErrors();
 
                 // fake loader for the user
-                mouvy.removeClassName(nextEventSubmit, 'notransition');
-                mouvy.addClassName(nextEventSubmit, 'state-loading');
-                nextEventSubmit.style.width = '100%';
+                mouvy.removeClassName(nextEventSubmitInner, 'notransition');
+                mouvy.addClassName(nextEventSubmitInner, 'state-loading');
+                nextEventSubmitInner.style.width = '100%';
 
                 mouvy.sendRequest(request, urlEncodedData);
             });

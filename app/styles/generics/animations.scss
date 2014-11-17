@@ -2,6 +2,20 @@
 // ANIMATIONS
 //
 
+@keyframes bounce-in {
+  0% {
+    top: 100%;
+  }
+
+  60% {
+    top: 45%;
+  }
+
+  100% {
+    top: 50%;
+  }
+}
+
 @keyframes pop-upwards {
     0% {
         transform: matrix(0.97,0,0,1,0,12);

@@ -18,3 +18,24 @@
     width: 100%;
     margin-bottom: 0.5em;
 }
+
+.newsletter-email {
+    margin-bottom: 1em;
+    width: 100%;
+
+    background: transparent;
+    border: none;
+    color: #fff;
+    font-size: 1em;
+    font-weight: 300;
+    font-family: "Open Sans", sans-serif;
+    outline: none;
+}
+
+.form .submit--bounce-in {
+  display: none;
+}
+.form.form--active .submit--bounce-in {
+  display: block;
+  animation: pop-upwards ease-out 0.4s;
+}

@@ -90,7 +90,23 @@ body.modal-open {
     }
 
     .form {
+        position: relative;
         margin-top: 1em;
+    }
+
+    .submit {
+        top: 100%;
+        position: absolute;
+
+        &:hover {
+            background: #b0bcd6;
+            opacity: 1.0;
+            top: 100%;
+        }
+
+        .progress-inner {
+            border-radius: 10em;
+        }
     }
 
     .input-text {
