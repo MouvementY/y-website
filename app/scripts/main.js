@@ -114,7 +114,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 eventsNotificationEmailField = eventsNotificationForm.querySelector('input'),
                 eventsNotificationFormErrors = eventsNotificationForm.querySelector('.errors-wrapper'),
                 nextEventSubmit = eventsNotificationForm.querySelector('[type=submit]'),
-                nextEventSubmitInner = eventsNotificationForm.querySelector('[type=submit] .progress-inner'),
+                nextEventSubmitInner = nextEventSubmit.querySelector('.progress-inner'),
                 resetNextEventFormSubmit = function() {
                     // reset the submit animation
                     mouvy.addClassName(nextEventSubmitInner, 'notransition');
@@ -132,8 +132,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
             eventsNotificationEmailField.addEventListener('keyup', function() {
                 var insertedEmail = eventsNotificationEmailField.value,
-                    atPosition = insertedEmail.indexOf("@"),
-                    dotPosition = insertedEmail.lastIndexOf(".");
+                    atPosition = insertedEmail.indexOf('@'),
+                    dotPosition = insertedEmail.lastIndexOf('.');
 
                 // check if user has inserted a "@" and a dot
                 if (atPosition < 1 || dotPosition < (atPosition+2) ) {

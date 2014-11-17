@@ -1,4 +1,5 @@
 /* global Modernizr */
+/* global skrollr */
 
 // namespace
 var mouvy = mouvy || {};
@@ -26,7 +27,7 @@ document.addEventListener('DOMContentLoaded', function() {
     if (Modernizr.touch) {
         skrollr.init().destroy();
     } else {
-        var s = skrollr.init();
+        skrollr.init();
     }
 
     // scale the clock
