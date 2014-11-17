@@ -9,7 +9,7 @@ button {
     outline: none;
     border-radius: 10em;
 
-    background: #2b2b2b;
+    background: #ccc;
     color: #fff;
     font-family: "Aleo", sans-serif;
     // font-weight: 200;
@@ -33,6 +33,10 @@ button {
     }
 }
 
+.button--black {
+    background: #2b2b2b;
+    color: #fff;
+}
 .button--block {
     display: block;
 }
