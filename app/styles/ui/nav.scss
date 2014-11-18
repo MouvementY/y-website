@@ -19,8 +19,6 @@
         }
 
         > a {
-            transition: padding 0.5s ease-in-out;
-
             display: block;
             color: #333;
             padding: 1.2em 1.2em;
@@ -29,8 +27,10 @@
             font-variant: small-caps;
             text-decoration: none;
 
+            transition: background-color 200ms ease-in;
+
             &:hover {
-                background-color: #ddd;
+                background-color: #eaeaea;
                 color: #000;
             }
         }

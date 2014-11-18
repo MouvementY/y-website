@@ -55,7 +55,9 @@ address {
 }
 
 .main-head {
-    background: #f0f0f0;
+    // background: #f0f0f0;
+    background: rgba(255, 255, 255, 0.95);
+    border-bottom: 1px solid #f0f0f0;
     padding: 0em 0em;
 }
 .main-head--fixed {
