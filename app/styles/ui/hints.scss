@@ -4,6 +4,7 @@
 
 .hint {
     display: none;
+    font-size: 0.8em;
 }
 
 .hint--scroll {
@@ -11,6 +12,8 @@
     position: absolute;
     top: 25%;
     right: 0;
+
+    color: #666;
 }
 .hint--scroll-down {
     display: block;
