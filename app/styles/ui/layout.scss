@@ -57,8 +57,21 @@ address {
 .main-head {
     // background: #f0f0f0;
     background: rgba(255, 255, 255, 0.95);
-    border-bottom: 1px solid #f0f0f0;
+    box-shadow: #f0f0f0 0px 1px 0px;
     padding: 0em 0em;
+
+    // Adjust the pace style
+    .pace {
+        bottom: 0px;
+        position: absolute;
+        width: 100%;
+
+        .pace-progress {
+            position: absolute;
+            height: 1px;
+        }
+    }
+
 }
 .main-head--fixed {
     position: fixed;
