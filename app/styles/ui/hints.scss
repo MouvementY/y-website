@@ -7,7 +7,7 @@
     font-size: 0.8em;
 }
 
-.hint--scroll {
+.hint-scroll {
     display: block;
     position: absolute;
     top: 25%;
@@ -15,13 +15,15 @@
 
     color: #666;
 }
-.hint--scroll-down {
-    display: block;
+.hint-scroll-text {
+}
+.hint-scroll-down {
+    display: inline-block;
     position: relative;
     margin-top: -22px;
     height: 30px;
 }
-.hint--scroll-down__arrow {
+.hint-scroll-down__arrow {
     position: absolute;
     animation: floating 3s ease-in-out infinite;
 }
@@ -30,7 +32,23 @@
 // Small screens
 @media only screen
 and (max-width : 1000px) {
-    .hint--scroll {
+    .hint-scroll {
+        width: 100%;
+        top: 88%;
+
+        text-align: center;
+    }
+    .hint-scroll-text {
         display: none;
+    }
+    $hint-scroll-down-mobile-size: 50px;
+    .hint-scroll-down {
+        width: 100%;
+        font-size: $hint-scroll-down-mobile-size;
+        color: #ccc;
+    }
+    .hint-scroll-down__arrow {
+        left: 50%;
+        margin-left: -$hint-scroll-down-mobile-size/2;
     }
 }
