@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }, 500);
 
     // remove the hint scroll on mobile
-    if (Modernizr.touch) {
+    if (Modernizr.mq('only all and (max-width: 480px)')) {
         skrollr.init().destroy();
     } else {
         skrollr.init();
