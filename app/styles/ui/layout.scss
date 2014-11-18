@@ -54,6 +54,7 @@ address {
     max-width: 100%;
 }
 
+$main-head-height: 66px;
 .main-head {
     // background: #f0f0f0;
     background: rgba(255, 255, 255, 0.95);
@@ -95,6 +96,7 @@ address {
     // NB: `vh` is not fully supported
     //     check
     height: 100vh;
+    padding-top: $main-head-height;
 
     opacity: 0;
     transition: opacity ease-out 0.8s;
@@ -180,5 +182,10 @@ and (max-device-width : 568px)
 and (orientation : portrait) {
     .main-head {
         display: none;
+    }
+
+    // TODO temp fix waiting for the burger icon
+    #logo-full-screen {
+        padding-top: 0;
     }
 }
