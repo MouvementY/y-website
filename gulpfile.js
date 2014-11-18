@@ -58,6 +58,14 @@ gulp.task('images', function () {
         .pipe($.size());
 });
 
+gulp.task('favicons', function () {
+    return gulp.src([
+            'app/favicon.{png,ico}',
+        ])
+        .pipe(gulp.dest('dist'))
+        .pipe($.size());
+});
+
 gulp.task('fonts', function () {
     return gulp.src('app/fonts/**/*.{eot,svg,ttf,woff}')
         .pipe(gulp.dest('dist/fonts'))
@@ -73,7 +81,7 @@ gulp.task('clean', function () {
     return gulp.src(['.tmp', 'dist'], { read: false }).pipe($.clean());
 });
 
-gulp.task('build', ['html', 'images', 'fonts', 'extras']);
+gulp.task('build', ['html', 'favicons', 'images', 'fonts', 'extras']);
 gulp.task('build:dev', function(cb) {
     // TODO: runSequence is a hack waiting for Gulp 4.0 to be out
     runSequence(
