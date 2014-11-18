@@ -92,17 +92,29 @@ address {
 }
 
 #logo-full-screen {
-    // initial height to be sure nothing else is shown
-    // randomly choosen by Arno
-    height: 4267px;
+    // NB: `vh` is not fully supported
+    //     check
+    height: 100vh;
+
     opacity: 0;
     transition: opacity ease-out 0.8s;
 
     box-sizing: border-box;
     margin-top: 0px;
 
+    &:before {
+        content: "";
+        display: inline-block;
+        height: 100%;
+        vertical-align: middle;
+    }
+
     img {
-        margin-top: 0px;
+        display: inline-block;
+        vertical-align: middle;
+
+        max-height: 80%;
+        max-width: 70%;
     }
 }
 
@@ -128,7 +140,7 @@ address {
 }
 .logo--image {
     img {
-        margin: 2em auto 2em auto;
+        margin: 0 auto;
     }
 }
 
