@@ -2,5 +2,6 @@
     "google_analytics_id": "UA-56777224-1",
     "subscribeEventsNotificationFormAction": "https://y-engine.herokuapp.com/api/events/subscribe/",
     "signatureFormAction": "https://y-engine.herokuapp.com/api/signatures/",
-    "signatureFetchURL": "https://y-engine.herokuapp.com/api/signatures/"
+    "signatureFetchURL": "https://y-engine.herokuapp.com/api/signatures/",
+    "signatureCountFetchURL": "https://y-engine.herokuapp.com/api/signatures/count/"
 }

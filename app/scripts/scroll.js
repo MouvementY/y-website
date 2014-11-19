@@ -78,13 +78,28 @@ document.addEventListener('DOMContentLoaded', function() {
         mouvy.sendRequest(request, urlEncodedData);
     });
 
-    // load the signature wall content
-    var signatureWall = document.querySelector('#signature-wall');
-    var request = mouvy.prepareRequest(signatureWall.dataset.url, 'get');
-    request.onload = function() {
-        if (request.status >= 200 && request.status < 400){
+    // load the signature count
+    var signatureCounter = document.querySelector('.signature-counter'),
+        signatureCountRequest = mouvy.prepareRequest(signatureCounter.dataset.url, 'get');
+    signatureCountRequest.onload = function() {
+        if (signatureCountRequest.status >= 200 && signatureCountRequest.status < 400){
             // Success!
-            var data = JSON.parse(request.responseText);
+            var data = JSON.parse(signatureCountRequest.responseText);
+            signatureCounter.querySelector('span').textContent = data;
+        } else {
+            // We reached our target server, but it returned an error
+            // TODO handle errors
+        }
+    };
+    mouvy.sendRequest(signatureCountRequest);
+
+    // load the signature wall content
+    var signatureWall = document.querySelector('#signature-wall'),
+        signatureListRequest = mouvy.prepareRequest(signatureWall.dataset.url, 'get');
+    signatureListRequest.onload = function() {
+        if (signatureListRequest.status >= 200 && signatureListRequest.status < 400){
+            // Success!
+            var data = JSON.parse(signatureListRequest.responseText);
             data.forEach(function(sign) {
                 var signImage = '<img src="'+ sign['signature_image_data_url'] +'">',
                     signElement = document.createElement('div');
@@ -105,5 +120,5 @@ document.addEventListener('DOMContentLoaded', function() {
             // TODO handle errors
         }
     };
-    mouvy.sendRequest(request);
+    mouvy.sendRequest(signatureListRequest);
 });
