@@ -1,5 +1,6 @@
 /* global Modernizr */
 /* global skrollr */
+/* global Tooltip */
 
 // namespace
 var mouvy = mouvy || {};
@@ -80,21 +81,28 @@ document.addEventListener('DOMContentLoaded', function() {
     // load the signature wall content
     var signatureWall = document.querySelector('#signature-wall');
     var request = mouvy.prepareRequest(signatureWall.dataset.url, 'get');
-        request.onload = function() {
+    request.onload = function() {
         if (request.status >= 200 && request.status < 400){
             // Success!
             var data = JSON.parse(request.responseText);
-            console.log(data);
             data.forEach(function(sign) {
-                var signImage = "<img src='"+ sign['signature_image_data_url'] +"'>",
+                var signImage = '<img src="'+ sign['signature_image_data_url'] +'">',
                     signElement = document.createElement('div');
                 mouvy.addClassName(signElement, 'signature');
                 signElement.innerHTML = signImage;
                 signatureWall.appendChild(signElement);
+
+                // add the tooltip
+                new Tooltip({
+                    target: signElement,
+                    position: 'top center',
+                    content: sign['first_name'],
+                    openOn: 'hover'
+                });
             });
         } else {
             // We reached our target server, but it returned an error
-
+            // TODO handle errors
         }
     };
     mouvy.sendRequest(request);

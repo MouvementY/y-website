@@ -12,7 +12,8 @@
     "pace": "~1.0.2",
     "signet": "~0.4.7",
     "skrollr": "~0.6.29",
-    "smooth-scroll": "https://github.com/cferdinandi/smooth-scroll.git"
+    "smooth-scroll": "https://github.com/cferdinandi/smooth-scroll.git",
+    "tether-tooltip": "~0.2.6"
   },
   "devDependencies": {},
   "overrides": {
@@ -23,7 +24,19 @@
       "main": "dist/headroom.js"
     },
     "smooth-scroll": {
-      "main": ["dist/js/bind-polyfill.js", "dist/js/smooth-scroll.js"]
+      "main": [
+        "dist/js/bind-polyfill.js",
+        "dist/js/smooth-scroll.js"
+      ]
+    },
+    "tether": {
+      "main": "tether.js"
+    },
+    "drop": {
+      "main": "js/drop.js"
+    },
+    "tether-tooltip": {
+      "main": "js/tooltip.js"
     }
   }
 }
