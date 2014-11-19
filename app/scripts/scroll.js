@@ -44,17 +44,27 @@ document.addEventListener('DOMContentLoaded', function() {
     var signatureCanvas = document.querySelector('.sign-block'),
         signatureForm = document.querySelector('.signature-form'),
         signatureFormField = signatureForm.querySelector('input[name=signature_image]'),
+        signatureCanvasClearButton = document.querySelector('.clear-sign-canvas'),
+        signatureHelper = document.querySelector('.sign-help-text'),
         signaturePad = new window.SignaturePad(signatureCanvas, {
             minWidth: 1,
             maxWidth: 3,
             penColor: 'rgb(0, 0, 0)',
             onEnd: function() {
                 signatureFormField.value = signaturePad.toDataURL();
+
+                // show clear button
+                signatureHelper.style.display = 'none';
+                signatureCanvasClearButton.style.display = 'inline-block';
             }
         });
 
-    document.querySelector('.clear-sign-canvas').addEventListener('click', function(e) {
+    signatureCanvasClearButton.addEventListener('click', function(e) {
         e.preventDefault();
+
+        // hide clear button
+        signatureCanvasClearButton.style.display = 'none';
+
         signaturePad.clear();
     });
 
@@ -85,6 +95,13 @@ document.addEventListener('DOMContentLoaded', function() {
     Array.prototype.forEach.call(signTriggers, function(el) {
         el.addEventListener('click', function(e) {
             e.preventDefault();
+
+            // check to see if the signature is not empty
+            if (signaturePad.isEmpty()) {
+                signatureHelper.style.display = 'block';
+                return;
+            }
+
             mouvy.showModal(e.target, function(modal) {
                 bindAdditionalForm(modal);
             });
