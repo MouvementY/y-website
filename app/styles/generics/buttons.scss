@@ -2,7 +2,8 @@
 // BUTTONS
 //
 
-button {
+button, .button {
+    display: inline-block;
     padding: 0.8em 1.5em;
     border: none;
     cursor: pointer;
@@ -15,6 +16,7 @@ button {
     // font-weight: 200;
     font-weight: 300;
     text-transform: uppercase;
+    text-decoration: none;
 
     opacity: 1.0;
     position: relative;
@@ -22,6 +24,7 @@ button {
 
     &:hover, &[disabled] {
         opacity: 0.6;
+        color: #fff;
     }
     &:not([disabled]):active {
         opacity: 1.0;
@@ -64,7 +67,7 @@ button {
 .button-group {
     margin-bottom: 4em;
 
-    button + button {
+    button + button, .button + .button {
         margin-top: 1em;
     }
 }
