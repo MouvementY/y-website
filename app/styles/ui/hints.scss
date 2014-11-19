@@ -23,6 +23,20 @@
     margin-top: -22px;
     height: 30px;
 }
+.hint-scroll-down--center {
+    display: inline-block;
+    width: 100%;
+    text-align: center;
+}
+$hint-scroll-down-big-size: 40px;
+.hint-scroll-down--big {
+    font-size: $hint-scroll-down-big-size;
+
+    .hint-scroll-down__arrow {
+        left: 50%;
+        margin-left: -$hint-scroll-down-big-size/2;
+    }
+}
 .hint-scroll-down__arrow {
     position: absolute;
     animation: floating 3s ease-in-out infinite;
@@ -46,9 +60,10 @@ and (max-width : 1000px) {
         width: 100%;
         font-size: $hint-scroll-down-mobile-size;
         color: #ccc;
-    }
-    .hint-scroll-down__arrow {
-        left: 50%;
-        margin-left: -$hint-scroll-down-mobile-size/2;
+
+        .hint-scroll-down__arrow {
+            left: 50%;
+            margin-left: -$hint-scroll-down-mobile-size/2;
+        }
     }
 }
