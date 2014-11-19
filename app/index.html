@@ -423,20 +423,24 @@
     </div>
 
     <h3 class="title">Ajoutez votre signature <span>(c'est <u>très</u> important)</span></h3>
-    <form class="signature-form" action="<%= signatureFormAction %>" method="post">
+    <form>
         <canvas class="sign-block" width=400 height=225></canvas>
         <div class="button-group button-group--centered">
-            <button type="submit" class="button--extra-small clear-sign-canvas">Refaire</button>
+            <a class="button button--extra-small clear-sign-canvas">Refaire</a>
+            <a class="button button--black button--extra-small sign-action" data-target="#signature-form-additional">Signer</a>
         </div>
-        <div class="inner-container">
+    </form>
+
+    <div id="signature-form-additional">
+        <form class="signature-form" action="<%= signatureFormAction %>" method="post">
             <input type="hidden" name="signature_image" value="">
-            <input class="input-text input-text--fluid" type="text" name="first_name" placeholder="Prénom" value="François">
-            <input class="input-text input-text--fluid" type="text" name="last_name" placeholder="Nom" value="Dupont">
-            <input class="input-text input-text--fluid" type="text" name="email" placeholder="Email" value="dudul@free.fr">
+            <input class="input-text input-text--fluid" type="text" name="first_name" placeholder="Prénom" value="">
+            <input class="input-text input-text--fluid" type="text" name="last_name" placeholder="Nom" value="">
+            <input class="input-text input-text--fluid" type="text" name="email" placeholder="Email" value="">
             <div class="button-group button-group--centered">
                 <button type="submit" class="button--small submit-signature">Confirmer votre signature</button>
             </div>
-        </div>
+        </form>
     </div>
 
     <h4 class="title">À partir de <em>500 000 signatures</em></h4>

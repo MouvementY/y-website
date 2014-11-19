@@ -1,4 +1,5 @@
 {
+    "useFaker": false,
     "google_analytics_id": "UA-56777224-1",
     "subscribeEventsNotificationFormAction": "https://y-engine.herokuapp.com/api/events/subscribe/",
     "signatureFormAction": "https://y-engine.herokuapp.com/api/signatures/",

@@ -15,7 +15,9 @@
     "smooth-scroll": "https://github.com/cferdinandi/smooth-scroll.git",
     "tether-tooltip": "~0.2.6"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "Faker": "~2.1.0"
+  },
   "overrides": {
     "retina.js": {
       "main": "src/retina.js"

@@ -118,6 +118,11 @@
         <script src="scripts/main.js"></script>
         <!-- endbuild -->
 
+        <% if (useFaker === true) { %>
+        <script src="bower_components/faker/build/build/faker.js"></script>
+        <script src="scripts/faking.js"></script>
+        <% } %>
+
         <!-- @@placeholder = additionalScripts -->
 
     </body>

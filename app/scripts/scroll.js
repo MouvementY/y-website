@@ -58,24 +58,37 @@ document.addEventListener('DOMContentLoaded', function() {
         signaturePad.clear();
     });
 
-    // THE form
-    signatureForm.addEventListener('submit', function(e) {
-        e.preventDefault();
+    var signTriggers = document.querySelectorAll('.sign-action'),
+        bindAdditionalForm = function(modal) {
+            var signatureForm = modal.modalElem().querySelector('.signature-form');
 
-        // retrieve fields data
-        // var data = new FormData(signatureForm);
+            // THE form
+            signatureForm.addEventListener('submit', function(e) {
+                e.preventDefault();
 
-        var data = {
-                'first_name': signatureForm.querySelector('[name=first_name]').value,
-                'last_name': signatureForm.querySelector('[name=last_name]').value,
-                'email': signatureForm.querySelector('[name=email]').value,
-                'signature_image_data_url': signatureForm.querySelector('[name=signature_image]').value,
-            },
-            urlEncodedData = mouvy.urlEncodeParams(data);
+                // retrieve fields data
+                // var data = new FormData(signatureForm);
 
-        // prepare and send the request
-        var request = mouvy.prepareRequest(signatureForm.action, 'post');
-        mouvy.sendRequest(request, urlEncodedData);
+                var data = {
+                        'first_name': signatureForm.querySelector('[name=first_name]').value,
+                        'last_name': signatureForm.querySelector('[name=last_name]').value,
+                        'email': signatureForm.querySelector('[name=email]').value,
+                        'signature_image_data_url': signatureForm.querySelector('[name=signature_image]').value,
+                    },
+                    urlEncodedData = mouvy.urlEncodeParams(data);
+
+                // prepare and send the request
+                var request = mouvy.prepareRequest(signatureForm.action, 'post');
+                mouvy.sendRequest(request, urlEncodedData);
+            });
+        };
+    Array.prototype.forEach.call(signTriggers, function(el) {
+        el.addEventListener('click', function(e) {
+            e.preventDefault();
+            mouvy.showModal(e.target, function(modal) {
+                bindAdditionalForm(modal);
+            });
+        });
     });
 
     // load the signature count

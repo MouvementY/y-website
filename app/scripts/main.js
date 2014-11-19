@@ -47,7 +47,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     var learnMoreTriggers = document.querySelectorAll('.learn-more-trigger'),
-        learnMoreAction = function(trigger) {
+        _showModal = function(trigger, afterShowCallback) {
             var targetSelector = trigger.dataset.target,
                 targetElement = document.querySelector(targetSelector),
                 wrapper = document.createElement('div');
@@ -55,7 +55,6 @@ document.addEventListener('DOMContentLoaded', function() {
             mouvy.addClassName(wrapper, 'modal-scroll');
             mouvy.addClassName(wrapper, 'container');
             wrapper.innerHTML = targetElement.innerHTML;
-            console.log(wrapper);
 
             window.picoModal({
                 content: wrapper.outerHTML,
@@ -69,6 +68,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 setTimeout(function(){
                     mouvy.addClassName(modal.overlayElem(), 'modal-overlay--in');
                     mouvy.addClassName(modal.modalElem(), 'modal-content--in');
+
+                    afterShowCallback && afterShowCallback(modal);
                 }, 10);
             })
             .beforeClose(function(modal, e) {
@@ -89,10 +90,11 @@ document.addEventListener('DOMContentLoaded', function() {
             })
             .show();
         };
+    mouvy.showModal = _showModal;
     Array.prototype.forEach.call(learnMoreTriggers, function(el) {
         el.addEventListener('click', function(e) {
             e.preventDefault();
-            learnMoreAction(e.target);
+            _showModal(e.target);
         });
     });
 
