@@ -52,6 +52,10 @@ mouvy.prepareRequest = function(url, method) {
     if (method.toLowerCase() === 'post') {
         request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
     }
+
+    // ask for json output
+    request.setRequestHeader('Accept', 'application/json');
+
     return request;
 };
 
