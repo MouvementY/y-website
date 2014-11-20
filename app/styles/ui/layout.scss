@@ -7,7 +7,7 @@ body {
     font-family: "Helvetica Neue", Helvetica, sans-serif;
     font-weight: 300;
     color: #333;
-    margin: 0px 0px 4rem 0px;
+    margin: 0em;
 
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -159,6 +159,7 @@ $main-head-height: 66px;
 
 .main-foot {
     margin-top: 6rem;
+    padding-bottom: 4rem;
     color: #ccc;
 
     .rule {
