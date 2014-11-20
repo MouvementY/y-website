@@ -69,7 +69,9 @@ document.addEventListener('DOMContentLoaded', function() {
                     mouvy.addClassName(modal.overlayElem(), 'modal-overlay--in');
                     mouvy.addClassName(modal.modalElem(), 'modal-content--in');
 
-                    afterShowCallback && afterShowCallback(modal);
+                    if (afterShowCallback !== undefined) {
+                        afterShowCallback(modal);
+                    }
                 }, 10);
             })
             .beforeClose(function(modal, e) {
