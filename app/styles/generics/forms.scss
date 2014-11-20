@@ -39,3 +39,15 @@
   display: block;
   animation: pop-upwards ease-out 0.4s;
 }
+
+.success-wrapper {
+    animation: pop-upwards ease-out 400ms;
+}
+
+.field-error {
+    margin-bottom: 1em;
+    padding: 0.5em 1em;
+
+    background: #fbe3e4;
+    color: #c00;
+}

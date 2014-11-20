@@ -70,7 +70,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
     var signTriggers = document.querySelectorAll('.sign-action'),
         bindAdditionalForm = function(modal) {
-            var signatureForm = modal.modalElem().querySelector('.signature-form');
+            var signatureForm = modal.modalElem().querySelector('.signature-form'),
+                successWrapper = modal.modalElem().querySelector('.success-wrapper');
 
             // THE form
             signatureForm.addEventListener('submit', function(e) {
@@ -89,6 +90,39 @@ document.addEventListener('DOMContentLoaded', function() {
 
                 // prepare and send the request
                 var request = mouvy.prepareRequest(signatureForm.action, 'post');
+                request.onload = function() {
+                    var resp = null;
+                    if (this.status >= 200 && this.status < 400){
+                        // Success!
+                        resp = JSON.parse(this.responseText);
+
+                        // hide the form
+                        signatureForm.style.display = 'none';
+
+                        // show the success message
+                        successWrapper.style.display = 'block';
+
+                    } else {
+                        // We reached our target server, but it returned an error
+                        resp = JSON.parse(this.responseText);
+
+                        // clean previous errors
+                        var errors = signatureForm.querySelectorAll('.field-error');
+                        Array.prototype.forEach.call(errors, function(el) {
+                            el.parentNode.removeChild(el);
+                        });
+
+                        Object.keys(resp).forEach(function(name) {
+                            var error = resp[name],
+                                field = signatureForm.querySelector('[name='+name+']'),
+                                errorElement = document.createElement('div');
+
+                            mouvy.addClassName(errorElement, 'field-error');
+                            errorElement.innerText = error;
+                            field.insertAdjacentHTML('afterend', errorElement.outerHTML);
+                        });
+                    }
+                };
                 mouvy.sendRequest(request, urlEncodedData);
             });
         };
