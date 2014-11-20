@@ -12,6 +12,10 @@ document.addEventListener('DOMContentLoaded', function() {
     // reveal the Y :)
     setTimeout(function() {
         var logoWrapper = document.getElementById('logo-full-screen');
+
+        // dynamically resize the wrapper to fix a mobile bug with relative size viewports
+        logoWrapper.style.height = '' + window.innerHeight + 'px';
+
         logoWrapper.style.opacity = 1;
     }, 300);
 
