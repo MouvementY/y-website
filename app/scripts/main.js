@@ -244,8 +244,7 @@ document.addEventListener('DOMContentLoaded', function() {
         _bindSocialTriggers = function() {
             var triggers = document.querySelectorAll('[data-social]');
             Array.prototype.forEach.call(triggers, function(el) {
-                el.removeEventListener('click');
-                el.addEventListener('click', function(e) {
+                var triggerAction = function(e) {
                     e.preventDefault();
 
                     if (el.dataset.social === 'twitter') {
@@ -258,7 +257,9 @@ document.addEventListener('DOMContentLoaded', function() {
                             u: el.dataset.socialUrl
                         });
                     }
-                });
+                };
+                el.removeEventListener('click', triggerAction);
+                el.addEventListener('click', triggerAction);
             });
         };
     mouvy.bindSocialTriggers = _bindSocialTriggers;
