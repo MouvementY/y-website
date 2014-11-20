@@ -46,7 +46,13 @@ document.addEventListener('DOMContentLoaded', function() {
         signatureFormField = signatureForm.querySelector('input[name=signature_image]'),
         signatureCanvasClearButton = document.querySelector('.clear-sign-canvas'),
         signatureHelper = document.querySelector('.sign-help-text'),
-        signaturePad = new window.SignaturePad(signatureCanvas, {
+        signaturePadWidth = Math.min(400, window.innerWidth - 2*10),
+        signaturePadHeight = signaturePadWidth * 9 / 16;
+
+    signatureCanvas.width = '' + signaturePadWidth;
+    signatureCanvas.height = '' + signaturePadHeight;
+
+    var signaturePad = new window.SignaturePad(signatureCanvas, {
             minWidth: 1,
             maxWidth: 3,
             penColor: 'rgb(0, 0, 0)',
