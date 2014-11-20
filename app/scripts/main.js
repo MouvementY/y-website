@@ -208,4 +208,61 @@ document.addEventListener('DOMContentLoaded', function() {
         eventsNotificationEmailField.focus();
     });
 
+    // social
+    var urlEncode = function(str) {
+            var tmp;
+            tmp = encodeURIComponent(str);
+            return tmp.replace(/[!'()*]/g, function(c) {
+                return '%' + c.charCodeAt(0).toString(16);
+            });
+        },
+        openPopup = function(url, params) {
+            var popup, qs, v;
+            if (params === null) {
+                params = {};
+            }
+            popup = {
+                width: 500,
+                height: 350
+            };
+            popup.top = (screen.height / 2) - (popup.height / 2);
+            popup.left = (screen.width / 2) - (popup.width / 2);
+            qs = ((function() {
+                var _results;
+                _results = [];
+                for (var k in params) {
+                    v = params[k];
+                    _results.push('' + k + '=' + (urlEncode(v)));
+                }
+                return _results;
+            }).call(this)).join('&');
+            if (qs) {
+                qs = '?' + qs;
+            }
+            return window.open(url + qs, 'targetWindow', 'toolbar=no,location=no,status=no,menubar=no,scrollbars=yes,resizable=yes,left=' + popup.left + ',top=' + popup.top + ',width=' + popup.width + ',height=' + popup.height);
+        },
+        _bindSocialTriggers = function() {
+            var triggers = document.querySelectorAll('[data-social]');
+            Array.prototype.forEach.call(triggers, function(el) {
+                el.removeEventListener('click');
+                el.addEventListener('click', function(e) {
+                    e.preventDefault();
+
+                    if (el.dataset.social === 'twitter') {
+                        openPopup('https://twitter.com/intent/tweet', {
+                            text: el.dataset.socialText,
+                            url: el.dataset.socialUrl
+                        });
+                    } else if (el.dataset.social === 'facebook') {
+                        openPopup('https://www.facebook.com/sharer/sharer.php', {
+                            u: el.dataset.socialUrl
+                        });
+                    }
+                });
+            });
+        };
+    mouvy.bindSocialTriggers = _bindSocialTriggers;
+
+    // bind events
+    mouvy.bindSocialTriggers();
 });

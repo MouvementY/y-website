@@ -144,6 +144,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
             mouvy.showModal(e.target, function(modal) {
                 bindAdditionalForm(modal);
+                mouvy.bindSocialTriggers();
             });
         });
     });
