@@ -29,4 +29,4 @@ N'hésites pas à référencer le bug grâce au [moteur d'issues](https://github
 
 ## License
 
-`y-website` is available under the MIT license. See the LICENSE file for more info.
+`y-website` est disponible sous la licence Creative Commons 4.0. Voir le fichier LICENSE pour plus d'informations.
