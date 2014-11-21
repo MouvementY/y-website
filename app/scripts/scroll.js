@@ -163,7 +163,7 @@ document.addEventListener('DOMContentLoaded', function() {
             signatureAllLoaded: false,
         },
         updateSignatureCount = function(newCount) {
-            signatureCounter.querySelector('span').textContent = newCount;
+            signatureCounter.querySelector('span').innerHTML = newCount;
         },
         loadSignatureCount = function() {
             var signatureCountRequest = mouvy.prepareRequest(signatureCounter.dataset.url, 'get');
