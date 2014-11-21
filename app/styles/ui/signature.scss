@@ -2,6 +2,13 @@
 // SIGNATURE
 //
 
+// number of unique reveal blocks
+$reveal-seqences: 18;
+
+// animation duration
+$reveal-base-duration: 100ms;
+
+
 .sign-block {
     display: block;
     margin: 0 auto 1em auto;
@@ -14,6 +21,15 @@
 .signature {
     display: inline-block;
     width: 33.33%;
+
+    animation: pop-upwards ease-out 300ms;
+
+    @for $i from 1 through $reveal-seqences {
+        $rand: next_random($i);
+        &:nth-child(#{$reveal-seqences}n+#{$rand}) {
+            animation-duration: $i * $reveal-base-duration;
+        }
+    }
 
     img {
         margin: 0 auto;

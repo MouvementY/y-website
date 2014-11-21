@@ -153,47 +153,119 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // load the signature count
     var signatureCounter = document.querySelector('.signature-counter'),
-        signatureCountRequest = mouvy.prepareRequest(signatureCounter.dataset.url, 'get');
-    signatureCountRequest.onload = function() {
-        if (signatureCountRequest.status >= 200 && signatureCountRequest.status < 400){
-            // Success!
-            var data = JSON.parse(signatureCountRequest.responseText);
-            signatureCounter.querySelector('span').textContent = data;
-        } else {
-            // We reached our target server, but it returned an error
-            // TODO handle errors
-        }
-    };
-    mouvy.sendRequest(signatureCountRequest);
+        signatureWall = document.querySelector('#signature-wall'),
+        signatureMoreTrigger = document.querySelector('.more-signatures');
 
-    // load the signature wall content
-    var signatureWall = document.querySelector('#signature-wall'),
-        signatureListRequest = mouvy.prepareRequest(signatureWall.dataset.url, 'get');
-    signatureListRequest.onload = function() {
-        if (signatureListRequest.status >= 200 && signatureListRequest.status < 400){
-            // Success!
-            var data = JSON.parse(signatureListRequest.responseText);
-            data.forEach(function(sign) {
-                var signImage = '<img src="'+ sign['signature_image_data_url'] +'">',
-                    signElement = document.createElement('div');
-                mouvy.addClassName(signElement, 'signature');
-                signElement.innerHTML = signImage;
-                signatureWall.appendChild(signElement);
+    // API Calls
+    var loadTracker = {
+            signatureCount: false,
+            signatureAllLoaded: false,
+        },
+        updateSignatureCount = function(newCount) {
+            signatureCounter.querySelector('span').textContent = newCount;
+        },
+        loadSignatureCount = function() {
+            var signatureCountRequest = mouvy.prepareRequest(signatureCounter.dataset.url, 'get');
+            signatureCountRequest.onload = function() {
+                if (signatureCountRequest.status >= 200 && signatureCountRequest.status < 400){
+                    // Success!
+                    var data = JSON.parse(signatureCountRequest.responseText);
+                    updateSignatureCount(data);
+                } else {
+                    // We reached our target server, but it returned an error
+                    // TODO handle errors
 
-                // add the tooltip
-                new Tooltip({
-                    target: signElement,
-                    position: 'top center',
-                    content: sign['first_name'],
-                    openOn: 'hover'
-                });
-            });
-        } else {
-            // We reached our target server, but it returned an error
-            // TODO handle errors
-        }
+                    // reset the tracker
+                    // TODO improve the reseting part
+                    loadTracker.signatureCount = false;
+                }
+            };
+            mouvy.sendRequest(signatureCountRequest);
+        },
+        loadSignatures = function(pageURL, successCallback) {
+            var requestURL = pageURL,
+                signatureListRequest = mouvy.prepareRequest(requestURL, 'get');
+            signatureListRequest.onload = function() {
+                if (signatureListRequest.status >= 200 && signatureListRequest.status < 400){
+                    // Success!
+                    var data = JSON.parse(signatureListRequest.responseText),
+                        nextPageURL = data.next,
+                        count = data.count,
+                        signatures = data.results;
+
+                    // first update the count (maybe necessary)
+                    updateSignatureCount(count);
+
+                    signatures.forEach(function(sign) {
+                        var signImage = '<img src="'+ sign['signature_image_data_url'] +'">',
+                            signElement = document.createElement('div');
+                        mouvy.addClassName(signElement, 'signature');
+                        signElement.innerHTML = signImage;
+                        signatureWall.appendChild(signElement);
+
+                        // add the tooltip
+                        new Tooltip({
+                            target: signElement,
+                            position: 'top center',
+                            content: sign['first_name'],
+                            openOn: 'hover'
+                        });
+                    });
+
+                    if (successCallback) {
+                        successCallback(nextPageURL);
+                    }
+                } else {
+                    // We reached our target server, but it returned an error
+                    // TODO handle errors
+                }
+            };
+            mouvy.sendRequest(signatureListRequest);
+        };
+
+    // delay the calls until needed
+    var delay = 300,
+        timeout = null,
+        didScroll = function() {
+            // if the signature wall is visible load the next part
+            if (mouvy.geometry.isElementInViewport(window, document, signatureCounter)) {
+                if (loadTracker.signatureCount !== true) {
+                    loadTracker.signatureCount = true;
+                    loadSignatureCount();
+                }
+            }
+
+            if (mouvy.geometry.isElementInViewport(window, document, signatureMoreTrigger)) {
+                if (loadTracker.signatureAllLoaded !== true) {
+                    var url = signatureWall.dataset.url;
+
+                    if (signatureWall.dataset.nextPageURL !== undefined) {
+                        url = signatureWall.dataset.nextPageURL;
+                    }
+
+                    loadSignatures(url, function(nextPageURL) {
+                        // no more pages
+                        if (!nextPageURL) {
+                            loadTracker.signatureAllLoaded = true;
+                        } else {
+                            signatureWall.dataset.nextPageURL = nextPageURL;
+                        }
+                    });
+                }
+            }
+        };
+
+    window.onscroll = function() {
+        // first thing first we detect the end of scrolling
+        clearTimeout(timeout);
+        timeout = setTimeout(function(){
+            // now that the end of scrolling has been reached
+            // we can work
+            didScroll();
+        },delay);
     };
-    mouvy.sendRequest(signatureListRequest);
+
+    // initialize in the case the user was automatically scrolled down
+    didScroll();
 });

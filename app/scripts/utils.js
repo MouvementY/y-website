@@ -28,10 +28,6 @@ mouvy.removeClassName = function(el, className) {
     }
 };
 
-mouvy.scrollTop = function(win, doc) {
-    return (win.pageYOffset !== undefined) ? win.pageYOffset : (doc.documentElement || doc.body.parentNode || doc.body).scrollTop;
-};
-
 mouvy.urlEncodeParams = function(params) {
     var urlEncodedData = '',
         urlEncodedDataPairs = [];
