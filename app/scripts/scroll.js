@@ -52,7 +52,7 @@ document.addEventListener('DOMContentLoaded', function() {
         signatureCanvasClearButton = document.querySelector('.clear-sign-canvas'),
         signatureHelper = document.querySelector('.sign-help-text'),
         signaturePadWidth = Math.min(400, window.innerWidth - 2*10),
-        signaturePadHeight = signaturePadWidth * 9 / 16;
+        signaturePadHeight = Math.floor(signaturePadWidth * 9 / 16);
 
     signatureCanvas.width = '' + signaturePadWidth;
     signatureCanvas.height = '' + signaturePadHeight;
