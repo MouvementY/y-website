@@ -227,7 +227,7 @@ document.addEventListener('DOMContentLoaded', function() {
         };
 
     // delay the calls until needed
-    var delay = 300,
+    var delay = 50,
         timeout = null,
         didScroll = function() {
             // if the signature wall is visible load the next part
