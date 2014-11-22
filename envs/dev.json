@@ -4,5 +4,9 @@
     "subscribeEventsNotificationFormAction": "http://yengine.dev:8000/api/events/subscribe/",
     "signatureFormAction": "http://yengine.dev:8000/api/signatures/",
     "signatureFetchURL": "http://yengine.dev:8000/api/signatures/",
-    "signatureCountFetchURL": "http://yengine.dev:8000/api/signatures/count/"
+    "signatureCountFetchURL": "http://yengine.dev:8000/api/signatures/count/",
+
+    "Pusher": {
+        "key": "6f721c613fa6823eb3a5"
+    }
 }

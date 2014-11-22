@@ -4,5 +4,9 @@
     "subscribeEventsNotificationFormAction": "https://y-engine.herokuapp.com/api/events/subscribe/",
     "signatureFormAction": "https://y-engine.herokuapp.com/api/signatures/",
     "signatureFetchURL": "https://y-engine.herokuapp.com/api/signatures/",
-    "signatureCountFetchURL": "https://y-engine.herokuapp.com/api/signatures/count/"
+    "signatureCountFetchURL": "https://y-engine.herokuapp.com/api/signatures/count/",
+
+    "Pusher": {
+        "key": "cc45fc7e97f38038ed67"
+    }
 }

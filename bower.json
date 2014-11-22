@@ -14,7 +14,8 @@
     "skrollr": "~0.6.29",
     "smooth-scroll": "https://github.com/cferdinandi/smooth-scroll.git",
     "tether-tooltip": "~0.2.6",
-    "odometer": "~0.4.7"
+    "odometer": "~0.4.7",
+    "pusher": "~2.2.3"
   },
   "devDependencies": {
     "Faker": "~2.1.0"

@@ -1,6 +1,7 @@
 /* global Modernizr */
 /* global skrollr */
 /* global Tooltip */
+/* global Pusher */
 
 // namespace
 var mouvy = mouvy || {};
@@ -163,6 +164,7 @@ document.addEventListener('DOMContentLoaded', function() {
             signatureAllLoaded: false,
         },
         updateSignatureCount = function(newCount) {
+            loadTracker.signatureCount = true;
             signatureCounter.querySelector('span').innerHTML = newCount;
         },
         loadSignatureCount = function() {
@@ -268,4 +270,13 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // initialize in the case the user was automatically scrolled down
     didScroll();
+
+    // realtime push notification
+    var pusher = new Pusher(signatureCounter.dataset.pushKey, {
+        cluster: 'eu'
+    });
+    var channel = pusher.subscribe('signatures');
+    channel.bind('new', function(data) {
+        updateSignatureCount(data.count);
+    });
 });
