@@ -24,7 +24,7 @@
             ou accédez directement aux
             <br><a data-scroll href="#constat-1">Constats</a>
             <br><a data-scroll href="#proposition-1">Propositions</a>
-            <br><a data-scroll href="#signature-wall">Signatures</a>
+            <br><a data-scroll href="#signature-wall-wrapper">Signatures</a>
         </p>
     </div>
 </div>
@@ -533,17 +533,19 @@
         <p class="paragraph">D'ailleurs</p>
     </div>
 
-    <div class="signature-counter title--boxed title--boxed--large title--sans-serif title--attach-bottom" data-url="<%= signatureCountFetchURL %>" data-push-key="<%= Pusher.key %>">
-        <span class="odometer">-</span>
-    </div>
-    <div class="inner-container">
-        <p class="text-center">personnes de tous âges ont déjà signé</p>
-    </div>
+    <div id="signature-wall-wrapper">
+        <div class="signature-counter title--boxed title--boxed--large title--sans-serif title--attach-bottom" data-url="<%= signatureCountFetchURL %>" data-push-key="<%= Pusher.key %>">
+            <span class="odometer">-</span>
+        </div>
+        <div class="inner-container">
+            <p class="text-center">personnes de tous âges ont déjà signé</p>
+        </div>
 
-    <div class="inner-container">
-        <div id="signature-wall-wrapper" class="detached-top">
-            <div id="signature-wall" class="wall" data-url="<%= signatureFetchURL %>"></div>
-            <div class="more-signatures"></div>
+        <div class="inner-container">
+            <div class="detached-top">
+                <div id="signature-wall" class="wall" data-url="<%= signatureFetchURL %>"></div>
+                <div class="more-signatures"></div>
+            </div>
         </div>
     </div>
 </div>
