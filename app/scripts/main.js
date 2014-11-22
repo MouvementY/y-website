@@ -107,7 +107,7 @@ document.addEventListener('DOMContentLoaded', function() {
     var nextEventDrop = new Drop({
             target: document.querySelector('.next-event'),
             content: document.querySelector('.events'),
-            position: 'bottom center',
+            position: 'bottom right',
             classes: 'drop-theme-blue',
             openOn: 'click',
             constrainToWindow: true,
