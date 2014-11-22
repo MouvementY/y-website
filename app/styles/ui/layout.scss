@@ -196,6 +196,13 @@ and (orientation : portrait) {
         // display: none;
     }
 
+    #logo-full-screen {
+        img {
+            max-height: 50%;
+            max-width: 70%;
+        }
+    }
+
     // TODO temp fix waiting for the burger icon
     #logo-full-screen {
         padding-top: 0;
