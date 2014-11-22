@@ -9,6 +9,9 @@ var mouvy = mouvy || {};
 document.addEventListener('DOMContentLoaded', function() {
     'use strict';
 
+    // initialize the responsive nav
+    window.ResponsiveNav.init();
+
     // smooth scrolling for anchors
     smoothScroll.init({
         speed: 500,

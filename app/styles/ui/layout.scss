@@ -175,6 +175,17 @@ $main-head-height: 66px;
     }
 }
 
+#outer-wrap {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+}
+
+#inner-wrap {
+  position: relative;
+  width: 100%;
+}
+
 
 // iPhone portrait
 @media only screen
@@ -182,7 +193,7 @@ and (min-device-width : 320px)
 and (max-device-width : 568px)
 and (orientation : portrait) {
     .main-head {
-        display: none;
+        // display: none;
     }
 
     // TODO temp fix waiting for the burger icon

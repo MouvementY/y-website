@@ -28,6 +28,21 @@ mouvy.removeClassName = function(el, className) {
     }
 };
 
+mouvy.hasParent = function(el, id) {
+    if (el) {
+        do {
+            if (el.id === id) {
+                return true;
+            }
+            if (el.nodeType === 9) {
+                break;
+            }
+        }
+        while((el = el.parentNode));
+    }
+    return false;
+};
+
 mouvy.urlEncodeParams = function(params) {
     var urlEncodedData = '',
         urlEncodedDataPairs = [];

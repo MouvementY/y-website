@@ -12,11 +12,11 @@
 }
 
 .facebook-like {
-    background: $blue-color;
+    background-color: $blue-color;
     color: #fff !important;
 
     &:hover {
-        background: lighten($blue-color, 20%) !important;
+        background-color: lighten($blue-color, 20%) !important;
     }
 }
 
@@ -36,4 +36,14 @@
 
 .help-text {
     font-style: italic;
+}
+
+
+@media only screen
+and (min-device-width : 320px)
+and (max-device-width : 568px)
+and (orientation : portrait) {
+    .mobile-hidden {
+        display: none !important;
+    }
 }

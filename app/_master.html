@@ -50,52 +50,77 @@
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
 
-        <header class="main-head main-head--fixed slide">
-            <div class="container container--ref">
-                <div class="nav-table">
-                    <ul class="nav nav--left">
-                        <li><a href="/manifeste.html">Manifeste</a></li>
-                        <li><a href="/reponses.html">Questions/Réponses</a></li>
-                    </ul>
+        <div id="outer-wrap">
+            <div id="inner-wrap">
 
-                    <div class="nav--logo">
-                        <div class="logo">
-                            <a href="/"><span>y</span></a>
+                <header class="main-head main-head--fixed slide">
+                    <div class="container container--ref">
+                        <div class="nav-table">
+                            <a id="nav-open-btn" class="nav-btn" href="#nav-mobile"></a>
+
+                            <ul class="nav nav--left mobile-hidden">
+                                <li><a href="/manifeste.html">Manifeste</a></li>
+                                <li><a href="/reponses.html">Questions/Réponses</a></li>
+                            </ul>
+
+                            <div class="nav--logo">
+                                <div class="logo">
+                                    <a href="/"><span>y</span></a>
+                                </div>
+                            </div>
+
+                            <ul class="nav nav--right">
+                                <li><a id="get-some-news" class="facebook-like next-event" href="#/rejoindre">rendez-vous</a></li>
+                                <li class="mobile-hidden"><a href="mailto:mouvementy@gmail.com">Un message ?</a></li>
+                            </ul>
+                        </div>
+
+                        <div class="events">
+                            <p>Pour savoir où et quand aura lieu le premier événement &laquo; y &raquo; &hellip;</p>
+                            <div class="form-wrapper">
+                                <form class="form" action="<%= subscribeEventsNotificationFormAction %>" method="post">
+                                    <input class="newsletter-email" type="text" name="email" placeholder="Entrez votre email" autocomplete=off autocorrect=off autocapitalize=off spellcheck=false>
+                                    <button type="submit" class="submit submit--bounce-in button--fluid button--inversed progress-button" data-style="fill" data-horizontal>
+                                        <span class="content">S'abonner</span>
+                                        <span class="progress">
+                                            <span class="progress-inner notransition"></span>
+                                        </span>
+                                    </button>
+                                    <div class="errors-wrapper errors-wrapper--empty"></div>
+                                </form>
+                            </div>
                         </div>
                     </div>
+                </header>
 
-                    <ul class="nav nav--right">
-                        <li><a class="facebook-like next-event" href="#/rejoindre">rendez-vous</a></li>
-                        <li><a href="mailto:mouvementy@gmail.com">Un message ?</a></li>
-                    </ul>
-                </div>
-
-                <div class="events">
-                    <p>Pour savoir où et quand aura lieu le premier événement &laquo; y &raquo; &hellip;</p>
-                    <div class="form-wrapper">
-                        <form class="form" action="<%= subscribeEventsNotificationFormAction %>" method="post">
-                            <input class="newsletter-email" type="text" name="email" placeholder="Entrez votre email" autocomplete=off autocorrect=off autocapitalize=off spellcheck=false>
-                            <button type="submit" class="submit submit--bounce-in button--fluid button--inversed progress-button" data-style="fill" data-horizontal>
-                                <span class="content">S'abonner</span>
-                                <span class="progress">
-                                    <span class="progress-inner notransition"></span>
-                                </span>
-                            </button>
-                            <div class="errors-wrapper errors-wrapper--empty"></div>
-                        </form>
+                <nav id="nav-mobile" style="display: none;" role="navigation">
+                    <div class="block">
+                        <ul>
+                            <li><a href="/">Y</a></li>
+                            <li><a href="/manifeste.html">Manifeste</a></li>
+                            <li><a href="/reponses.html">Questions/Réponses</a></li>
+                            <li><a href="mailto:mouvementy@gmail.com">Un message ?</a></li>
+                            <li class="separator"></li>
+                            <li><a data-scroll href="/#constat-1">Constats</a></li>
+                            <li><a data-scroll href="/#proposition-1">Propositions</a></li>
+                            <li><a data-scroll href="/#signature-wall-wrapper">Signatures</a><li>
+                        </ul>
                     </div>
+                </nav>
+
+                <div id="main" role="main">
+                    <!-- @@placeholder = content -->
                 </div>
-            </div>
-        </header>
 
-        <!-- @@placeholder = content -->
+                <footer class="main-foot">
+                    <div class="container">
+                        <hr class="rule">
+                        <p><a href="/qui.html">Qui est derrière ce site ?</a></p>
+                    </div>
+                </footer>
 
-        <footer class="main-foot">
-            <div class="container">
-                <hr class="rule">
-                <p><a href="/qui.html">Qui est derrière ce site ?</a></p>
             </div>
-        </footer>
+        </div>
 
         <!-- build:js scripts/vendor.js -->
         <!-- bower:js -->
@@ -105,7 +130,7 @@
         <script src="bower_components/headroom.js/dist/headroom.js"></script>
         <script src="bower_components/tether/tether.js"></script>
         <script src="bower_components/drop/js/drop.js"></script>
-        <script src="bower_components/signet/signet.js"></script>
+        <!-- <script src="bower_components/signet/signet.js"></script> -->
         <script src="bower_components/skrollr/src/skrollr.js"></script>
         <script src="bower_components/smooth-scroll/dist/js/bind-polyfill.js"></script>
         <script src="bower_components/smooth-scroll/dist/js/smooth-scroll.js"></script>
@@ -119,6 +144,7 @@
         <script src="scripts/boxme.js"></script>
         <script src="scripts/geometry.js"></script>
         <script src="scripts/utils.js"></script>
+        <script src="scripts/nav.js"></script>
         <script src="scripts/main.js"></script>
         <!-- endbuild -->
 
