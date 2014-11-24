@@ -60,7 +60,7 @@ gulp.task('images', function () {
 
 gulp.task('favicons', function () {
     return gulp.src([
-            'app/favicon.{png,ico}',
+            'app/favicon*.{png,ico}',
         ])
         .pipe(gulp.dest('dist'))
         .pipe($.size());
