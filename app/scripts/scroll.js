@@ -275,9 +275,9 @@ document.addEventListener('DOMContentLoaded', function() {
     // realtime push notification
     // connect to the sockets
     var socket = io(signatureWrapper.dataset.pusherUrl);
-        socket.on("signatures", function(msg) {
+        socket.on('signatures', function(msg) {
             var data = JSON.parse(msg);
-            console.log("new signature");
+            console.log('new signature');
             updateSignatureCount(data.count);
         });
 });
