@@ -7,6 +7,6 @@
     "signatureCountFetchURL": "https://y-engine.herokuapp.com/api/signatures/count/",
 
     "Pusher": {
-        "key": "cc45fc7e97f38038ed67"
+        "url": "https://y-pusher.herokuapp.com"
     }
 }

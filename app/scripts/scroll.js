@@ -1,7 +1,7 @@
 /* global Modernizr */
 /* global skrollr */
 /* global Tooltip */
-/* global Pusher */
+/* global io */
 
 // namespace
 var mouvy = mouvy || {};
@@ -154,7 +154,8 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    var signatureCounter = document.querySelector('.signature-counter'),
+    var signatureWrapper = document.querySelector('#signature-wall-wrapper'),
+        signatureCounter = document.querySelector('.signature-counter'),
         signatureWall = document.querySelector('#signature-wall'),
         signatureMoreTrigger = document.querySelector('.more-signatures');
 
@@ -272,11 +273,11 @@ document.addEventListener('DOMContentLoaded', function() {
     didScroll();
 
     // realtime push notification
-    var pusher = new Pusher(signatureCounter.dataset.pushKey, {
-        cluster: 'eu'
-    });
-    var channel = pusher.subscribe('signatures');
-    channel.bind('new', function(data) {
-        updateSignatureCount(data.count);
-    });
+    // connect to the sockets
+    var socket = io(signatureWrapper.dataset.pusherUrl);
+        socket.on("signatures", function(msg) {
+            var data = JSON.parse(msg);
+            console.log("new signature");
+            updateSignatureCount(data.count);
+        });
 });

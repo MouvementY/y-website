@@ -7,6 +7,6 @@
     "signatureCountFetchURL": "http://yengine.dev:8000/api/signatures/count/",
 
     "Pusher": {
-        "key": "6f721c613fa6823eb3a5"
+        "url": "http://localhost:3000"
     }
 }
