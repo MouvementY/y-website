@@ -54,11 +54,13 @@ document.addEventListener('DOMContentLoaded', function() {
             var targetSelector = trigger.dataset.target,
                 targetElement = document.querySelector(targetSelector),
                 wrapper = document.createElement('div');
-
+            wrapper.setAttribute("role","dialog");
+            wrapper.setAttribute("tabindex","-1");
+            wrapper.setAttribute("id","modal-dialog");
             mouvy.addClassName(wrapper, 'modal-scroll');
             mouvy.addClassName(wrapper, 'container');
             wrapper.innerHTML = targetElement.innerHTML;
-
+            
             window.picoModal({
                 content: wrapper.outerHTML,
                 overlayStyles: {}, modalStyles: {}, closeStyles: {},
@@ -68,6 +70,8 @@ document.addEventListener('DOMContentLoaded', function() {
             })
             .afterShow(function(modal){
                 mouvy.addClassName(document.body, 'modal-open');
+                var targetFocus = document.querySelector('#modal-dialog');
+                targetFocus.focus();
                 setTimeout(function(){
                     mouvy.addClassName(modal.overlayElem(), 'modal-overlay--in');
                     mouvy.addClassName(modal.modalElem(), 'modal-content--in');
@@ -92,6 +96,7 @@ document.addEventListener('DOMContentLoaded', function() {
             })
             .afterClose(function() {
                 mouvy.removeClassName(document.body, 'modal-open');
+                
             })
             .show();
         };
