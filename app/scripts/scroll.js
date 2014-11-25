@@ -186,6 +186,13 @@ document.addEventListener('DOMContentLoaded', function() {
             };
             mouvy.sendRequest(signatureCountRequest);
         },
+        generateSignatureElement = function(signatureDataURL) {
+            var signImage = '<img src="'+ signatureDataURL +'">',
+                signElement = document.createElement('div');
+            mouvy.addClassName(signElement, 'signature');
+            signElement.innerHTML = signImage;
+            return signElement;
+        },
         loadSignatures = function(pageURL, successCallback) {
             var requestURL = pageURL,
                 signatureListRequest = mouvy.prepareRequest(requestURL, 'get');
@@ -201,10 +208,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     updateSignatureCount(count);
 
                     signatures.forEach(function(sign) {
-                        var signImage = '<img src="'+ sign['signature_image_data_url'] +'">',
-                            signElement = document.createElement('div');
-                        mouvy.addClassName(signElement, 'signature');
-                        signElement.innerHTML = signImage;
+                        var signElement = generateSignatureElement(sign['signature_image_data_url']);
                         signatureWall.appendChild(signElement);
 
                         // add the tooltip
@@ -277,6 +281,10 @@ document.addEventListener('DOMContentLoaded', function() {
     var socket = io(signatureWrapper.dataset.pusherUrl);
         socket.on('signatures', function(msg) {
             var data = JSON.parse(msg);
+
             updateSignatureCount(data.count);
+
+            var signElement = generateSignatureElement(data.signature);
+            signatureWall.insertBefore(signElement, signatureWall.firstChild);
         });
 });
