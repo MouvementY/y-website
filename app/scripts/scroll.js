@@ -277,7 +277,6 @@ document.addEventListener('DOMContentLoaded', function() {
     var socket = io(signatureWrapper.dataset.pusherUrl);
         socket.on('signatures', function(msg) {
             var data = JSON.parse(msg);
-            console.log('new signature');
             updateSignatureCount(data.count);
         });
 });
