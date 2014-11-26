@@ -186,8 +186,8 @@ document.addEventListener('DOMContentLoaded', function() {
             };
             mouvy.sendRequest(signatureCountRequest);
         },
-        generateSignatureElement = function(signatureDataURL) {
-            var signImage = '<img src="'+ signatureDataURL +'">',
+        generateSignatureElement = function(signatureDataURL, signatureAlt) {
+            var signImage = '<img src="'+ signatureDataURL +'" alt="'+ signatureAlt +'">',
                 signElement = document.createElement('div');
             mouvy.addClassName(signElement, 'signature');
             signElement.innerHTML = signImage;
@@ -196,6 +196,7 @@ document.addEventListener('DOMContentLoaded', function() {
         loadSignatures = function(pageURL, successCallback) {
             var requestURL = pageURL,
                 signatureListRequest = mouvy.prepareRequest(requestURL, 'get');
+
             signatureListRequest.onload = function() {
                 if (signatureListRequest.status >= 200 && signatureListRequest.status < 400){
                     // Success!
@@ -207,9 +208,15 @@ document.addEventListener('DOMContentLoaded', function() {
                     // first update the count (maybe necessary)
                     updateSignatureCount(count);
 
+                    // wrap the batch of signatures into a div (to bring focus to it)
+                    var signatureBatchWrapper = document.createElement('div');
+                    mouvy.addClassName(signatureBatchWrapper, 'signature-batch-wrapper');
+                    signatureBatchWrapper.setAttribute("tabindex","-1");
+                    signatureWall.appendChild(signatureBatchWrapper);
+
                     signatures.forEach(function(sign) {
-                        var signElement = generateSignatureElement(sign['signature_image_data_url']);
-                        signatureWall.appendChild(signElement);
+                        var signElement = generateSignatureElement(sign['signature_image_data_url'], sign['first_name']);
+                        signatureBatchWrapper.appendChild(signElement);
 
                         // add the tooltip
                         new Tooltip({
@@ -221,7 +228,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     });
 
                     if (successCallback) {
-                        successCallback(nextPageURL);
+                        successCallback(signatureBatchWrapper, nextPageURL);
                     }
                 } else {
                     // We reached our target server, but it returned an error
@@ -234,14 +241,18 @@ document.addEventListener('DOMContentLoaded', function() {
     // delay the calls until needed
     var delay = 50,
         timeout = null,
-        loadNextBatchOfSignatures = function() {
+        loadNextBatchOfSignatures = function(callback) {
             var url = signatureMoreTrigger.dataset.nextPageUrl;
-            loadSignatures(url, function(nextPageURL) {
+            loadSignatures(url, function(signatureBatchWrapper, nextPageURL) {
                 if (!nextPageURL) {
                     // no more page, we remove the button
                     signatureMoreTrigger.parentNode.removeChild(signatureMoreTrigger);
                 } else {
                     signatureMoreTrigger.dataset.nextPageUrl = nextPageURL;
+                }
+
+                if (callback) {
+                    callback(signatureBatchWrapper);
                 }
             });
         },
@@ -267,7 +278,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
     signatureMoreTrigger.addEventListener('click', function(e) {
         e.preventDefault();
-        loadNextBatchOfSignatures();
+        loadNextBatchOfSignatures(function(signatureBatchWrapper) {
+            signatureBatchWrapper.focus();
+        });
     });
 
     window.onscroll = function() {
