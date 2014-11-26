@@ -543,10 +543,12 @@
 
         <div class="inner-container">
             <div class="detached-top">
+                <a class="visually-hidden" href="#signature-anchor">Passer la liste des signatures</a>
                 <div id="signature-wall" class="wall"></div>
                 <div class="button-group button-group--centered detached-top">
-                    <a class="button button--default button--extra-small more-signatures" data-next-page-url="<%= signatureFetchURL %>">Voir plus de signatures</a>
+                    <a role="button" href="#" class="button button--default button--extra-small more-signatures" data-next-page-url="<%= signatureFetchURL %>">Voir plus de signatures</a>
                 </div>
+                <a id="signature-anchor" tabindex="-1"></a>
             </div>
         </div>
     </div>
