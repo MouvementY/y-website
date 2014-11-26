@@ -186,8 +186,8 @@ document.addEventListener('DOMContentLoaded', function() {
             };
             mouvy.sendRequest(signatureCountRequest);
         },
-        generateSignatureElement = function(signatureDataURL) {
-            var signImage = '<img src="'+ signatureDataURL +'">',
+        generateSignatureElement = function(signatureDataURL, signatureAlt) {
+            var signImage = '<img src="'+ signatureDataURL +'" alt="'+ signatureAlt +'">',
                 signElement = document.createElement('div');
             mouvy.addClassName(signElement, 'signature');
             signElement.innerHTML = signImage;
@@ -196,6 +196,7 @@ document.addEventListener('DOMContentLoaded', function() {
         loadSignatures = function(pageURL, successCallback) {
             var requestURL = pageURL,
                 signatureListRequest = mouvy.prepareRequest(requestURL, 'get');
+
             signatureListRequest.onload = function() {
                 if (signatureListRequest.status >= 200 && signatureListRequest.status < 400){
                     // Success!
@@ -206,10 +207,13 @@ document.addEventListener('DOMContentLoaded', function() {
 
                     // first update the count (maybe necessary)
                     updateSignatureCount(count);
-
+                    var signaturesWrapper = document.createElement('div');
+                    signaturesWrapper.setAttribute("tabindex","-1");
+                    signatureWall.appendChild(signaturesWrapper);
                     signatures.forEach(function(sign) {
-                        var signElement = generateSignatureElement(sign['signature_image_data_url']);
-                        signatureWall.appendChild(signElement);
+                        var signElement = generateSignatureElement(sign['signature_image_data_url'],sign['first_name']),
+                            signatureTarget = document.querySelector('#signature-wall div:last-child');
+                        signatureTarget.appendChild(signElement);
 
                         // add the tooltip
                         new Tooltip({
@@ -268,6 +272,7 @@ document.addEventListener('DOMContentLoaded', function() {
     signatureMoreTrigger.addEventListener('click', function(e) {
         e.preventDefault();
         loadNextBatchOfSignatures();
+        document.querySelector('#signature-wall div:last-child').focus();        
     });
 
     window.onscroll = function() {
