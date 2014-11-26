@@ -1,5 +1,5 @@
 <!doctype html>
-<html class="no-js">
+<html class="no-js" lang="fr">
     <head>
         <title>Mouvement Y</title>
         <meta name="description" content="C'est l'histoire d'une génération qui est prête à faire des propositions. Nos signatures peuvent tout changer.">
@@ -58,8 +58,8 @@
 
                 <header class="main-head main-head--fixed slide">
                     <div class="container container--ref">
-                        <div class="nav-table">
-                            <a id="nav-open-btn" class="nav-btn" href="#nav-mobile"></a>
+                        <div class="nav-table" role="navigation" aria-label="navigation principale">
+                            <a id="nav-open-btn" class="nav-btn" href="#nav-mobile" aria-label="afficher le menu"></a>
 
                             <ul class="nav nav--left mobile-hidden">
                                 <li><a href="/manifeste.html">Manifeste</a></li>
@@ -68,21 +68,21 @@
 
                             <div class="nav--logo">
                                 <div class="logo">
-                                    <a href="/"><span>y</span></a>
+                                    <a href="/" title="retour à l'accueil"><span>y</span></a>
                                 </div>
                             </div>
 
                             <ul class="nav nav--right">
-                                <li><a id="get-some-news" class="facebook-like next-event" href="#/rejoindre">rendez-vous</a></li>
+                                <li><a role="button" aria-owns="popform" id="get-some-news" class="facebook-like next-event" href="#/rejoindre">rendez-vous</a></li>
                                 <li class="mobile-hidden"><a href="mailto:mouvementy@gmail.com">Un message ?</a></li>
                             </ul>
                         </div>
 
-                        <div class="events">
+                        <div class="events" id="popform">
                             <p>Pour savoir où et quand aura lieu le premier événement &laquo; y &raquo; &hellip;</p>
                             <div class="form-wrapper">
                                 <form class="form" action="<%= subscribeEventsNotificationFormAction %>" method="post">
-                                    <input class="newsletter-email" type="text" name="email" placeholder="Entrez votre email" autocomplete=off autocorrect=off autocapitalize=off spellcheck=false>
+                                    <input class="newsletter-email" type="text" name="email" placeholder="Entrez votre email" title="Entrez votre email" autocomplete=off autocorrect=off autocapitalize=off spellcheck=false>
                                     <button type="submit" class="submit submit--bounce-in button--fluid button--inversed progress-button" data-style="fill" data-horizontal>
                                         <span class="content">S'abonner</span>
                                         <span class="progress">
@@ -96,14 +96,14 @@
                     </div>
                 </header>
 
-                <nav id="nav-mobile" style="display: none;" role="navigation">
+                <nav id="nav-mobile" style="display: none;" role="navigation" tabindex="-1" aria-label="navigation mobile">
                     <div class="block">
                         <ul>
-                            <li><a href="/">Y</a></li>
+                            <li><a href="/" title="retour à l'accueil">Y</a></li>
                             <li><a href="/manifeste.html">Manifeste</a></li>
                             <li><a href="/reponses.html">Questions/Réponses</a></li>
                             <li><a href="mailto:mouvementy@gmail.com">Un message ?</a></li>
-                            <li class="separator"></li>
+                            <li class="separator" role="presentation"></li>
                             <li><a data-scroll href="/#constat-1">Constats</a></li>
                             <li><a data-scroll href="/#proposition-1">Propositions</a></li>
                             <li><a data-scroll href="/#signature-wall-wrapper">Signatures</a><li>
@@ -115,7 +115,7 @@
                     <!-- @@placeholder = content -->
                 </div>
 
-                <footer class="main-foot">
+                <footer class="main-foot" role="contentinfo">
                     <div class="container">
                         <hr class="rule">
                         <p><a href="/qui.html">Qui est derrière ce site ?</a></p>
