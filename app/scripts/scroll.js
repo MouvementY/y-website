@@ -162,7 +162,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // API Calls
     var loadTracker = {
             signatureCount: false,
-            signatureAllLoaded: false,
+            signatureFirstBatchLoaded: false,
         },
         updateSignatureCount = function(newCount) {
             loadTracker.signatureCount = true;
@@ -234,8 +234,19 @@ document.addEventListener('DOMContentLoaded', function() {
     // delay the calls until needed
     var delay = 50,
         timeout = null,
+        loadNextBatchOfSignatures = function() {
+            var url = signatureMoreTrigger.dataset.nextPageUrl;
+            loadSignatures(url, function(nextPageURL) {
+                if (!nextPageURL) {
+                    // no more page, we remove the button
+                    signatureMoreTrigger.parentNode.removeChild(signatureMoreTrigger);
+                } else {
+                    signatureMoreTrigger.dataset.nextPageUrl = nextPageURL;
+                }
+            });
+        },
         didScroll = function() {
-            // if the signature wall is visible load the next part
+            // if the signature wall is visible load the counter
             if (mouvy.geometry.isElementInViewport(window, document, signatureCounter)) {
                 if (loadTracker.signatureCount !== true) {
                     loadTracker.signatureCount = true;
@@ -243,25 +254,21 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             }
 
+            // if the signature wall is visible load the first batch of signatures automatically
             if (mouvy.geometry.isElementInViewport(window, document, signatureMoreTrigger)) {
-                if (loadTracker.signatureAllLoaded !== true) {
-                    var url = signatureWall.dataset.url;
-
-                    if (signatureWall.dataset.nextPageURL !== undefined) {
-                        url = signatureWall.dataset.nextPageURL;
-                    }
-
-                    loadSignatures(url, function(nextPageURL) {
-                        // no more pages
-                        if (!nextPageURL) {
-                            loadTracker.signatureAllLoaded = true;
-                        } else {
-                            signatureWall.dataset.nextPageURL = nextPageURL;
-                        }
-                    });
+                if (loadTracker.signatureFirstBatchLoaded !== true) {
+                    // avoid multiple calls from being made
+                    // by setting to the `true` the tracker right away
+                    loadTracker.signatureFirstBatchLoaded = true;
+                    loadNextBatchOfSignatures();
                 }
             }
         };
+
+    signatureMoreTrigger.addEventListener('click', function(e) {
+        e.preventDefault();
+        loadNextBatchOfSignatures();
+    });
 
     window.onscroll = function() {
         // first thing first we detect the end of scrolling
