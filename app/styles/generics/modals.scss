@@ -67,6 +67,13 @@ body.modal-open {
     overflow: hidden;
 }
 
+// unstyle the focus
+[role=dialog] {
+    &:focus {
+        outline: none;
+    }
+}
+
 
 /**
  * Events modal
