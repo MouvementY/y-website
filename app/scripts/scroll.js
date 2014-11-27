@@ -279,7 +279,10 @@ document.addEventListener('DOMContentLoaded', function() {
     signatureMoreTrigger.addEventListener('click', function(e) {
         e.preventDefault();
         loadNextBatchOfSignatures(function(signatureBatchWrapper) {
+            // focus on the next batch without loosing the current scroll position
+            var sx = window.scrollX, sy = window.scrollY;
             signatureBatchWrapper.focus();
+            window.scrollTo(sx, sy);
         });
     });
 
