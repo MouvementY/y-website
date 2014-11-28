@@ -210,7 +210,7 @@
 
         position: absolute;
         top: 0;
-        padding-top: 1em;
+        padding-top: 0em;
 
         &:not(:target) {
             z-index: 1;
@@ -223,6 +223,7 @@
         }
 
         ul {
+            margin-top: 0.5em;
             padding-left: 0px;
         }
 
