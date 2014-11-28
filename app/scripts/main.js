@@ -54,13 +54,13 @@ document.addEventListener('DOMContentLoaded', function() {
             var targetSelector = trigger.dataset.target,
                 targetElement = document.querySelector(targetSelector),
                 wrapper = document.createElement('div');
-            wrapper.setAttribute("role","dialog");
-            wrapper.setAttribute("tabindex","-1");
-            wrapper.setAttribute("id","modal-dialog");
+            wrapper.setAttribute('role', 'dialog');
+            wrapper.setAttribute('tabindex', '-1');
+            wrapper.setAttribute('id', 'modal-dialog');
             mouvy.addClassName(wrapper, 'modal-scroll');
             mouvy.addClassName(wrapper, 'container');
             wrapper.innerHTML = targetElement.innerHTML;
-            
+
             window.picoModal({
                 content: wrapper.outerHTML,
                 overlayStyles: {}, modalStyles: {}, closeStyles: {},
@@ -96,7 +96,7 @@ document.addEventListener('DOMContentLoaded', function() {
             })
             .afterClose(function() {
                 mouvy.removeClassName(document.body, 'modal-open');
-                
+
             })
             .show();
         };

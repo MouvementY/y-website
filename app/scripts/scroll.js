@@ -211,7 +211,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     // wrap the batch of signatures into a div (to bring focus to it)
                     var signatureBatchWrapper = document.createElement('div');
                     mouvy.addClassName(signatureBatchWrapper, 'signature-batch-wrapper');
-                    signatureBatchWrapper.setAttribute("tabindex","-1");
+                    signatureBatchWrapper.setAttribute('tabindex', '-1');
                     signatureWall.appendChild(signatureBatchWrapper);
 
                     signatures.forEach(function(sign) {
