@@ -15,7 +15,9 @@
     "smooth-scroll": "https://github.com/cferdinandi/smooth-scroll.git",
     "tether-tooltip": "~0.2.6",
     "odometer": "~0.4.7",
-    "socket.io-client": "~1.2.1"
+    "socket.io-client": "~1.2.1",
+    "ie8": "~0.2.3",
+    "dom4": "~1.0.1"
   },
   "devDependencies": {
     "Faker": "~2.1.0"

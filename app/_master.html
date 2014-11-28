@@ -29,7 +29,14 @@
         <link rel="stylesheet" href="styles/main.css">
         <!-- endbuild -->
 
+        <!--[if lt IE 9]>
+        <!-- build:js scripts/vendor/ie8.js -->
+        <script type="text/javascript" src="bower_components/ie8/build/ie8.max.js"></script>
+        <!-- endbuild -->
+        <![endif]-->
+
         <!-- build:js scripts/vendor/head.js -->
+        <script src="bower_components/dom4/build/dom4.max.js"></script>
         <script src="bower_components/modernizr/modernizr.js"></script>
         <script data-pace-options='{ "target": ".main-head", "ajax": { "trackMethods": ["GET", "POST"] } }' src="bower_components/pace/pace.js"></script>
         <!-- endbuild -->
