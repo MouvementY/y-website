@@ -17,7 +17,8 @@
     "odometer": "~0.4.7",
     "socket.io-client": "~1.2.1",
     "dom4": "~1.0.1",
-    "IE8": "https://github.com/MouvementY/ie8.git#develop"
+    "IE8": "https://github.com/MouvementY/ie8.git#develop",
+    "es5-shim": "~4.0.5"
   },
   "devDependencies": {
     "Faker": "~2.1.0"
