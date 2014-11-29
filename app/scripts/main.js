@@ -171,7 +171,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
                 // prepare and send the request
                 var request = mouvy.prepareRequest(eventsNotificationForm.action, 'post');
-                request.onload = function() {
+                request.onreadystatechange = function() {
                     var resp = null;
                     if (this.status >= 200 && this.status < 400){
                         // Success!
