@@ -1,13 +1,13 @@
 // Viewport size
 (function (window, document) {
-
+  'use strict';
   var ObjectDefineProperty = Object.defineProperty;
   var html = document.documentElement;
   var body = document.body;
 
   function define(object, property, getter) {
     if (!(property in object)) {
-      ObjectDefineProperty(object, property, { get: getter });
+      ObjectDefineProperty(object, property, { get: getter });  // jshint ignore:line
     }
   }
 

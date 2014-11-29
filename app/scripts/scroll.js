@@ -58,9 +58,11 @@ document.addEventListener('DOMContentLoaded', function() {
     signatureCanvas.height = '' + signaturePadHeight;
 
     // ensure it has been initialized for excanvas.js
+    /* jshint ignore:start */
     if (typeof G_vmlCanvasManager !== 'undefined') {
         signatureCanvas = G_vmlCanvasManager.initElement(signatureCanvas);
     }
+    /* jshint ignore:end */
 
     var signaturePad = new window.SignaturePad(signatureCanvas, {
             minWidth: 1,

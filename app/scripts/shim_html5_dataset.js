@@ -14,9 +14,9 @@
 if (!Function.prototype.bind) {
     Function.prototype.bind = function (oThis) {
         'use strict';
-        if (typeof this !== "function") {
+        if (typeof this !== 'function') {
             // closest thing possible to the ECMAScript 5 internal IsCallable function
-            throw new TypeError("Function.prototype.bind - what is trying to be bound is not callable");
+            throw new TypeError('Function.prototype.bind - what is trying to be bound is not callable');
         }
 
         var aArgs = Array.prototype.slice.call(arguments, 1),
@@ -73,22 +73,22 @@ if (!Function.prototype.bind) {
         if (!Object.defineProperty) {
             Object.defineProperty = function (obj, prop, descriptor) {
                 if (arguments.length < 3) { // all arguments required
-                    throw new TypeError("Arguments not optional");
+                    throw new TypeError('Arguments not optional');
                 }
 
-                prop += ""; // convert prop to string
+                prop += ''; // convert prop to string
 
-                if (hasOwnProp.call(descriptor, "value")) {
+                if (hasOwnProp.call(descriptor, 'value')) {
                     if (!lookupGetter.call(obj, prop) && !lookupSetter.call(obj, prop)) {
                         // data property defined and no pre-existing accessors
                         obj[prop] = descriptor.value;
                     }
 
-                    if ((hasOwnProp.call(descriptor, "get") ||
-                         hasOwnProp.call(descriptor, "set")))
+                    if ((hasOwnProp.call(descriptor, 'get') ||
+                         hasOwnProp.call(descriptor, 'set')))
                     {
                         // descriptor has a value prop but accessor already exists
-                        throw new TypeError("Cannot specify an accessor and a value");
+                        throw new TypeError('Cannot specify an accessor and a value');
                     }
                 }
 
@@ -98,8 +98,8 @@ if (!Function.prototype.bind) {
                     descriptor.configurable))
                 {
                     throw new TypeError(
-                        "This implementation of Object.defineProperty does not support" +
-                        " false for configurable, enumerable, or writable."
+                        'This implementation of Object.defineProperty does not support' +
+                        ' false for configurable, enumerable, or writable.'
                     );
                 }
 
@@ -117,10 +117,10 @@ if (!Function.prototype.bind) {
         if (!Object.getOwnPropertyDescriptor) {
             Object.getOwnPropertyDescriptor = function (obj, prop) {
                 if (arguments.length < 2) { // all arguments required
-                    throw new TypeError("Arguments not optional.");
+                    throw new TypeError('Arguments not optional.');
                 }
 
-                prop += ""; // convert prop to string
+                prop += ''; // convert prop to string
 
                 var descriptor = {
                     configurable: true,
@@ -181,7 +181,7 @@ if (!document.documentElement.dataset &&
             'use strict';
             var i,
                 that = this,
-                HTML5_DOMStringMap,
+                HTML5DOMStringMap,
                 attrVal, attrName, propName,
                 attribute,
                 attributes = this.attributes,
@@ -200,10 +200,10 @@ if (!document.documentElement.dataset &&
             try { // Simulate DOMStringMap w/accessor support
                 // Test setting accessor on normal object
                 ({}).__defineGetter__('test', function () {});
-                HTML5_DOMStringMap = {};
+                HTML5DOMStringMap = {};
             }
             catch (e1) { // Use a DOM object for IE8
-                HTML5_DOMStringMap = document.createElement('div');
+                HTML5DOMStringMap = document.createElement('div');
             }
             for (i = 0; i < attsLength; i++) {
                 attribute = attributes[i];
@@ -216,18 +216,18 @@ if (!document.documentElement.dataset &&
                     // Change to CamelCase
                     propName = attrName.substr(5).replace(/-./g, toUpperCase);
                     try {
-                        Object.defineProperty(HTML5_DOMStringMap, propName, {
+                        Object.defineProperty(HTML5DOMStringMap, propName, {
                             enumerable: this.enumerable,
                             get: getter.bind(attrVal || ''),
                             set: setter.bind(that, attrName)
                         });
                     }
                     catch (e2) { // if accessors are not working
-                        HTML5_DOMStringMap[propName] = attrVal;
+                        HTML5DOMStringMap[propName] = attrVal;
                     }
                 }
             }
-            return HTML5_DOMStringMap;
+            return HTML5DOMStringMap;
         }
     };
     try {

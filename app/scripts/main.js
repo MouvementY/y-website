@@ -255,12 +255,12 @@ document.addEventListener('DOMContentLoaded', function() {
                 var triggerAction = function(e) {
                     e.preventDefault();
 
-                    if (el.dataset.social == 'twitter') {
+                    if (el.dataset.social == 'twitter') {  // jshint ignore:line
                         openPopup('https://twitter.com/intent/tweet', {
                             text: el.dataset.socialText,
                             url: el.dataset.socialUrl
                         });
-                    } else if (el.dataset.social == 'facebook') {
+                    } else if (el.dataset.social == 'facebook') {  // jshint ignore:line
                         openPopup('https://www.facebook.com/sharer/sharer.php', {
                             u: el.dataset.socialUrl
                         });
