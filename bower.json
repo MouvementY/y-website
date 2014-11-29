@@ -16,8 +16,8 @@
     "tether-tooltip": "~0.2.6",
     "odometer": "~0.4.7",
     "socket.io-client": "~1.2.1",
-    "ie8": "~0.2.3",
-    "dom4": "~1.0.1"
+    "dom4": "~1.0.1",
+    "IE8": "https://github.com/MouvementY/ie8.git#develop"
   },
   "devDependencies": {
     "Faker": "~2.1.0"

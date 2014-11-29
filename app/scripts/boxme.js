@@ -95,6 +95,11 @@ var mouvy = mouvy || {};
         // add the element to the DOM
         element.appendChild(canvas);
 
+        // if excanvas has been used, we need to init the element
+        if (typeof G_vmlCanvasManager !== 'undefined') {
+            canvas = G_vmlCanvasManager.initElement(canvas);
+        }
+
         // draw the box
         renderBox(canvas.getContext('2d'),
             boxRect,

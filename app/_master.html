@@ -37,9 +37,17 @@
 
         <!-- build:js scripts/vendor/head.js -->
         <script src="bower_components/dom4/build/dom4.max.js"></script>
+        <script src="scripts/polyfills.js"></script>
+        <script src="scripts/shims.js"></script>
+        <script src="scripts/shim_html5_dataset.js"></script>
         <script src="bower_components/modernizr/modernizr.js"></script>
+        <!-- endbuild -->
+
+        <!--[if (gt IE 8)|!(IE)]><!-->
+        <!-- build:js scripts/vendor/pace.js -->
         <script data-pace-options='{ "target": ".main-head", "ajax": { "trackMethods": ["GET", "POST"] } }' src="bower_components/pace/pace.js"></script>
         <!-- endbuild -->
+        <!--<![endif]-->
 
         <!--[if IE]><script src="bower_components/excanvas/excanvas.js"></script><![endif]-->
     </head>
@@ -148,6 +156,8 @@
         <script src="bower_components/tether-tooltip/js/tooltip.js"></script>
         <script src="bower_components/odometer/odometer.js"></script>
         <script src="bower_components/socket.io-client/socket.io.js"></script>
+        <script src="bower_components/dom4/build/dom4.js"></script>
+        <script src="bower_components/IE8/build/ie8.js"></script>
         <!-- endbower -->
         <!-- endbuild -->
 
