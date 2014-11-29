@@ -36,10 +36,19 @@
         <![endif]-->
 
         <!-- build:js scripts/vendor/head.js -->
+        <script src="bower_components/es5-shim/es5-shim.js"></script>
         <script src="bower_components/dom4/build/dom4.max.js"></script>
+        <script src="scripts/polyfills.js"></script>
+        <script src="scripts/shims.js"></script>
+        <script src="scripts/shim_html5_dataset.js"></script>
         <script src="bower_components/modernizr/modernizr.js"></script>
+        <!-- endbuild -->
+
+        <!--[if (gt IE 8)|!(IE)]><!-->
+        <!-- build:js scripts/vendor/pace.js -->
         <script data-pace-options='{ "target": ".main-head", "ajax": { "trackMethods": ["GET", "POST"] } }' src="bower_components/pace/pace.js"></script>
         <!-- endbuild -->
+        <!--<![endif]-->
 
         <!--[if IE]><script src="bower_components/excanvas/excanvas.js"></script><![endif]-->
     </head>
@@ -57,7 +66,7 @@
         <% } %>
 
         <!--[if lt IE 10]>
-            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+            <p class="browsehappy">Vous utilisez une navigateur <strong>dépassé</strong>. Veuillez <a href="http://browsehappy.com/">le mettre à jour</a> afin de profiter de la meilleure expérience d'utilisation.</p>
         <![endif]-->
 
         <div id="outer-wrap">
@@ -148,6 +157,8 @@
         <script src="bower_components/tether-tooltip/js/tooltip.js"></script>
         <script src="bower_components/odometer/odometer.js"></script>
         <script src="bower_components/socket.io-client/socket.io.js"></script>
+        <script src="bower_components/dom4/build/dom4.js"></script>
+        <script src="bower_components/IE8/build/ie8.js"></script>
         <!-- endbower -->
         <!-- endbuild -->
 

@@ -57,6 +57,11 @@ document.addEventListener('DOMContentLoaded', function() {
     signatureCanvas.width = '' + signaturePadWidth;
     signatureCanvas.height = '' + signaturePadHeight;
 
+    // ensure it has been initialized for excanvas.js
+    if (typeof G_vmlCanvasManager !== 'undefined') {
+        signatureCanvas = G_vmlCanvasManager.initElement(signatureCanvas);
+    }
+
     var signaturePad = new window.SignaturePad(signatureCanvas, {
             minWidth: 1,
             maxWidth: 3,
@@ -101,7 +106,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
                 // prepare and send the request
                 var request = mouvy.prepareRequest(signatureForm.action, 'post');
-                request.onload = function() {
+                request.onreadystatechange = function() {
                     var resp = null;
                     if (this.status >= 200 && this.status < 400){
                         // Success!
@@ -170,7 +175,7 @@ document.addEventListener('DOMContentLoaded', function() {
         },
         loadSignatureCount = function() {
             var signatureCountRequest = mouvy.prepareRequest(signatureCounter.dataset.url, 'get');
-            signatureCountRequest.onload = function() {
+            signatureCountRequest.onreadystatechange = function() {
                 if (signatureCountRequest.status >= 200 && signatureCountRequest.status < 400){
                     // Success!
                     var data = JSON.parse(signatureCountRequest.responseText);
@@ -197,7 +202,7 @@ document.addEventListener('DOMContentLoaded', function() {
             var requestURL = pageURL,
                 signatureListRequest = mouvy.prepareRequest(requestURL, 'get');
 
-            signatureListRequest.onload = function() {
+            signatureListRequest.onreadystatechange = function() {
                 if (signatureListRequest.status >= 200 && signatureListRequest.status < 400){
                     // Success!
                     var data = JSON.parse(signatureListRequest.responseText),
