@@ -110,7 +110,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 var request = mouvy.prepareRequest(signatureForm.action, 'post');
                 request.onreadystatechange = function() {
                     var resp = null;
-                    if (this.status >= 200 && this.status < 400){
+                    if (this.readyState === 4 && this.status >= 200 && this.status < 400){
                         // Success!
                         resp = JSON.parse(this.responseText);
 
@@ -120,7 +120,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         // show the success message
                         successWrapper.style.display = 'block';
 
-                    } else {
+                    } else if (this.readyState === 4) {
                         // We reached our target server, but it returned an error
                         resp = JSON.parse(this.responseText);
 
@@ -178,11 +178,11 @@ document.addEventListener('DOMContentLoaded', function() {
         loadSignatureCount = function() {
             var signatureCountRequest = mouvy.prepareRequest(signatureCounter.dataset.url, 'get');
             signatureCountRequest.onreadystatechange = function() {
-                if (signatureCountRequest.status >= 200 && signatureCountRequest.status < 400){
+                if (this.readyState === 4 && this.status >= 200 && this.status < 400){
                     // Success!
-                    var data = JSON.parse(signatureCountRequest.responseText);
+                    var data = JSON.parse(this.responseText);
                     updateSignatureCount(data);
-                } else {
+                } else if (this.readyState === 4) {
                     // We reached our target server, but it returned an error
                     // TODO handle errors
 
@@ -205,9 +205,9 @@ document.addEventListener('DOMContentLoaded', function() {
                 signatureListRequest = mouvy.prepareRequest(requestURL, 'get');
 
             signatureListRequest.onreadystatechange = function() {
-                if (signatureListRequest.status >= 200 && signatureListRequest.status < 400){
+                if (this.readyState === 4 && this.status >= 200 && this.status < 400){
                     // Success!
-                    var data = JSON.parse(signatureListRequest.responseText),
+                    var data = JSON.parse(this.responseText),
                         nextPageURL = data.next,
                         count = data.count,
                         signatures = data.results;

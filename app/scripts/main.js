@@ -173,11 +173,11 @@ document.addEventListener('DOMContentLoaded', function() {
                 var request = mouvy.prepareRequest(eventsNotificationForm.action, 'post');
                 request.onreadystatechange = function() {
                     var resp = null;
-                    if (this.status >= 200 && this.status < 400){
+                    if (this.readyState === 4 && this.status >= 200 && this.status < 400){
                         // Success!
                         resp = JSON.parse(this.responseText);
                         nextEventDropContent.innerText = resp.detail;
-                    } else {
+                    } else if (this.readyState === 4) {
                         // We reached our target server, but it returned an error
                         resp = JSON.parse(this.responseText);
 
