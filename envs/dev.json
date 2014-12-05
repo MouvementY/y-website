@@ -4,7 +4,6 @@
     "subscribeEventsNotificationFormAction": "http://yengine.dev:8000/api/events/subscribe/",
     "signatureFormAction": "http://yengine.dev:8000/api/signatures/",
     "signatureFetchURL": "http://yengine.dev:8000/api/signatures/",
-    "signatureCountFetchURL": "http://yengine.dev:8000/api/signatures/count/",
 
     "Pusher": {
         "url": "http://localhost:3000"

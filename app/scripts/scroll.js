@@ -168,30 +168,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // API Calls
     var loadTracker = {
-            signatureCount: false,
             signatureFirstBatchLoaded: false,
         },
         updateSignatureCount = function(newCount) {
-            loadTracker.signatureCount = true;
             signatureCounter.querySelector('span').innerHTML = newCount;
-        },
-        loadSignatureCount = function() {
-            var signatureCountRequest = mouvy.prepareRequest(signatureCounter.dataset.url, 'get');
-            signatureCountRequest.onreadystatechange = function() {
-                if (this.readyState === 4 && this.status >= 200 && this.status < 400){
-                    // Success!
-                    var data = JSON.parse(this.responseText);
-                    updateSignatureCount(data);
-                } else if (this.readyState === 4) {
-                    // We reached our target server, but it returned an error
-                    // TODO handle errors
-
-                    // reset the tracker
-                    // TODO improve the reseting part
-                    loadTracker.signatureCount = false;
-                }
-            };
-            mouvy.sendRequest(signatureCountRequest);
         },
         generateSignatureElement = function(signatureDataURL, signatureAlt) {
             var signImage = '<img src="'+ signatureDataURL +'" alt="'+ signatureAlt +'">',
@@ -212,7 +192,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         count = data.count,
                         signatures = data.results;
 
-                    // first update the count (maybe necessary)
+                    // first update the count (may be necessary)
                     updateSignatureCount(count);
 
                     // wrap the batch of signatures into a div (to bring focus to it)
@@ -264,15 +244,8 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         },
         didScroll = function() {
-            // if the signature wall is visible load the counter
-            if (mouvy.geometry.isElementInViewport(window, document, signatureCounter)) {
-                if (loadTracker.signatureCount !== true) {
-                    loadTracker.signatureCount = true;
-                    loadSignatureCount();
-                }
-            }
-
             // if the signature wall is visible load the first batch of signatures automatically
+            // and update the counter
             if (mouvy.geometry.isElementInViewport(window, document, signatureMoreTrigger)) {
                 if (loadTracker.signatureFirstBatchLoaded !== true) {
                     // avoid multiple calls from being made
