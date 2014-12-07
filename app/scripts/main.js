@@ -12,6 +12,15 @@ document.addEventListener('DOMContentLoaded', function() {
     // initialize the responsive nav
     window.ResponsiveNav.init();
 
+    // first clean up data-scroll attributes for elements that aren't in the DOM
+    var dataScrollElements = document.querySelectorAll('[data-scroll]');
+    Array.prototype.forEach.call(dataScrollElements, function(el) {
+        var anchor = el.hash.substr(1);
+        if (document.getElementById(anchor) === null) {
+            el.removeAttribute('data-scroll');
+        }
+    });
+
     // smooth scrolling for anchors
     smoothScroll.init({
         speed: 500,
