@@ -89,7 +89,25 @@ document.addEventListener('DOMContentLoaded', function() {
     var signTriggers = document.querySelectorAll('.sign-action'),
         bindAdditionalForm = function(modal) {
             var signatureForm = modal.modalElem().querySelector('.signature-form'),
+                checkboxGroups = signatureForm.querySelectorAll('.checkbox-group'),
                 successWrapper = modal.modalElem().querySelector('.success-wrapper');
+
+            // show/hide checkbox groups
+            Array.prototype.forEach.call(checkboxGroups, function(el) {
+                var checkbox = el.querySelector('[type=checkbox]'),
+                    uncheckedMessage = el.querySelector('.checkbox-label--unchecked'),
+                    checkedMessage = el.querySelector('.checkbox-label--checked');
+
+                checkbox.addEventListener('click', function() {
+                    if (checkbox.checked) {
+                        checkedMessage.style.display = null;
+                        uncheckedMessage.style.display = 'none';
+                    } else {
+                        checkedMessage.style.display = 'none';
+                        uncheckedMessage.style.display = null;
+                    }
+                });
+            });
 
             // THE form
             signatureForm.addEventListener('submit', function(e) {
@@ -102,6 +120,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         'first_name': signatureForm.querySelector('[name=first_name]').value,
                         'last_name': signatureForm.querySelector('[name=last_name]').value,
                         'email': signatureForm.querySelector('[name=email]').value,
+                        'optin': signatureForm.querySelector('[name=optin]').checked,
                         'signature_image_data_url': signatureForm.querySelector('[name=signature_image]').value,
                     },
                     urlEncodedData = mouvy.urlEncodeParams(data);
