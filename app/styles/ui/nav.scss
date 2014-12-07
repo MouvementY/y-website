@@ -63,12 +63,13 @@
 
     // center the logo
     left: 50%;
-    padding-top: 1em;
+    padding-top: 9px;
     margin-left: -$logo-width/2;
     width: $logo-width;
 
     // vertically centered too
     line-height: 1rem;
+    text-align: center;
 
     .logo {
         a {
