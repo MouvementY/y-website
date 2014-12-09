@@ -139,6 +139,9 @@ document.addEventListener('DOMContentLoaded', function() {
                         // show the success message
                         successWrapper.style.display = 'block';
 
+                        // clear the signature
+                        signaturePad.clear();
+
                     } else if (this.readyState === 4) {
                         // We reached our target server, but it returned an error
                         resp = JSON.parse(this.responseText);
