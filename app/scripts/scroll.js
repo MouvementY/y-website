@@ -193,8 +193,16 @@ document.addEventListener('DOMContentLoaded', function() {
             signatureCounter.querySelector('span').innerHTML = newCount;
         },
         generateSignatureElement = function(signatureDataURL, signatureAlt) {
-            var signImage = '<img src="'+ signatureDataURL +'" alt="'+ signatureAlt +'">',
-                signElement = document.createElement('div');
+            var signImage;
+
+            // alternative when there is no signature
+            if (!signatureDataURL) {
+                signImage = '<span>'+ signatureAlt +'</span>';
+            } else {
+                signImage = '<img src="'+ signatureDataURL +'" alt="'+ signatureAlt +'">';
+            }
+
+            var signElement = document.createElement('div');
             mouvy.addClassName(signElement, 'signature');
             signElement.innerHTML = signImage;
             return signElement;

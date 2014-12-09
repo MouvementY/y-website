@@ -38,6 +38,15 @@ $reveal-base-duration: 100ms;
         margin: 0 auto;
         width: 100%;
     }
+
+    span {
+        display: inline-block;
+        width: 100%;
+
+        text-align: center;
+
+        transform: translate3d(0, -50%, 0);
+    }
 }
 
 .signature-counter {
