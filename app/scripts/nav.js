@@ -9,6 +9,7 @@
 
         var inner = document.getElementById('inner-wrap'),
             navButton = document.getElementById('nav-open-btn'),
+            closeButton = document.getElementById('nav-close-btn'),
             navOpen = false,
             navClass = 'js-nav';
 
@@ -52,6 +53,7 @@
                     }
                 }
                 mouvy.removeClassName(doc, navClass);
+                mouvy.removeClassName(document.body, 'modal-open');  // restore scrolling
             };
 
             app.openNav = function() {
@@ -59,6 +61,7 @@
                     return;
                 }
                 mouvy.addClassName(doc, navClass);
+                mouvy.addClassName(document.body, 'modal-open');  // block scrolling the background
                 navOpen = true;
             };
 
@@ -79,10 +82,11 @@
 
             // open nav with main "nav" button
             navButton.addEventListener('click', app.toggleNav, false);
+            closeButton.addEventListener('click', app.toggleNav, false);
 
             // close nav by touching the partial off-screen content
             document.addEventListener('click', function(e) {
-                if (navOpen && !mouvy.hasParent(e.target, 'nav-mobile')) {
+                if (navOpen && !mouvy.hasParent(e.target, 'nav-mobile') && e.target !== navButton) {
                     e.preventDefault();
                     app.closeNav();
                     return;
