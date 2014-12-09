@@ -308,6 +308,11 @@ document.addEventListener('DOMContentLoaded', function() {
     // connect to the sockets
     var socket = io(signatureWrapper.dataset.pusherUrl);
         socket.on('signatures', function(msg) {
+            // only add the signature if the first batch has been loaded
+            if (loadTracker.signatureFirstBatchLoaded !== true) {
+                return;
+            }
+
             var data = JSON.parse(msg);
 
             updateSignatureCount(data.count);
