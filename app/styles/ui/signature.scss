@@ -15,15 +15,15 @@ $reveal-base-duration: 100ms;
     border: 1px solid #ccc;
 }
 
-.signature-wall {
-
+#signature-wall {
+    padding: 0 2em;
 }
 .signature-batch-wrapper {
     outline: none;
 }
 .signature {
     display: inline-block;
-    width: 33.33%;
+    width: 12.5%;
 
     animation: pop-upwards ease-out 300ms;
 
@@ -47,6 +47,27 @@ $reveal-base-duration: 100ms;
 #signature-form-additional {
     // initial hidden
     display: none;
+}
+
+
+// Small screens
+@media only screen
+and (max-width : 1000px) {
+    .signature {
+        width: 20%;
+    }
+}
+@media only screen
+and (max-width : 800px) {
+    .signature {
+        width: 25%;
+    }
+}
+@media only screen
+and (max-width : 600px) {
+    .signature {
+        width: 33.33%;
+    }
 }
 
 
