@@ -43,8 +43,15 @@
 .success-wrapper {
     animation: pop-upwards ease-out 400ms;
 }
+.error-wrapper {
+    .field-error:first-child {
+        margin-top: 1em;
+    }
+}
 
 .field-error {
+    display: block;
+
     margin-bottom: 1em;
     padding: 0.5em 1em;
 

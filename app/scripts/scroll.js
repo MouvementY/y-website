@@ -90,7 +90,8 @@ document.addEventListener('DOMContentLoaded', function() {
         bindAdditionalForm = function(modal) {
             var signatureForm = modal.modalElem().querySelector('.signature-form'),
                 checkboxGroups = signatureForm.querySelectorAll('.checkbox-group'),
-                successWrapper = modal.modalElem().querySelector('.success-wrapper');
+                successWrapper = modal.modalElem().querySelector('.success-wrapper'),
+                errorWrapper = modal.modalElem().querySelector('.error-wrapper');
 
             // show/hide checkbox groups
             Array.prototype.forEach.call(checkboxGroups, function(el) {
@@ -151,16 +152,22 @@ document.addEventListener('DOMContentLoaded', function() {
                         Array.prototype.forEach.call(errors, function(el) {
                             el.parentNode.removeChild(el);
                         });
+                        errorWrapper.innerHTML = '';
 
-                        Object.keys(resp).forEach(function(name) {
-                            var error = resp[name],
-                                field = signatureForm.querySelector('[name='+name+']'),
-                                errorElement = document.createElement('div');
+                        // check if the error is general or specific to some fields
+                        if (resp.hasOwnProperty && resp.hasOwnProperty('detail')) {
+                            errorWrapper.innerHTML = '<span class="field-error">' + resp.detail + '</span>';
+                        } else {
+                            Object.keys(resp).forEach(function(name) {
+                                var error = resp[name],
+                                    field = signatureForm.querySelector('[name='+name+']'),
+                                    errorElement = document.createElement('div');
 
-                            mouvy.addClassName(errorElement, 'field-error');
-                            errorElement.innerText = error;
-                            field.insertAdjacentHTML('afterend', errorElement.outerHTML);
-                        });
+                                mouvy.addClassName(errorElement, 'field-error');
+                                errorElement.innerText = error;
+                                field.insertAdjacentHTML('afterend', errorElement.outerHTML);
+                            });
+                        }
                     }
                 };
                 mouvy.sendRequest(request, urlEncodedData);
