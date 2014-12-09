@@ -207,6 +207,14 @@ document.addEventListener('DOMContentLoaded', function() {
             signElement.innerHTML = signImage;
             return signElement;
         },
+        configureTooltipForSignatureElement = function(signatureElement, name) {
+            new Tooltip({
+                target: signatureElement,
+                position: 'top center',
+                content: name,
+                openOn: 'hover'
+            });
+        },
         loadSignatures = function(pageURL, successCallback) {
             var requestURL = pageURL,
                 signatureListRequest = mouvy.prepareRequest(requestURL, 'get');
@@ -225,14 +233,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     signatures.forEach(function(sign) {
                         var signElement = generateSignatureElement(sign['signature_image_data_url'], sign['first_name']);
                         signatureWall.appendChild(signElement);
-
-                        // add the tooltip
-                        new Tooltip({
-                            target: signElement,
-                            position: 'top center',
-                            content: sign['first_name'],
-                            openOn: 'hover'
-                        });
+                        configureTooltipForSignatureElement(signElement, sign['first_name']);
                     });
 
                     if (successCallback) {
@@ -310,5 +311,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
             var signElement = generateSignatureElement(data.signature);
             signatureWall.insertBefore(signElement, signatureWall.firstChild);
+            configureTooltipForSignatureElement(signElement, data.name);
         });
 });
