@@ -214,15 +214,9 @@ document.addEventListener('DOMContentLoaded', function() {
                     // first update the count (may be necessary)
                     updateSignatureCount(count);
 
-                    // wrap the batch of signatures into a div (to bring focus to it)
-                    var signatureBatchWrapper = document.createElement('div');
-                    mouvy.addClassName(signatureBatchWrapper, 'signature-batch-wrapper');
-                    signatureBatchWrapper.setAttribute('tabindex', '-1');
-                    signatureWall.appendChild(signatureBatchWrapper);
-
                     signatures.forEach(function(sign) {
                         var signElement = generateSignatureElement(sign['signature_image_data_url'], sign['first_name']);
-                        signatureBatchWrapper.appendChild(signElement);
+                        signatureWall.appendChild(signElement);
 
                         // add the tooltip
                         new Tooltip({
@@ -234,7 +228,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     });
 
                     if (successCallback) {
-                        successCallback(signatureBatchWrapper, nextPageURL);
+                        successCallback(signatureWall, nextPageURL);
                     }
                 } else {
                     // We reached our target server, but it returned an error
