@@ -20,8 +20,8 @@ document.addEventListener('DOMContentLoaded', function() {
         logoWrapper.style.opacity = 1;
     }, 300);
 
-    // remove the hint scroll on mobile
-    if (Modernizr.mq('only all and (max-width: 480px)')) {
+    // remove the hint scroll on mobile and tablet
+    if (Modernizr.touch) {
         skrollr.init().destroy();
     } else {
         skrollr.init();
