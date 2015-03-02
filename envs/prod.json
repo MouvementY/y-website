@@ -4,6 +4,7 @@
     "subscribeEventsNotificationFormAction": "https://y-engine.herokuapp.com/api/events/subscribe/",
     "signatureFormAction": "https://y-engine.herokuapp.com/api/signatures/",
     "signatureFetchURL": "https://y-engine.herokuapp.com/api/signatures/",
+    "newsFetchURL": "https://y-engine.herokuapp.com/api/news/",
 
     "Pusher": {
         "url": "http://y-pusher.herokuapp.com:80"

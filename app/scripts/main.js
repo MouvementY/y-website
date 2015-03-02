@@ -117,10 +117,13 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
+    // we assume that the css has been loaded
+    document.querySelector('.news').style.display = '';
+
     // next event popover
     var nextEventDrop = new Drop({
-            target: document.querySelector('.next-event'),
-            content: document.querySelector('.events'),
+            target: document.querySelector('.last-news'),
+            content: document.querySelector('.news'),
             position: 'bottom right',
             classes: 'drop-theme-blue',
             openOn: 'click',
@@ -129,100 +132,50 @@ document.addEventListener('DOMContentLoaded', function() {
                 offset: '-5px 0'
             }
         }),
-        nextEventFormBinding = function() {
-            var nextEventDropContent = document.querySelector('.events'),
-                eventsNotificationForm = document.querySelector('.events .form'),
-                eventsNotificationEmailField = eventsNotificationForm.querySelector('input'),
-                eventsNotificationFormErrors = eventsNotificationForm.querySelector('.errors-wrapper'),
-                nextEventSubmit = eventsNotificationForm.querySelector('[type=submit]'),
-                nextEventSubmitInner = nextEventSubmit.querySelector('.progress-inner'),
-                resetNextEventFormSubmit = function() {
-                    // reset the submit animation
-                    mouvy.addClassName(nextEventSubmitInner, 'notransition');
-                    mouvy.removeClassName(nextEventSubmitInner, 'state-loading');
-                    nextEventSubmitInner.style.width = '0%';
-                },
-                resetNextEventFormErrors = function() {
-                    eventsNotificationFormErrors.innerText = '';
-                    mouvy.addClassName(eventsNotificationFormErrors, 'errors-wrapper--empty');
-                    // preapre the popover to receive a shaking move in case of an error
-                    mouvy.removeClassName(nextEventDropContent, 'shaking');
+        generatePostElement = function(post) {
+            var postElement = document.createElement('div');
+            mouvy.addClassName(postElement, 'news-post');
+            var html = '<h3 class="news-post__title">' + post.title + '<span>' + moment(post.date_published).format('DD/MM/YYYY') + '</span></h3>' +
+                       '<p>' + post.text + '</p>';
+            if (post.link) {
+                html += '<p><a href="' + post.link + '">' + post.link + '</a></p>';
+            }
+            postElement.innerHTML = html;
+            return postElement;
+        },
+        loadLastNews = function(successCallback) {
+            var lastNewsContent = document.querySelector('.news-content'),
+                requestURL = lastNewsContent.dataset.url,
+                newsListRequest = mouvy.prepareRequest(requestURL, 'get');
 
-                    resetNextEventFormSubmit();
-                };
+            newsListRequest.onreadystatechange = function() {
+                if (this.readyState === 4 && this.status >= 200 && this.status < 400){
+                    // Success!
+                    var data = JSON.parse(this.responseText),
+                        lastPosts = data.results;
 
-            eventsNotificationEmailField.addEventListener('keyup', function() {
-                var insertedEmail = eventsNotificationEmailField.value,
-                    atPosition = insertedEmail.indexOf('@'),
-                    dotPosition = insertedEmail.lastIndexOf('.');
+                    // empty the container
+                    lastNewsContent.innerHTML = "";
 
-                // check if user has inserted a "@" and a dot
-                if (atPosition < 1 || dotPosition < (atPosition+2) ) {
-                    // if he hasn't, hide the submit button
-                    mouvy.removeClassName(eventsNotificationForm, 'form--active');
-                } else {
-                    //if he has..
-                    //show the submit button
-                    mouvy.addClassName(eventsNotificationForm, 'form--active');
-                }
-            });
+                    lastPosts.forEach(function(post) {
+                        var postElement = generatePostElement(post);
+                        lastNewsContent.appendChild(postElement);
+                    });
 
-            eventsNotificationForm.addEventListener('submit', function(e) {
-                e.preventDefault();
-
-                // disable the submit button
-                eventsNotificationForm.querySelector('[type=submit]').disabled = true;
-
-                var data = {
-                        'email': eventsNotificationForm.querySelector('[name=email]').value
-                    },
-                    urlEncodedData = mouvy.urlEncodeParams(data);
-
-                // prepare and send the request
-                var request = mouvy.prepareRequest(eventsNotificationForm.action, 'post');
-                request.onreadystatechange = function() {
-                    var resp = null;
-                    if (this.readyState === 4 && this.status >= 200 && this.status < 400){
-                        // Success!
-                        resp = JSON.parse(this.responseText);
-                        nextEventDropContent.innerText = resp.detail;
-                    } else if (this.readyState === 4) {
-                        // We reached our target server, but it returned an error
-                        resp = JSON.parse(this.responseText);
-
-                        eventsNotificationFormErrors.innerText = resp.detail;
-                        mouvy.removeClassName(eventsNotificationFormErrors, 'errors-wrapper--empty');
-
-                        mouvy.addClassName(nextEventDropContent, 'shaking');
+                    if (successCallback) {
+                        successCallback();
                     }
-
-                    // re-enable the submit button
-                    eventsNotificationForm.querySelector('[type=submit]').disabled = false;
-
-                    // reset the submit animtion
-                    resetNextEventFormSubmit();
-                };
-
-                // reset error state
-                resetNextEventFormErrors();
-
-                // fake loader for the user
-                mouvy.removeClassName(nextEventSubmitInner, 'notransition');
-                mouvy.addClassName(nextEventSubmitInner, 'state-loading');
-                nextEventSubmitInner.style.width = '100%';
-
-                mouvy.sendRequest(request, urlEncodedData);
-            });
+                } else {
+                    // We reached our target server, but it returned an error
+                    // TODO handle errors
+                }
+            };
+            mouvy.sendRequest(newsListRequest);
         };
 
     // bind the event form once
     nextEventDrop.once('open', function() {
-        nextEventFormBinding();
-    });
-    nextEventDrop.on('open', function() {
-        // focus on the email field
-        var eventsNotificationEmailField = document.querySelector('.newsletter-email');
-        eventsNotificationEmailField.focus();
+        loadLastNews();
     });
 
     // social

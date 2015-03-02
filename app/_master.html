@@ -87,24 +87,15 @@
                             </div>
 
                             <ul class="nav nav--right">
-                                <li><a role="button" aria-owns="popform" id="get-some-news" class="facebook-like next-event" href="#/rejoindre">rendez-vous</a></li>
+                                <li><a role="button" aria-owns="popform" id="get-some-news" class="facebook-like last-news" href="#/news">Les news</a></li>
                                 <li class="mobile-hidden"><a href="mailto:mouvementy@gmail.com">Un message ?</a></li>
                             </ul>
                         </div>
 
-                        <div class="events" id="popform">
-                            <p>Pour savoir où et quand aura lieu le premier événement &laquo; y &raquo; &hellip;</p>
-                            <div class="form-wrapper">
-                                <form class="form" action="<%= subscribeEventsNotificationFormAction %>" method="post">
-                                    <input class="newsletter-email" type="text" name="email" placeholder="Entrez votre email" title="Entrez votre email" autocomplete=off autocorrect=off autocapitalize=off spellcheck=false>
-                                    <button type="submit" class="submit submit--bounce-in button--fluid button--inversed progress-button" data-style="fill" data-horizontal>
-                                        <span class="content">S'abonner</span>
-                                        <span class="progress">
-                                            <span class="progress-inner notransition"></span>
-                                        </span>
-                                    </button>
-                                    <div class="errors-wrapper errors-wrapper--empty"></div>
-                                </form>
+                        <div class="news" id="popform" style="display: none;">
+                            <h2 class="modal-title">Les News de #MouvY</h2>
+                            <div class="news-content" data-url="<%= newsFetchURL %>">
+                                <p>chargement &hellip;</p>
                             </div>
                         </div>
                     </div>
@@ -157,6 +148,7 @@
         <script src="bower_components/socket.io-client/socket.io.js"></script>
         <script src="bower_components/dom4/build/dom4.js"></script>
         <script src="bower_components/IE8/build/ie8.js"></script>
+        <script src="bower_components/momentjs/moment.js"></script>
         <!-- endbower -->
         <!-- endbuild -->
 

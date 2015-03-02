@@ -76,7 +76,7 @@ body.modal-open {
 /**
  * Events modal
  */
-.events {
+.news {
     display: block;
     box-sizing: border-box;
     width: 300px;
@@ -92,6 +92,18 @@ body.modal-open {
 
     p {
         margin: 0em;
+    }
+
+    a {
+        color: #fff;
+
+        &:hover {
+            color: rgba(white, 0.8);
+        }
+    }
+
+    .modal-title {
+        margin-top: 0em;
     }
 
     .form {
@@ -135,6 +147,27 @@ body.modal-open {
     .errors-wrapper--empty {
         display: none;
     }
+}
+.news-content {
+    margin-top: 1em;
+}
+.news-post {
+    .news-post__title {
+        margin-top: 0em;
+        margin-bottom: 0.3em;
+
+        span {
+            font-size: 0.8em;
+            font-weight: 400;
+            font-style: italic;
+            display: block;
+        }
+    }
+}
+.news-post + .news-post {
+    margin-top: 1em;
+    padding-top: 1em;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 // hide when in the main head
