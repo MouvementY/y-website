@@ -1,6 +1,7 @@
 /* global Headroom */
 /* global Drop */
 /* global smoothScroll */
+/* global moment */
 
 // namespace
 var mouvy = mouvy || {};
@@ -135,7 +136,7 @@ document.addEventListener('DOMContentLoaded', function() {
         generatePostElement = function(post) {
             var postElement = document.createElement('div');
             mouvy.addClassName(postElement, 'news-post');
-            var html = '<h3 class="news-post__title">' + post.title + '<span>' + moment(post.date_published).format('DD/MM/YYYY') + '</span></h3>' +
+            var html = '<h3 class="news-post__title">' + post.title + '<span>' + moment(post['date_published']).format('DD/MM/YYYY') + '</span></h3>' +
                        '<p>' + post.text + '</p>';
             if (post.link) {
                 html += '<p><a href="' + post.link + '">' + post.link + '</a></p>';
@@ -155,7 +156,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         lastPosts = data.results;
 
                     // empty the container
-                    lastNewsContent.innerHTML = "";
+                    lastNewsContent.innerHTML = '';
 
                     lastPosts.forEach(function(post) {
                         var postElement = generatePostElement(post);
