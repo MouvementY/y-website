@@ -139,7 +139,7 @@ document.addEventListener('DOMContentLoaded', function() {
             var html = '<h3 class="news-post__title">' + post.title + '<span>' + moment(post['date_published']).format('DD/MM/YYYY') + '</span></h3>' +
                        '<p>' + post.text + '</p>';
             if (post.link) {
-                html += '<p><a href="' + post.link + '">' + post.link + '</a></p>';
+                html += '<p><a href="' + post.link + '">' + post['link_title'] + '</a></p>';
             }
             postElement.innerHTML = html;
             return postElement;
