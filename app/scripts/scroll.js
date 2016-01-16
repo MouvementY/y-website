@@ -34,12 +34,64 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // when a departement is selected, fill the representative emails
     var representativeEmailsInput = document.getElementById('your-representatives');
+    var lastRepresentativeEmails = [];
     departementSelect.addEventListener('change', function() {
         var selectedDepNumber = departementSelect.value;
         var emails = hackEmails[selectedDepNumber].emails;
+        lastRepresentativeEmails = emails;
         representativeEmailsInput.value = emails.join('; ');
     }, false);
 
+    // on inbox choice, we load the redirect with the right content
+    var message = "Placeholder pour le message";
+    var subject = "Cher représentant politique";
+    var inboxShortcutButtons = document.querySelectorAll('.hk-through-inbox');
+    Array.prototype.forEach.call(inboxShortcutButtons, function(el) {
+        el.addEventListener('click', function(e) {
+            e.preventDefault();
+
+            var targetUrl = undefined;
+            if (el.id === 'hk-through-gmail') {
+                
+                // GMAIL
+                var targetUrl = 'https://mail.google.com/mail/';
+                var params = {
+                    'view': 'cm',
+                    'fs': '1',
+                    'to': lastRepresentativeEmails.join(';'),
+                    'su': subject,
+                    'body': message
+                };
+                var query = mouvy.urlEncodeParams(params);
+                targetUrl = targetUrl + '?' + query;
+
+            } else if (el.id === 'hk-through-live') {
+
+                // HOTMAIL
+                var targetUrl = 'http://mail.live.com/mail/EditMessageLight.aspx';
+                var params = {
+                    'n': '',
+                    'to': lastRepresentativeEmails.join(';'),
+                    'subject': subject,
+                    'body': message
+                };
+                var query = mouvy.urlEncodeParams(params);
+                targetUrl = targetUrl + '?' + query;
+
+            } else {
+                // other
+                var to = lastRepresentativeEmails.join(';');
+                var params = {
+                    'subject': subject,
+                    'body': message
+                };
+                var query = mouvy.urlEncodeParams(params);
+                targetUrl = 'mailto:' + encodeURIComponent(to) + '?' + query;
+            }
+
+            window.location.href = targetUrl;
+        });
+    });
     // END HACKING
 
     // reveal the Y :)
