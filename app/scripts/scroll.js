@@ -43,8 +43,24 @@ document.addEventListener('DOMContentLoaded', function() {
     }, false);
 
     // on inbox choice, we load the redirect with the right content
-    var message = "Placeholder pour le message";
-    var subject = "Cher représentant politique";
+    var message = "Chers membres du gouvernement, députés, sénateurs,\n\
+\n\
+J’ai signé le manifeste du Mouvement Y. J’ai grandi avec la mondialisation, le dérèglement climatique, la crise économique, l'absence de cohésion et la fin du rêve européen.\n\
+\n\
+Depuis que j'ai l'âge d'écouter les infos, je vois le monde changer à une vitesse folle et mon pays, lui, comme prostré. Non pas qu'il refuse le changement par principe, mais il ne fait confiance à personne pour ça. Et pour cause, la classe politique, décrédibilisée par les affaires et le non-renouvellement, est devenue impuissante. Elle colmate sans prendre de risques, pour ne pas nous fâcher davantage. \n\
+\n\
+Alors, pourquoi aller voter ? Qu'espérer de plus à l'élection suivante ? Comme la plupart de mes contemporains, je n'ai plus envie de me déplacer aux urnes. Les campagnes électorales et leurs acteurs semblent appartenir à une autre époque. La politique française vit un décalage effrayant avec son temps et les attentes qu'elle suscite.\n\
+\n\
+Parce qu'on ne peut pas se résoudre à attendre éternellement et parce que l'action politique semble paralysée sans élan populaire, voici trois propositions de réforme indispensables. Des propositions concrètes, sans étiquette, applicables rapidement et approuvées par des experts (juristes, politologues de bords différents) pour réveiller enfin notre système politique, le renouveler en profondeur, bref, le rendre à nouveau acceptable.\n\
+\n\
+1/ Ethique : Instaurer une peine incompressible de 6 ans pour les élus fraudeurs\n\
+2/ Renouvellement : limiter à trois le nombre de mandats identiques qu'un élu peut cumuler dans le temps \n\
+3/ Rationalisation : remettre à plat le mode de financement des parlementaires\n\
+\n\
+Nous ne sommes pas des adeptes du « tous pourris ». Nous n'oublions pas que l'immense majorité des élus locaux fait son travail avec dignité, mais je vous demande de faire le nécessaire pour que ces propositions essentielles soient soumises au vote.\n\
+\n\
+Merci.";
+    var subject = "Chers représentants politiques";
     var inboxShortcutButtons = document.querySelectorAll('.hk-through-inbox');
     Array.prototype.forEach.call(inboxShortcutButtons, function(el) {
         el.addEventListener('click', function(e) {
