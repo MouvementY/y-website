@@ -57,6 +57,7 @@ document.addEventListener('DOMContentLoaded', function() {
             // representativeEmailsInput.value = emails.join('; ');
             var selector = $representativeEmailsInputInstance[0].selectize;
             selector.clearOptions();
+            selector.disable();
             emails.forEach(function(e) {
                 selector.addOption({value: e, text: e});
                 selector.addItem(e);
