@@ -46,7 +46,8 @@ document.addEventListener('DOMContentLoaded', function() {
     }, 1000.0 / numberOfStepPerSecond);
 
     // signature pad
-    var signatureCanvas = document.querySelector('.sign-block'),
+    var signatureBlock = document.querySelector('.sign-block'),
+        signatureCanvas = signatureBlock.querySelector('canvas'),
         signatureForm = document.querySelector('.signature-form'),
         signatureFormField = signatureForm.querySelector('input[name=signature_image]'),
         signatureCanvasClearButton = document.querySelector('.clear-sign-canvas'),
@@ -54,8 +55,17 @@ document.addEventListener('DOMContentLoaded', function() {
         signaturePadWidth = Math.min(400, window.innerWidth - 2*10),
         signaturePadHeight = Math.floor(signaturePadWidth * 9 / 16);
 
-    signatureCanvas.width = '' + signaturePadWidth;
-    signatureCanvas.height = '' + signaturePadHeight;
+    signatureBlock.style.width = '' + signaturePadWidth + 'px';
+    signatureBlock.style.height = '' + signaturePadHeight + 'px';
+
+    // support hdpi screens
+    function resizeSignatureCanvas() {
+        var ratio =  Math.max(window.devicePixelRatio || 1, 1);
+        signatureCanvas.width = signaturePadWidth * ratio;
+        signatureCanvas.height = signaturePadHeight * ratio;
+        signatureCanvas.getContext('2d').scale(ratio, ratio);
+        //signaturePad.clear();  // otherwise isEmpty() might return incorrect value
+    }
 
     // ensure it has been initialized for excanvas.js
     /* jshint ignore:start */
@@ -63,6 +73,9 @@ document.addEventListener('DOMContentLoaded', function() {
         signatureCanvas = G_vmlCanvasManager.initElement(signatureCanvas);
     }
     /* jshint ignore:end */
+
+    window.addEventListener('resize', resizeSignatureCanvas);
+    resizeSignatureCanvas();
 
     var signaturePad = new window.SignaturePad(signatureCanvas, {
             minWidth: 1,

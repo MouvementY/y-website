@@ -13,6 +13,11 @@ $reveal-base-duration: 100ms;
     display: block;
     margin: 0 auto 1em auto;
     border: 1px solid #ccc;
+
+    canvas {
+        width: 100%;
+        height: 100%;
+    }
 }
 
 #signature-wall {
