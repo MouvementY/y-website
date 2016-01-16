@@ -10,6 +10,38 @@ var mouvy = mouvy || {};
 document.addEventListener('DOMContentLoaded', function() {
     'use strict';
 
+    // START HACKING
+    var hackEmails = mouvy.hacking.repEmails;
+
+    // handle the departement list creation
+    var departementList = [];
+    for (var key in hackEmails) {
+        if (hackEmails.hasOwnProperty(key)) {
+            departementList.push({key: key, name: hackEmails[key].name});
+        }
+    }
+    departementList.sort(function(a, b) {
+        return a.name.localeCompare(b.name);
+    });
+
+    var departementSelect = document.getElementById('your-departement');
+    departementList.forEach(function(el) {
+        var opt = document.createElement('option');
+        opt.value = el.key;
+        opt.innerHTML = el.name;
+        departementSelect.appendChild(opt);
+    });
+
+    // when a departement is selected, fill the representative emails
+    var representativeEmailsInput = document.getElementById('your-representatives');
+    departementSelect.addEventListener('change', function() {
+        var selectedDepNumber = departementSelect.value;
+        var emails = hackEmails[selectedDepNumber].emails;
+        representativeEmailsInput.value = emails.join('; ');
+    }, false);
+
+    // END HACKING
+
     // reveal the Y :)
     setTimeout(function() {
         var logoWrapper = document.getElementById('logo-full-screen');
