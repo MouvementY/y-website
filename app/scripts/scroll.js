@@ -32,15 +32,37 @@ document.addEventListener('DOMContentLoaded', function() {
         departementSelect.appendChild(opt);
     });
 
-    // when a departement is selected, fill the representative emails
     var representativeEmailsInput = document.getElementById('your-representatives');
+    var $representativeEmailsInputInstance = $(representativeEmailsInput).selectize({
+        delimiter: ';',
+        // valueField: 'email',
+        // labelField: 'email',
+        // searchField: ['email'],
+        create: function(input) {
+            return {
+                value: input,
+                text: input
+            }
+        }
+    });
+
+    // when a departement is selected, fill the representative emails
     var lastRepresentativeEmails = [];
-    departementSelect.addEventListener('change', function() {
-        var selectedDepNumber = departementSelect.value;
-        var emails = hackEmails[selectedDepNumber].emails;
-        lastRepresentativeEmails = emails;
-        representativeEmailsInput.value = emails.join('; ');
-    }, false);
+    $(departementSelect).selectize({
+        onChange: function() {
+            var selectedDepNumber = departementSelect.value;
+            var emails = hackEmails[selectedDepNumber].emails;
+            lastRepresentativeEmails = emails;
+
+            // representativeEmailsInput.value = emails.join('; ');
+            var selector = $representativeEmailsInputInstance[0].selectize;
+            selector.clearOptions();
+            emails.forEach(function(e) {
+                selector.addOption({value: e, text: e});
+                selector.addItem(e);
+            });
+        }
+    });
 
     // on inbox choice, we load the redirect with the right content
     var message = "Chers membres du gouvernement, députés, sénateurs,\n\
