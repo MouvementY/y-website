@@ -11,13 +11,14 @@ document.addEventListener('DOMContentLoaded', function() {
     'use strict';
 
     // START HACKING
-    var hackEmails = mouvy.hacking.repEmails;
+    var depEmails = mouvy.hacking.repEmails;
+    var gouvEmails = mouvy.hacking.gouvEmails;
 
     // handle the departement list creation
     var departementList = [];
-    for (var key in hackEmails) {
-        if (hackEmails.hasOwnProperty(key)) {
-            departementList.push({key: key, name: hackEmails[key].name});
+    for (var key in depEmails) {
+        if (depEmails.hasOwnProperty(key)) {
+            departementList.push({key: key, name: depEmails[key].name});
         }
     }
     departementList.sort(function(a, b) {
@@ -51,7 +52,10 @@ document.addEventListener('DOMContentLoaded', function() {
     $(departementSelect).selectize({
         onChange: function() {
             var selectedDepNumber = departementSelect.value;
-            var emails = hackEmails[selectedDepNumber].emails;
+            var emails = depEmails[selectedDepNumber].emails;
+            var additionalEmails = gouvEmails;
+
+            Array.prototype.push.apply(emails, additionalEmails);
             lastRepresentativeEmails = emails;
 
             // representativeEmailsInput.value = emails.join('; ');
