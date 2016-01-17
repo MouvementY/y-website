@@ -22,8 +22,7 @@ mouvy.hacking.gouvEmails = [
   "benjamin.menard@interieur.gouv.fr",
   "cab-ass-presse@sante.gouv.fr",
   "cab-phe-dc@sante.gouv.fr",
-  "secretariat.sde@defense.gouv.fr",
-  "courrier-ministre@sdbc.defense.gouv.fr"
+  "secretariat.sde@defense.gouv.fr"
 ];
 
 /*jslint quotmark: double */
