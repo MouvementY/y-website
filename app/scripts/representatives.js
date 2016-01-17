@@ -27,7 +27,6 @@ mouvy.hacking.gouvEmails = [
   "cab-presse.agriculture@agriculture.gouv.fr",
   "emmanuel.macron@cabinets.finances.gouv.fr",
   "bertrand.pailhes@cabinets.finances.gouv.fr",
-  "sophie.ferracci@economie.gouv.fr",
   "alexis.kohler@cabinets.finances.gouv.fr",
   "julien.denormandie@cabinets.finances.gouv.fr",
   "ismael.emelien@cabinets.finances.gouv.fr",
