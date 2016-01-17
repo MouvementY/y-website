@@ -86,7 +86,7 @@ Nous ne sommes pas des adeptes du « tous pourris ». Nous n'oublions pas que l'
 Merci.";
     /*jslint quotmark: single */
 
-    var subject = 'Chers représentants politiques';
+    var subject = 'Prenez vos responsabilités';
     var inboxShortcutButtons = document.querySelectorAll('.hk-through-inbox');
     Array.prototype.forEach.call(inboxShortcutButtons, function(el) {
         el.addEventListener('click', function(e) {
