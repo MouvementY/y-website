@@ -132,7 +132,7 @@ Merci.";
 
             // try to get an estimate of the number of emails sent
             // nothing more than that is tracked
-            ga && ga('send', 'event', 'hacking', 'mails', 'sent', lastRepresentativeEmails.length);
+            window.ga && window.ga('send', 'event', 'hacking', 'mails', 'sent', lastRepresentativeEmails.length);
 
             // simulate click
             var event = document.createEvent('HTMLEvents');
