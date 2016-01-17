@@ -131,9 +131,20 @@ Merci.";
             } else {
                 // no target url, so we open the modal view for copy/paste
                 mouvy.showModal(e.target, function(modal) {
+                    var emailField = modal.modalElem().querySelector('#hk-manual-emails');
+                    var contentField = modal.modalElem().querySelector('#hk-manual-content');
+
                     // fill the emails
-                    modal.modalElem().querySelector('#hk-manual-emails').value = lastRepresentativeEmails.join(';');
-                    modal.modalElem().querySelector('#hk-manual-content').innerHTML = message;
+                    emailField.value = lastRepresentativeEmails.join(';');
+                    contentField.innerHTML = message;
+
+                    // bind the focus event to select all the text
+                    emailField.addEventListener('focus', function() {
+                        emailField.select();
+                    }, false);
+                    contentField.addEventListener('focus', function() {
+                        contentField.select();
+                    }, false);
                 });
             }
         });
