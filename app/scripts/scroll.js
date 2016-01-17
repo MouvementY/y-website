@@ -137,15 +137,20 @@ Merci.";
                 // no target url, so we open the modal view for copy/paste
                 mouvy.showModal(e.target, function(modal) {
                     var emailField = modal.modalElem().querySelector('#hk-manual-emails');
+                    var subjectField = modal.modalElem().querySelector('#hk-manual-subject');
                     var contentField = modal.modalElem().querySelector('#hk-manual-content');
 
                     // fill the emails
                     emailField.value = lastRepresentativeEmails.join(';');
+                    subjectField.value = subject;
                     contentField.innerHTML = message;
 
                     // bind the focus event to select all the text
                     emailField.addEventListener('focus', function() {
                         emailField.select();
+                    }, false);
+                    subjectField.addEventListener('focus', function() {
+                        subjectField.select();
                     }, false);
                     contentField.addEventListener('focus', function() {
                         contentField.select();
