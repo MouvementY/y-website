@@ -2,6 +2,7 @@
 var mouvy = mouvy || {};
 mouvy.hacking = mouvy.hacking || {};
 
+/*jslint quotmark: double */
 mouvy.hacking.repEmails = {
   "38": {
     "name": "Is\u00e8re",

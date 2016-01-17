@@ -42,7 +42,7 @@ document.addEventListener('DOMContentLoaded', function() {
             return {
                 value: input,
                 text: input
-            }
+            };
         }
     });
 
@@ -66,6 +66,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // on inbox choice, we load the redirect with the right content
+    /*jslint quotmark: double */
     var message = "Chers membres du gouvernement, députés, sénateurs,\n\
 \n\
 J’ai signé le manifeste du Mouvement Y.\n\
@@ -83,36 +84,38 @@ Parce qu'on ne peut pas se résoudre à attendre éternellement et parce que l'a
 Nous ne sommes pas des adeptes du « tous pourris ». Nous n'oublions pas que l'immense majorité des élus locaux fait son travail avec dignité, mais je vous demande de faire le nécessaire pour que ces propositions essentielles soient soumises au vote.\n\
 \n\
 Merci.";
-    var subject = "Chers représentants politiques";
+    /*jslint quotmark: single */
+
+    var subject = 'Chers représentants politiques';
     var inboxShortcutButtons = document.querySelectorAll('.hk-through-inbox');
     Array.prototype.forEach.call(inboxShortcutButtons, function(el) {
         el.addEventListener('click', function(e) {
             e.preventDefault();
 
-            var targetUrl = undefined;
+            var targetUrl;
+            var params, query;
             if (el.id === 'hk-through-gmail') {
                 
                 // GMAIL
-                var targetUrl = 'https://mail.google.com/mail/';
-                var params = {
+                params = {
                     'view': 'cm',
                     'fs': '1',
                     'to': lastRepresentativeEmails.join(';'),
                     'su': subject,
                     'body': message
                 };
-                var query = mouvy.urlEncodeParams(params);
-                targetUrl = targetUrl + '?' + query;
+                query = mouvy.urlEncodeParams(params);
+                targetUrl = 'https://mail.google.com/mail/?' + query;
 
-            } else if (el.id == 'hk-through-other') {
+            } else if (el.id === 'hk-through-other') {
 
                 // default inbox
                 var to = lastRepresentativeEmails.join(';');
-                var params = {
+                params = {
                     'subject': subject,
                     'body': message
                 };
-                var query = mouvy.urlEncodeParams(params);
+                query = mouvy.urlEncodeParams(params);
                 targetUrl = 'mailto:' + encodeURIComponent(to) + '?' + query;
 
             }
@@ -122,7 +125,9 @@ Merci.";
 
                 // try to get an estimate of the number of emails sent
                 // nothing more than that is tracked
-                window.ga && window.ga('send', 'event', 'hacking', 'mails', 'sent', lastRepresentativeEmails.length);
+                if (window.ga) {
+                    window.ga('send', 'event', 'hacking', 'mails', 'sent', lastRepresentativeEmails.length);
+                }
 
                 // simulate click
                 var event = document.createEvent('HTMLEvents');
