@@ -69,7 +69,7 @@ mouvy.hacking.gouvEmails = [
   "alain.christnacht@justice.gouv.fr",
   "julien.meimon@justice.gouv.fr",
   "elie.patrigeon@justice.gouv.fr",
-  "elody.restarucci@justice.gouv.fr"
+  "elody.rustarucci@justice.gouv.fr"
 ];
 
 /*jslint quotmark: double */
