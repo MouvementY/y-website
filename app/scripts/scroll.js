@@ -128,7 +128,12 @@ Merci.";
                 targetUrl = 'mailto:' + encodeURIComponent(to) + '?' + query;
             }
 
-            window.location.href = targetUrl;
+            el.setAttribute('href', targetUrl);
+
+            // simulate click
+            var event = document.createEvent('HTMLEvents');
+            event.initEvent('click', true, false);
+            el.dispatchEvent(event);
         });
     });
     // END HACKING
