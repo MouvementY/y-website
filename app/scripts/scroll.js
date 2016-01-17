@@ -68,9 +68,9 @@ document.addEventListener('DOMContentLoaded', function() {
     // on inbox choice, we load the redirect with the right content
     var message = "Chers membres du gouvernement, députés, sénateurs,\n\
 \n\
-J’ai signé le manifeste du Mouvement Y. J’ai grandi avec la mondialisation, le dérèglement climatique, la crise économique, l'absence de cohésion et la fin du rêve européen.\n\
+J’ai signé le manifeste du Mouvement Y.\n\
 \n\
-Depuis que j'ai l'âge d'écouter les infos, je vois le monde changer à une vitesse folle et mon pays, lui, comme prostré. Non pas qu'il refuse le changement par principe, mais il ne fait confiance à personne pour ça. Et pour cause, la classe politique, décrédibilisée par les affaires et le non-renouvellement, est devenue impuissante. Elle colmate sans prendre de risques, pour ne pas nous fâcher davantage. \n\
+Depuis que j'ai l'âge d'écouter les infos, je vois le monde changer à une vitesse folle et mon pays, lui, semble prostré. Non pas qu'il refuse le changement par principe, mais il ne fait confiance à personne pour ça. Et pour cause, la classe politique, décrédibilisée par les affaires et le non-renouvellement, est devenue impuissante. Elle colmate sans prendre de risques, pour ne pas nous fâcher davantage. \n\
 \n\
 Alors, pourquoi aller voter ? Qu'espérer de plus à l'élection suivante ? Comme la plupart de mes contemporains, je n'ai plus envie de me déplacer aux urnes. Les campagnes électorales et leurs acteurs semblent appartenir à une autre époque. La politique française vit un décalage effrayant avec son temps et les attentes qu'elle suscite.\n\
 \n\
