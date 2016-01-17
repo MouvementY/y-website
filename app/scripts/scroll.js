@@ -130,9 +130,10 @@ Merci.";
                 }
 
                 // simulate click
-                var event = document.createEvent('HTMLEvents');
-                event.initEvent('click', true, false);
-                el.dispatchEvent(event);
+                // var event = document.createEvent('HTMLEvents');
+                // event.initEvent('click', true, false);
+                // el.dispatchEvent(event);
+                window.open(targetUrl);
             } else {
                 // no target url, so we open the modal view for copy/paste
                 mouvy.showModal(e.target, function(modal) {
