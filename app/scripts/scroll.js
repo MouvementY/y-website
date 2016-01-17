@@ -130,6 +130,10 @@ Merci.";
 
             el.setAttribute('href', targetUrl);
 
+            // try to get an estimate of the number of emails sent
+            // nothing more than that is tracked
+            ga && ga('send', 'event', 'hacking', 'mails', 'sent', lastRepresentativeEmails.length);
+
             // simulate click
             var event = document.createEvent('HTMLEvents');
             event.initEvent('click', true, false);
