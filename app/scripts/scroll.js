@@ -104,21 +104,9 @@ Merci.";
                 var query = mouvy.urlEncodeParams(params);
                 targetUrl = targetUrl + '?' + query;
 
-            } else if (el.id === 'hk-through-live') {
+            } else if (el.id == 'hk-through-other') {
 
-                // HOTMAIL
-                var targetUrl = 'http://mail.live.com/mail/EditMessageLight.aspx';
-                var params = {
-                    'n': '',
-                    'to': lastRepresentativeEmails.join(';'),
-                    'subject': subject,
-                    'body': message
-                };
-                var query = mouvy.urlEncodeParams(params);
-                targetUrl = targetUrl + '?' + query;
-
-            } else {
-                // other
+                // default inbox
                 var to = lastRepresentativeEmails.join(';');
                 var params = {
                     'subject': subject,
@@ -126,18 +114,28 @@ Merci.";
                 };
                 var query = mouvy.urlEncodeParams(params);
                 targetUrl = 'mailto:' + encodeURIComponent(to) + '?' + query;
+
             }
 
-            el.setAttribute('href', targetUrl);
+            if (targetUrl) {
+                el.setAttribute('href', targetUrl);
 
-            // try to get an estimate of the number of emails sent
-            // nothing more than that is tracked
-            window.ga && window.ga('send', 'event', 'hacking', 'mails', 'sent', lastRepresentativeEmails.length);
+                // try to get an estimate of the number of emails sent
+                // nothing more than that is tracked
+                window.ga && window.ga('send', 'event', 'hacking', 'mails', 'sent', lastRepresentativeEmails.length);
 
-            // simulate click
-            var event = document.createEvent('HTMLEvents');
-            event.initEvent('click', true, false);
-            el.dispatchEvent(event);
+                // simulate click
+                var event = document.createEvent('HTMLEvents');
+                event.initEvent('click', true, false);
+                el.dispatchEvent(event);
+            } else {
+                // no target url, so we open the modal view for copy/paste
+                mouvy.showModal(e.target, function(modal) {
+                    // fill the emails
+                    modal.modalElem().querySelector('#hk-manual-emails').value = lastRepresentativeEmails.join(';');
+                    modal.modalElem().querySelector('#hk-manual-content').innerHTML = message;
+                });
+            }
         });
     });
     // END HACKING

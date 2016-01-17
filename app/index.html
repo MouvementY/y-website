@@ -35,8 +35,19 @@
             <p class="paragraph">un email pré-rempli est généré automatiquement. Tu peux évidemment le modifier. Si ta messagerie est différente, clique ici (lien vers le texte) pour copier le texte manuellement.</p>
             <div class="button-group button-group--centered button-group--attached">
                 <a id="hk-through-gmail" href="" target="_blank" class="button  button--small  button--black  hk-through-inbox">Gmail</a>
-                <a id="hk-through-live" href="" target="_blank" class="button  button--small  button--black  hk-through-inbox">Hotmail</a>
                 <a id="hk-through-other" href="" target="_blank" class="button  button--small  hk-through-inbox">Autre</a>
+                <a id="hk-through-manual" href="" data-target="#hk-manual-content" class="button  button--small  button--black  hk-through-inbox">À la main</a>
+            </div>
+            <div class="inner-container learn-more" id="hk-manual-content">
+                <div class="paragraph">
+                    Adresses de vos représentants
+                    <input id="hk-manual-emails" class="input-text" type="text" style="width:100%;">
+                </div>
+                
+                <div class="paragraph">
+                    Contenu du mail proposé
+                    <textarea id="hk-manual-content" class="input-text" style="width:100%;" rows="10"></textarea>
+                </div>
             </div>
 
             <h2>3. Envoyez</h2>
