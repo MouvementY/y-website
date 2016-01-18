@@ -7,6 +7,6 @@
     "newsFetchURL": "https://y-engine.herokuapp.com/api/news/",
 
     "Pusher": {
-        "url": "http://y-pusher.herokuapp.com:80"
+        "url": "https://y-pusher.herokuapp.com:443"
     }
 }
