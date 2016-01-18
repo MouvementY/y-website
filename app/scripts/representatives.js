@@ -533,7 +533,6 @@ mouvy.hacking.repEmails = {
       "jerome@jeromechartier.fr",
       "jncarpentier@assemblee-nationale.fr",
       "pdoucet@assemblee-nationale.fr",
-      "contact@philippedoucet.fr",
       "dlefebvre@assemblee-nationale.fr",
       "fpupponi@assemblee-nationale.fr",
       "jpblazy@assemblee-nationale.fr",
