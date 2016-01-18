@@ -17,9 +17,7 @@ mouvy.hacking.gouvEmails = [
   "sec.senum-presse@cabinets.finances.gouv.fr",
   "sec.sebud-chefcab@cabinets.finances.gouv.fr",
   "secretariat.presse@cab.travail.gouv.fr ",
-  "gaspard.gantzer@elysee.fr",
   "sec.chefcab@interieur.gouv.fr",
-  "benjamin.menard@interieur.gouv.fr",
   "cab-ass-presse@sante.gouv.fr",
   "cab-phe-dc@sante.gouv.fr",
   "secretariat.sde@defense.gouv.fr"
