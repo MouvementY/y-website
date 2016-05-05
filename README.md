@@ -5,7 +5,7 @@
 
 ## Contribuer
 
-Un bug repéré ? une coquille à la ligne 254 ? un fix css en magasin pour IE9 ?
+Un bug repéré ? Une coquille à la ligne 254 ? Un fix css en magasin pour IE9 ?
 
 N'hésites pas à référencer le bug grâce au [moteur d'issues](https://github.com/MouvementY/y-website/issues), et à faire une Pull Request si le coeur t'en dit.
 
